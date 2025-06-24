@@ -59,26 +59,60 @@ export default function ModernHome() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Calculate rocket position based on scroll
-  const rocketBottom = Math.min(scrollY / 10, typeof window !== 'undefined' ? window.innerHeight * 0.8 : 400);
-  const rocketOpacity = scrollY > 300 ? 1 : 0;
+  // Calculate rocket visibility - only show in hero section
+  const heroSectionHeight = typeof window !== 'undefined' ? window.innerHeight : 800;
+  const rocketOpacity = scrollY < heroSectionHeight * 0.8 ? 1 : 0;
+  const rocketScale = Math.max(0.5, 1 - scrollY / heroSectionHeight);
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 text-white overflow-hidden relative">
       <ParticleBackground />
       
-      {/* Animated Rocket */}
+      {/* Giant Hero Rocket */}
       <div 
-        className="fixed right-8 z-40 transition-all duration-500 ease-in-out"
+        className="fixed right-4 md:right-12 top-1/2 transform -translate-y-1/2 z-30 transition-all duration-1000 ease-out pointer-events-none"
         style={{ 
-          bottom: `${rocketBottom}px`,
           opacity: rocketOpacity,
-          transform: `translateY(${Math.sin(scrollY * 0.01) * 10}px) rotate(${Math.sin(scrollY * 0.005) * 5}deg)`
+          transform: `translateY(-50%) scale(${rocketScale}) translateX(${Math.sin(scrollY * 0.008) * 20}px) rotate(${Math.sin(scrollY * 0.003) * 10}deg)`
         }}
       >
-        <div className="text-4xl animate-pulse">🚀</div>
-        <div className="absolute -bottom-8 left-1/2 transform -translate-x-1/2">
-          <div className="w-2 h-12 bg-gradient-to-t from-orange-400 via-yellow-400 to-transparent opacity-70 animate-pulse"></div>
+        {/* Rocket Body */}
+        <div className="relative">
+          <div className="text-8xl md:text-9xl lg:text-[12rem] animate-bounce-slow">🚀</div>
+          
+          {/* Flame Trail */}
+          <div className="absolute -bottom-12 left-1/2 transform -translate-x-1/2">
+            <div className="w-6 h-24 md:w-8 md:h-32 lg:w-12 lg:h-40 bg-gradient-to-t from-orange-500 via-yellow-400 to-transparent opacity-80 animate-pulse"></div>
+          </div>
+          
+          {/* Spark Effects */}
+          <div className="absolute -bottom-8 left-1/2 transform -translate-x-1/2">
+            <div className="w-4 h-4 bg-orange-400 rounded-full animate-ping opacity-75"></div>
+          </div>
+          <div className="absolute -bottom-6 left-1/3 transform -translate-x-1/2">
+            <div className="w-2 h-2 bg-yellow-400 rounded-full animate-ping opacity-60" style={{animationDelay: '0.5s'}}></div>
+          </div>
+          <div className="absolute -bottom-10 left-2/3 transform -translate-x-1/2">
+            <div className="w-3 h-3 bg-orange-300 rounded-full animate-ping opacity-50" style={{animationDelay: '1s'}}></div>
+          </div>
+        </div>
+
+        {/* Floating Text */}
+        <div 
+          className="absolute -left-32 md:-left-40 top-1/2 transform -translate-y-1/2"
+          style={{
+            opacity: Math.max(0, rocketOpacity - 0.3),
+            transform: `translateY(-50%) translateX(${Math.sin(scrollY * 0.01) * 5}px)`
+          }}
+        >
+          <div className="bg-gradient-to-r from-purple-900/80 to-orange-900/80 backdrop-blur-sm rounded-lg p-3 md:p-4 border border-orange-400/30">
+            <p className="text-white text-sm md:text-base font-bold">
+              🚀 Decole seu negócio!
+            </p>
+            <p className="text-orange-300 text-xs md:text-sm">
+              Automação que funciona
+            </p>
+          </div>
         </div>
       </div>
       {/* Navigation */}
