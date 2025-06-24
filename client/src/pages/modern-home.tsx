@@ -228,70 +228,72 @@ export default function ModernHome() {
               </span>
             </div>
             
-            <div className="hidden md:flex space-x-8">
-              <button onClick={() => scrollToSection('sobre')} className="text-gray-300 hover:text-purple-400 transition-colors">
-                Sobre
-              </button>
-              <button onClick={() => scrollToSection('servicos')} className="text-gray-300 hover:text-purple-400 transition-colors">
-                Serviços
-              </button>
-              <button onClick={() => scrollToSection('resultados')} className="text-gray-300 hover:text-purple-400 transition-colors">
-                Resultados
-              </button>
-              <button onClick={() => scrollToSection('faq')} className="text-gray-300 hover:text-purple-400 transition-colors">
-                FAQ
-              </button>
-              <button onClick={() => scrollToSection('contato')} className="text-gray-300 hover:text-purple-400 transition-colors">
-                Contato
-              </button>
-            </div>
+            <nav className="hidden md:flex space-x-8">
+              {[
+                { label: "Como funciona", href: "#como-funciona" },
+                { label: "Para quem é", href: "#para-quem" },
+                { label: "Resultados", href: "#resultados" },
+                { label: "FAQ", href: "#faq" }
+              ].map((item) => (
+                <button
+                  key={item.label}
+                  onClick={() => scrollToSection(item.href.substring(1))}
+                  className="text-gray-300 hover:text-orange-400 transition-colors font-medium"
+                >
+                  {item.label}
+                </button>
+              ))}
+            </nav>
 
             <WhatsAppModal
               trigger={
-                <Button className="hidden md:flex bg-gradient-to-r from-purple-600 to-purple-700 hover:from-purple-700 hover:to-purple-800 text-white">
+                <Button className="hidden md:inline-flex bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white">
                   <MessageSquare className="mr-2 h-4 w-4" />
                   Falar com especialista
                 </Button>
               }
             />
 
-            <Button
-              variant="ghost"
-              size="icon"
-              className="md:hidden text-gray-300"
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
+            <button 
+              className="md:hidden text-white p-2"
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              aria-label="Menu"
             >
-              {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-            </Button>
+              {isMobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+            </button>
           </div>
 
-          {/* Mobile menu */}
-          {isMenuOpen && (
-            <div className="md:hidden mt-4 pb-4 border-t border-purple-500/20">
-              <div className="flex flex-col space-y-4 pt-4">
-                <button onClick={() => scrollToSection('sobre')} className="text-gray-300 hover:text-purple-400 transition-colors text-left">
-                  Sobre
-                </button>
-                <button onClick={() => scrollToSection('servicos')} className="text-gray-300 hover:text-purple-400 transition-colors text-left">
-                  Serviços
-                </button>
-                <button onClick={() => scrollToSection('resultados')} className="text-gray-300 hover:text-purple-400 transition-colors text-left">
-                  Resultados
-                </button>
-                <button onClick={() => scrollToSection('faq')} className="text-gray-300 hover:text-purple-400 transition-colors text-left">
-                  FAQ
-                </button>
-                <button onClick={() => scrollToSection('contato')} className="text-gray-300 hover:text-purple-400 transition-colors text-left">
-                  Contato
-                </button>
-                <WhatsAppModal
-                  trigger={
-                    <Button className="w-full bg-gradient-to-r from-purple-600 to-purple-700 hover:from-purple-700 hover:to-purple-800 text-white">
-                      <MessageSquare className="mr-2 h-4 w-4" />
-                      Falar com especialista
-                    </Button>
-                  }
-                />
+          {/* Mobile Navigation Menu */}
+          {isMobileMenuOpen && (
+            <div className="md:hidden bg-slate-900/95 backdrop-blur-sm border-t border-purple-500/20 absolute top-full left-0 right-0 z-50">
+              <div className="container mx-auto px-6 py-4">
+                <nav className="flex flex-col space-y-4">
+                  {[
+                    { label: "Como funciona", href: "#como-funciona" },
+                    { label: "Para quem é", href: "#para-quem" },
+                    { label: "Resultados", href: "#resultados" },
+                    { label: "FAQ", href: "#faq" }
+                  ].map((item) => (
+                    <button
+                      key={item.label}
+                      onClick={() => {
+                        scrollToSection(item.href.substring(1));
+                        setIsMobileMenuOpen(false);
+                      }}
+                      className="text-gray-300 hover:text-orange-400 transition-colors font-medium text-left py-2"
+                    >
+                      {item.label}
+                    </button>
+                  ))}
+                  <WhatsAppModal
+                    trigger={
+                      <Button className="w-full bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white mt-4">
+                        <MessageSquare className="mr-2 h-4 w-4" />
+                        Falar com especialista
+                      </Button>
+                    }
+                  />
+                </nav>
               </div>
             </div>
           )}
@@ -1351,10 +1353,10 @@ export default function ModernHome() {
         <div className="container mx-auto text-center">
           <div className="max-w-4xl mx-auto">
             <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">
-              Junte-se a mais de <span className="text-yellow-400">200.000</span> empreendedores
+              Faça parte do <span className="text-yellow-400">futuro</span> do atendimento
             </h2>
             <p className="text-xl text-gray-100 mb-8">
-              Que já estão automatizando seus negócios e aumentando suas vendas
+              Empresas inovadoras já usam agentes de IA para escalar suas vendas sem aumentar custos
             </p>
             <div className="space-y-6">
               <WhatsAppModal
