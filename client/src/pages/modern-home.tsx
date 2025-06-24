@@ -926,31 +926,7 @@ export default function ModernHome() {
               </Card>
             </div>
 
-            <div className="mt-12">
-              <Card className="bg-gradient-to-r from-green-900/50 to-green-800/50 border-green-500/30 max-w-2xl mx-auto">
-                <CardContent className="p-8">
-                  <h3 className="text-2xl font-bold text-white mb-4">
-                    🛡️ Nossa Promessa
-                  </h3>
-                  <p className="text-gray-100 mb-6">
-                    Se em 30 dias você não estiver 100% satisfeito com os resultados dos agentes de IA, 
-                    devolvemos todo o investimento. Sem perguntas, sem burocracia.
-                  </p>
-                  <WhatsAppModal
-                    trigger={
-                      <Button 
-                        size="lg" 
-                        className="bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white"
-                      >
-                        <Shield className="mr-2 h-5 w-5" />
-                        Quero essa garantia
-                        <ArrowRight className="ml-2 h-5 w-5" />
-                      </Button>
-                    }
-                  />
-                </CardContent>
-              </Card>
-            </div>
+
           </div>
         </div>
       </section>

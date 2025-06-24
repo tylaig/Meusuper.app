@@ -95,6 +95,9 @@ The application uses Drizzle ORM with a PostgreSQL-ready schema:
 ## Recent Changes
 
 - June 24, 2025: Major layout and copy improvements focused on brutal pain points
+  - **SPIN selling implementation**: Reorganized page flow - Situation, Problem, Implication, Need-payoff
+  - **Enhanced calculator**: Better inputs for lead volume, ticket size, response time, time investment
+  - **Removed "Nossa Promessa"**: Eliminated unrealistic guarantee section as requested
   - **Realistic guarantee**: Removed money-back promise, focused on partnership and commitment to results
   - **Professional bio added**: Samuel's photo and enhanced bio with Dubotics partnership, Dubai experience
   - **Responsive header**: Fixed mobile navigation, better breakpoints, smaller text sizes for mobile
