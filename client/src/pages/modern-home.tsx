@@ -37,74 +37,50 @@ import {
   Heart
 } from "lucide-react";
 
-interface ContactForm {
-  nome: string;
-  telefone: string;
-  empresa: string;
-  dor: string;
-}
-
 export default function ModernHome() {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [formData, setFormData] = useState<ContactForm>({
-    nome: "",
-    telefone: "",
-    empresa: "",
-    dor: ""
-  });
-  const [showSuccess, setShowSuccess] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [expandedFaq, setExpandedFaq] = useState<number | null>(null);
-  const { toast } = useToast();
-
-  const contactMutation = useMutation({
-    mutationFn: async (data: ContactForm) => {
-      const response = await apiRequest("POST", "/api/webhook", data);
-      return response.json();
-    },
-    onSuccess: () => {
-      setShowSuccess(true);
-      setFormData({ nome: "", telefone: "", empresa: "", dor: "" });
-      
-      // Redirect to WhatsApp after 3 seconds
-      setTimeout(() => {
-        const whatsappUrl = `https://wa.me/5511999999999?text=Ol%C3%A1%2C%20sou%20${formData.nome}%20e%20acabei%20de%20preencher%20o%20formul%C3%A1rio%20no%20site.%20Gostaria%20de%20conversar%20sobre%20automa%C3%A7%C3%A3o%20para%20minha%20empresa.`;
-        window.open(whatsappUrl, '_blank');
-      }, 3000);
-    },
-    onError: (error) => {
-      console.error('Form submission error:', error);
-      toast({
-        title: "Erro ao enviar formulário",
-        description: "Tente novamente ou entre em contato pelo WhatsApp.",
-        variant: "destructive",
-      });
-    }
-  });
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!formData.nome || !formData.telefone) {
-      toast({
-        title: "Campos obrigatórios",
-        description: "Por favor, preencha nome e telefone.",
-        variant: "destructive",
-      });
-      return;
-    }
-    contactMutation.mutate(formData);
-  };
+  const [scrollY, setScrollY] = useState(0);
 
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
-    setMobileMenuOpen(false);
+    setIsMenuOpen(false);
   };
 
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrollY(window.scrollY);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  // Calculate rocket position based on scroll
+  const rocketBottom = Math.min(scrollY / 10, typeof window !== 'undefined' ? window.innerHeight * 0.8 : 400);
+  const rocketOpacity = scrollY > 300 ? 1 : 0;
+
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 relative">
+    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 text-white overflow-hidden relative">
       <ParticleBackground />
+      
+      {/* Animated Rocket */}
+      <div 
+        className="fixed right-8 z-40 transition-all duration-500 ease-in-out"
+        style={{ 
+          bottom: `${rocketBottom}px`,
+          opacity: rocketOpacity,
+          transform: `translateY(${Math.sin(scrollY * 0.01) * 10}px) rotate(${Math.sin(scrollY * 0.005) * 5}deg)`
+        }}
+      >
+        <div className="text-4xl animate-pulse">🚀</div>
+        <div className="absolute -bottom-8 left-1/2 transform -translate-x-1/2">
+          <div className="w-2 h-12 bg-gradient-to-t from-orange-400 via-yellow-400 to-transparent opacity-70 animate-pulse"></div>
+        </div>
+      </div>
       {/* Navigation */}
       <nav className="fixed top-0 w-full z-50 bg-slate-900/80 backdrop-blur-md border-b border-purple-500/20 relative">
         <div className="container mx-auto px-6 py-4">
@@ -149,14 +125,14 @@ export default function ModernHome() {
               variant="ghost"
               size="icon"
               className="md:hidden text-gray-300"
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
             >
-              {mobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+              {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
             </Button>
           </div>
 
           {/* Mobile menu */}
-          {mobileMenuOpen && (
+          {isMenuOpen && (
             <div className="md:hidden mt-4 pb-4 border-t border-purple-500/20">
               <div className="flex flex-col space-y-4 pt-4">
                 <button onClick={() => scrollToSection('sobre')} className="text-gray-300 hover:text-purple-400 transition-colors text-left">
@@ -211,15 +187,18 @@ export default function ModernHome() {
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 md:gap-6 justify-center mb-16">
-              <Button 
-                size="lg" 
-                className="bg-gradient-to-r from-orange-600 to-red-600 hover:from-orange-700 hover:to-red-700 text-white px-6 md:px-8 py-4 text-base md:text-lg"
-                onClick={() => scrollToSection('contato')}
-              >
-                <Bot className="mr-2 h-4 md:h-5 w-4 md:w-5" />
-                Descobrir quanto estou perdendo
-                <ArrowRight className="ml-2 h-4 md:h-5 w-4 md:w-5" />
-              </Button>
+              <WhatsAppModal
+                trigger={
+                  <Button 
+                    size="lg" 
+                    className="bg-gradient-to-r from-orange-600 to-red-600 hover:from-orange-700 hover:to-red-700 text-white px-6 md:px-8 py-4 text-base md:text-lg"
+                  >
+                    <Target className="mr-2 h-4 md:h-5 w-4 md:w-5" />
+                    Descobrir quanto estou perdendo
+                    <ArrowRight className="ml-2 h-4 md:h-5 w-4 md:w-5" />
+                  </Button>
+                }
+              />
               
               <Button 
                 size="lg" 
@@ -326,14 +305,18 @@ export default function ModernHome() {
                     Sua empresa está perdendo <span className="text-orange-400 font-bold">no mínimo R$ 10.000/mês</span> em vendas perdidas, 
                     tempo desperdiçado e oportunidades que vão para a concorrência.
                   </p>
-                  <Button 
-                    size="lg" 
-                    className="bg-gradient-to-r from-orange-600 to-red-600 hover:from-orange-700 hover:to-red-700 text-white"
-                    onClick={() => scrollToSection('solucao')}
-                  >
-                    <ArrowRight className="mr-2 h-5 w-5" />
-                    Quero ver a solução agora
-                  </Button>
+                  <WhatsAppModal
+                    trigger={
+                      <Button 
+                        size="lg" 
+                        className="bg-gradient-to-r from-orange-600 to-red-600 hover:from-orange-700 hover:to-red-700 text-white"
+                      >
+                        <Target className="mr-2 h-5 w-5" />
+                        Calcular quanto estou perdendo
+                        <ArrowRight className="ml-2 h-5 w-5" />
+                      </Button>
+                    }
+                  />
                 </CardContent>
               </Card>
             </div>
@@ -913,114 +896,58 @@ export default function ModernHome() {
         </div>
       </section>
 
-      {/* Contact Form */}
+      {/* CTA Final */}
       <section id="contato" className="py-20 px-6 relative z-10">
         <div className="container mx-auto">
-          <div className="max-w-4xl mx-auto">
-            <div className="text-center mb-16">
-              <Badge className="mb-4 bg-purple-500/20 text-purple-300 border-purple-500/30">
-                <MessageSquare className="mr-2 h-3 w-3" />
-                Vamos conversar
-              </Badge>
-              <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
-                Pronto para <span className="text-purple-400">automatizar</span> seu negócio?
-              </h2>
-              <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-                Fale com um especialista agora e veja como seu atendimento pode trabalhar por você 24 horas por dia
-              </p>
+          <div className="max-w-4xl mx-auto text-center">
+            <Badge className="mb-4 bg-green-500/20 text-green-300 border-green-500/30">
+              <Target className="mr-2 h-3 w-3" />
+              Diagnóstico Gratuito
+            </Badge>
+            <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">
+              Pare de <span className="text-red-400">perder dinheiro</span> agora mesmo
+            </h2>
+            <p className="text-xl text-gray-200 max-w-3xl mx-auto mb-12">
+              Em 15 minutos descobrimos exatamente quanto sua empresa está perdendo e como recuperar tudo isso em 30 dias
+            </p>
+
+            <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+              <WhatsAppModal
+                trigger={
+                  <Button 
+                    size="lg" 
+                    className="w-full bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white font-bold py-6 text-lg"
+                  >
+                    <Target className="mr-2 h-5 w-5" />
+                    Calcular minhas perdas agora
+                    <ArrowRight className="ml-2 h-5 w-5" />
+                  </Button>
+                }
+              />
+              
+              <WhatsAppModal
+                trigger={
+                  <Button 
+                    size="lg" 
+                    variant="outline"
+                    className="w-full border-orange-400 text-orange-400 hover:bg-orange-400 hover:text-white font-bold py-6 text-lg"
+                  >
+                    <MessageSquare className="mr-2 h-5 w-5" />
+                    Falar com especialista
+                    <ArrowRight className="ml-2 h-5 w-5" />
+                  </Button>
+                }
+              />
             </div>
 
-            {showSuccess ? (
-              <Card className="bg-gradient-to-br from-green-900/50 to-slate-900/50 border-green-500/30 max-w-2xl mx-auto">
-                <CardContent className="p-8 text-center">
-                  <CheckCircle className="w-16 h-16 text-green-400 mx-auto mb-4" />
-                  <h3 className="text-2xl font-bold text-white mb-4">Obrigado!</h3>
-                  <p className="text-gray-300 mb-4">
-                    Em breve nossa equipe entrará em contato com você pelo WhatsApp.
-                  </p>
-                  <p className="text-sm text-gray-400">
-                    Redirecionando para o WhatsApp em alguns segundos...
-                  </p>
-                </CardContent>
-              </Card>
-            ) : (
-              <Card className="bg-slate-900/50 border-purple-500/20 max-w-2xl mx-auto">
-                <CardContent className="p-8">
-                  <form onSubmit={handleSubmit} className="space-y-6">
-                    <div className="grid md:grid-cols-2 gap-6">
-                      <div>
-                        <label className="block text-sm font-medium text-gray-300 mb-2">
-                          Nome *
-                        </label>
-                        <Input
-                          required
-                          value={formData.nome}
-                          onChange={(e) => setFormData({ ...formData, nome: e.target.value })}
-                          className="bg-slate-800 border-purple-500/30 text-white"
-                          placeholder="Seu nome completo"
-                        />
-                      </div>
-                      <div>
-                        <label className="block text-sm font-medium text-gray-300 mb-2">
-                          Telefone *
-                        </label>
-                        <Input
-                          required
-                          value={formData.telefone}
-                          onChange={(e) => setFormData({ ...formData, telefone: e.target.value })}
-                          className="bg-slate-800 border-purple-500/30 text-white"
-                          placeholder="(11) 99999-9999"
-                        />
-                      </div>
-                    </div>
-                    
-                    <div>
-                      <label className="block text-sm font-medium text-gray-300 mb-2">
-                        Nome da empresa
-                      </label>
-                      <Input
-                        value={formData.empresa}
-                        onChange={(e) => setFormData({ ...formData, empresa: e.target.value })}
-                        className="bg-slate-800 border-purple-500/30 text-white"
-                        placeholder="Nome da sua empresa"
-                      />
-                    </div>
-                    
-                    <div>
-                      <label className="block text-sm font-medium text-gray-300 mb-2">
-                        Quantos clientes você perde por não responder rápido? *
-                      </label>
-                      <Textarea
-                        value={formData.dor}
-                        onChange={(e) => setFormData({ ...formData, dor: e.target.value })}
-                        className="bg-slate-800 border-purple-500/30 text-white min-h-[120px]"
-                        placeholder="Ex: Perco cerca de 10 clientes por semana que vão para a concorrência porque demoro para responder no WhatsApp..."
-                      />
-                    </div>
-                    
-                    <Button
-                      type="submit"
-                      size="lg"
-                      className="w-full bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white"
-                      disabled={contactMutation.isPending}
-                    >
-                      {contactMutation.isPending ? (
-                        <>
-                          <Clock className="mr-2 h-5 w-5 animate-spin" />
-                          Calculando...
-                        </>
-                      ) : (
-                        <>
-                          <Target className="mr-2 h-5 w-5" />
-                          Calcular quanto estou perdendo
-                          <ArrowRight className="ml-2 h-5 w-5" />
-                        </>
-                      )}
-                    </Button>
-                  </form>
-                </CardContent>
-              </Card>
-            )}
+            <div className="mt-8 text-center">
+              <p className="text-gray-300 text-sm">
+                ⚡ Diagnóstico gratuito em 15 minutos<br/>
+                🎯 Descubra exatamente quanto você está perdendo<br/>
+                💰 Veja como recuperar tudo isso em 30 dias<br/>
+                🔥 Sem compromisso - apenas resultados reais
+              </p>
+            </div>
           </div>
         </div>
       </section>
@@ -1142,12 +1069,41 @@ export default function ModernHome() {
                     size="lg" 
                     className="bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white font-bold px-8 md:px-12 py-4 text-lg"
                   >
-                    <MessageSquare className="mr-2 h-5 w-5" />
-                    Quero parar de perder dinheiro hoje
+                    <Target className="mr-2 h-5 w-5" />
+                    Parar de perder R$ 10mil/mês agora
                     <ArrowRight className="ml-2 h-5 w-5" />
                   </Button>
                 }
               />
+              
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <WhatsAppModal
+                  trigger={
+                    <Button 
+                      size="lg" 
+                      variant="outline"
+                      className="border-orange-400 text-orange-400 hover:bg-orange-400 hover:text-white font-bold px-6 py-3"
+                    >
+                      <Clock className="mr-2 h-4 w-4" />
+                      Equipe sobrecarregada
+                    </Button>
+                  }
+                />
+                
+                <WhatsAppModal
+                  trigger={
+                    <Button 
+                      size="lg" 
+                      variant="outline"
+                      className="border-red-400 text-red-400 hover:bg-red-400 hover:text-white font-bold px-6 py-3"
+                    >
+                      <TrendingUp className="mr-2 h-4 w-4" />
+                      Perdendo para concorrência
+                    </Button>
+                  }
+                />
+              </div>
+              
               <p className="text-gray-300 text-sm max-w-md mx-auto">
                 ⚡ Diagnóstico gratuito em 15 minutos<br/>
                 🎯 Descubra exatamente quanto você está perdendo<br/>
