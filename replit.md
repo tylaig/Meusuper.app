@@ -92,10 +92,17 @@ The application uses Drizzle ORM with a PostgreSQL-ready schema:
 - **Deployment**: Autoscale target with build/run commands
 - **Development**: Parallel workflow with port watching
 
-## Changelog
+## Recent Changes
 
-- June 24, 2025. Initial setup
+- June 24, 2025: Complete redesign with modern dark theme
+  - Created new modern landing page with glassmorphism design
+  - Implemented dark gradient background with purple/yellow accents
+  - Added interactive components using shadcn/ui
+  - Enhanced mobile responsiveness and animations
+  - Improved contact form with better UX
+- June 24, 2025: Initial setup and basic landing page
 
 ## User Preferences
 
 Preferred communication style: Simple, everyday language.
+Design preferences: Modern dark theme with purple and gold accents, similar to high-end SaaS platforms.
