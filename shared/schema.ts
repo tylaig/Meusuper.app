@@ -14,6 +14,7 @@ export const contacts = pgTable("contacts", {
   telefone: text("telefone").notNull(),
   empresa: text("empresa"),
   dor: text("dor"),
+  faturamento: text("faturamento"),
   createdAt: timestamp("created_at").defaultNow().notNull(),
 });
 
@@ -25,6 +26,9 @@ export const insertUserSchema = createInsertSchema(users).pick({
 export const insertContactSchema = createInsertSchema(contacts).omit({
   id: true,
   createdAt: true,
+}).extend({
+  faturamento: z.string().min(1, "Faturamento é obrigatório"),
+  dor: z.string().min(1, "Descreva sua principal dor no atendimento"),
 });
 
 export type InsertUser = z.infer<typeof insertUserSchema>;

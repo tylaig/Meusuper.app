@@ -41,6 +41,54 @@ export default function ModernHome() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [expandedFaq, setExpandedFaq] = useState<number | null>(null);
   const [scrollY, setScrollY] = useState(0);
+  const [formData, setFormData] = useState<ContactForm>({
+    nome: "",
+    telefone: "",
+    empresa: "",
+    dor: "",
+    faturamento: ""
+  });
+  const [showSuccess, setShowSuccess] = useState(false);
+
+  const { toast } = useToast();
+
+  const contactMutation = useMutation({
+    mutationFn: async (data: ContactForm) => {
+      const response = await apiRequest({
+        endpoint: "/api/webhook",
+        method: "POST",
+        body: data,
+      });
+      return response;
+    },
+    onSuccess: () => {
+      setShowSuccess(true);
+      toast({
+        title: "Mensagem enviada!",
+        description: "Em breve nossa equipe entrará em contato com você.",
+      });
+      
+      // Redirect to WhatsApp after 3 seconds
+      setTimeout(() => {
+        const message = encodeURIComponent(
+          `Olá! Acabei de preencher o formulário no site do MeuSuper.app. Faturamento: ${formData.faturamento}. Empresa: ${formData.empresa || 'não informado'}. Principal dor: ${formData.dor}`
+        );
+        window.open(`https://wa.me/5511999999999?text=${message}`, '_blank');
+      }, 3000);
+    },
+    onError: (error) => {
+      toast({
+        title: "Erro ao enviar",
+        description: "Tente novamente ou entre em contato pelo WhatsApp.",
+        variant: "destructive",
+      });
+    },
+  });
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    contactMutation.mutate(formData);
+  };
 
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
@@ -265,20 +313,20 @@ export default function ModernHome() {
             {/* Stats */}
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-8 max-w-4xl mx-auto">
               <div className="text-center">
-                <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-2">🌎</div>
-                <div className="text-gray-200 text-sm md:text-base font-semibold">Brasil e Dubai</div>
+                <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-green-400 mb-2">R$ 100k+</div>
+                <div className="text-gray-200 text-sm md:text-base">Vendas Recuperadas</div>
               </div>
               <div className="text-center">
-                <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-orange-400 mb-2">97%</div>
-                <div className="text-gray-200 text-sm md:text-base">Taxa de Satisfação</div>
+                <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-orange-400 mb-2">10.000h</div>
+                <div className="text-gray-200 text-sm md:text-base">Horas Economizadas</div>
               </div>
               <div className="text-center">
                 <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-yellow-400 mb-2">4.9⭐</div>
                 <div className="text-gray-200 text-sm md:text-base">Avaliação Média</div>
               </div>
               <div className="text-center">
-                <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-purple-400 mb-2">24/7</div>
-                <div className="text-gray-200 text-sm md:text-base">Suporte Automatizado</div>
+                <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-purple-400 mb-2">97%</div>
+                <div className="text-gray-200 text-sm md:text-base">Taxa de Satisfação</div>
               </div>
             </div>
           </div>
@@ -462,12 +510,12 @@ export default function ModernHome() {
                   </CardHeader>
                   <CardContent className="space-y-4">
                     <p className="text-gray-200 leading-relaxed">
-                      Criado por <span className="text-orange-400 font-semibold">Samuel Vicente Ferreira</span> — desenvolvedor, estrategista e especialista em IA — 
-                      o <span className="text-purple-400 font-semibold">MeuSuper.app</span> entrega soluções inteligentes que eliminam tarefas repetitivas e aumentam o faturamento com tecnologia de ponta.
+                      <span className="text-orange-400 font-semibold">Samuel Vicente Ferreira</span> é especialista em automações com IA, desenvolvedor de software e estrategista digital. 
+                      Atua com foco em criar soluções que transformam negócios com inteligência artificial, automação de atendimento, integrações com APIs, bots de voz e ferramentas no-code.
                     </p>
                     <p className="text-gray-200 leading-relaxed">
-                      <span className="text-orange-400 font-semibold">Aqui, IA não é promessa, é entrega.</span> Trabalhamos em parceria com a <span className="text-purple-400 font-semibold">Dubotics</span>, 
-                      empresa de robótica e inovação, para levar automações ainda mais avançadas a negócios no Brasil e no exterior.
+                      Fundador do <span className="text-purple-400 font-semibold">MeuSuper.app</span> e parceiro da <span className="text-orange-400 font-semibold">Dubotics</span>, 
+                      já atendeu clientes no Brasil, Dubai e outros mercados internacionais, com foco em <span className="text-green-400 font-semibold">resultados reais, escalabilidade e independência tecnológica.</span>
                     </p>
                     <div className="flex items-center gap-3 mt-4">
                       <a 
@@ -765,21 +813,61 @@ export default function ModernHome() {
                 Benefícios
               </Badge>
               <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">
-                O que você <span className="text-orange-400">ganha</span> com IA
+                Pare de sofrer com <span className="text-red-400">estes problemas</span>
               </h2>
               <p className="text-xl text-gray-200 max-w-3xl mx-auto">
-                Promessas que se transformam em resultados reais
+                Problemas reais que nossa automação resolve definitivamente
               </p>
             </div>
 
-            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-8">
+              <Card className="bg-gradient-to-br from-red-900/50 to-slate-900/50 border-red-500/20 text-center">
+                <CardContent className="p-6">
+                  <div className="mx-auto mb-4 w-16 h-16 bg-gradient-to-br from-red-500 to-red-600 rounded-2xl flex items-center justify-center">
+                    <Clock className="h-8 w-8 text-white" />
+                  </div>
+                  <h3 className="text-xl font-bold text-white mb-3">Respostas lentas que fazem você perder vendas</h3>
+                  <p className="text-gray-100 text-sm">Cliente espera 2h para ser atendido e vai para a concorrência</p>
+                </CardContent>
+              </Card>
+
+              <Card className="bg-gradient-to-br from-orange-900/50 to-slate-900/50 border-orange-500/20 text-center">
+                <CardContent className="p-6">
+                  <div className="mx-auto mb-4 w-16 h-16 bg-gradient-to-br from-orange-500 to-orange-600 rounded-2xl flex items-center justify-center">
+                    <Users className="h-8 w-8 text-white" />
+                  </div>
+                  <h3 className="text-xl font-bold text-white mb-3">Falta de equipe fora do horário comercial</h3>
+                  <p className="text-gray-100 text-sm">Vendas perdidas à noite, fins de semana e feriados</p>
+                </CardContent>
+              </Card>
+
               <Card className="bg-gradient-to-br from-purple-900/50 to-slate-900/50 border-purple-500/20 text-center">
                 <CardContent className="p-6">
                   <div className="mx-auto mb-4 w-16 h-16 bg-gradient-to-br from-purple-500 to-purple-600 rounded-2xl flex items-center justify-center">
-                    <Clock className="h-8 w-8 text-white" />
+                    <MessageSquare className="h-8 w-8 text-white" />
                   </div>
-                  <h3 className="text-2xl font-bold text-white mb-2">10.000h</h3>
-                  <p className="text-gray-200 text-sm"><span className="text-orange-400 font-semibold">Economize</span> com atendimento automatizado que nunca para</p>
+                  <h3 className="text-xl font-bold text-white mb-3">Perda de leads por falta de follow-up</h3>
+                  <p className="text-gray-100 text-sm">Lead interessado hoje, esquecido amanhã</p>
+                </CardContent>
+              </Card>
+
+              <Card className="bg-gradient-to-br from-blue-900/50 to-slate-900/50 border-blue-500/20 text-center">
+                <CardContent className="p-6">
+                  <div className="mx-auto mb-4 w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl flex items-center justify-center">
+                    <Zap className="h-8 w-8 text-white" />
+                  </div>
+                  <h3 className="text-xl font-bold text-white mb-3">Dificuldade de integrar ferramentas e CRMs</h3>
+                  <p className="text-gray-100 text-sm">Dados soltos, sem conexão entre sistemas</p>
+                </CardContent>
+              </Card>
+
+              <Card className="bg-gradient-to-br from-green-900/50 to-slate-900/50 border-green-500/20 text-center">
+                <CardContent className="p-6">
+                  <div className="mx-auto mb-4 w-16 h-16 bg-gradient-to-br from-green-500 to-green-600 rounded-2xl flex items-center justify-center">
+                    <Target className="h-8 w-8 text-white" />
+                  </div>
+                  <h3 className="text-xl font-bold text-white mb-3">Atendimento manual que não escala</h3>
+                  <p className="text-gray-100 text-sm">Mais clientes = mais dor de cabeça</p>
                 </CardContent>
               </Card>
 
@@ -788,28 +876,8 @@ export default function ModernHome() {
                   <div className="mx-auto mb-4 w-16 h-16 bg-gradient-to-br from-yellow-500 to-yellow-600 rounded-2xl flex items-center justify-center">
                     <TrendingUp className="h-8 w-8 text-white" />
                   </div>
-                  <h3 className="text-2xl font-bold text-white mb-2">R$ 100k+</h3>
-                  <p className="text-gray-200 text-sm"><span className="text-orange-400 font-semibold">Recupere</span> em vendas perdidas que voltam automaticamente</p>
-                </CardContent>
-              </Card>
-
-              <Card className="bg-gradient-to-br from-green-900/50 to-slate-900/50 border-green-500/20 text-center">
-                <CardContent className="p-6">
-                  <div className="mx-auto mb-4 w-16 h-16 bg-gradient-to-br from-green-500 to-green-600 rounded-2xl flex items-center justify-center">
-                    <Bot className="h-8 w-8 text-white" />
-                  </div>
-                  <h3 className="text-2xl font-bold text-white mb-2">24/7</h3>
-                  <p className="text-gray-200 text-sm"><span className="text-orange-400 font-semibold">Um bot que nunca dorme:</span> atendimento 24/7</p>
-                </CardContent>
-              </Card>
-
-              <Card className="bg-gradient-to-br from-blue-900/50 to-slate-900/50 border-blue-500/20 text-center">
-                <CardContent className="p-6">
-                  <div className="mx-auto mb-4 w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl flex items-center justify-center">
-                    <Target className="h-8 w-8 text-white" />
-                  </div>
-                  <h3 className="text-2xl font-bold text-white mb-2">-60%</h3>
-                  <p className="text-gray-200 text-sm"><span className="text-orange-400 font-semibold">Reduza seus custos</span> operacionais sem perder qualidade</p>
+                  <h3 className="text-xl font-bold text-white mb-3">Operações que dependem de você estar online 24h</h3>
+                  <p className="text-gray-100 text-sm">Você é prisioneiro do próprio negócio</p>
                 </CardContent>
               </Card>
             </div>
@@ -947,58 +1015,132 @@ export default function ModernHome() {
         </div>
       </section>
 
-      {/* CTA Final */}
+      {/* Contact Form */}
       <section id="contato" className="py-20 px-6 relative z-10">
         <div className="container mx-auto">
-          <div className="max-w-4xl mx-auto text-center">
-            <Badge className="mb-4 bg-green-500/20 text-green-300 border-green-500/30">
-              <Target className="mr-2 h-3 w-3" />
-              Diagnóstico Gratuito
-            </Badge>
-            <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">
-              Pare de <span className="text-red-400">perder dinheiro</span> agora mesmo
-            </h2>
-            <p className="text-xl text-gray-200 max-w-3xl mx-auto mb-12">
-              Em 15 minutos descobrimos exatamente quanto sua empresa está perdendo e como recuperar tudo isso em 30 dias
-            </p>
-
-            <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
-              <WhatsAppModal
-                trigger={
-                  <Button 
-                    size="lg" 
-                    className="w-full bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white font-bold py-6 text-lg"
-                  >
-                    <Target className="mr-2 h-5 w-5" />
-                    Calcular minhas perdas agora
-                    <ArrowRight className="ml-2 h-5 w-5" />
-                  </Button>
-                }
-              />
-              
-              <WhatsAppModal
-                trigger={
-                  <Button 
-                    size="lg" 
-                    variant="outline"
-                    className="w-full border-orange-400 text-orange-400 hover:bg-orange-400 hover:text-white font-bold py-6 text-lg"
-                  >
-                    <MessageSquare className="mr-2 h-5 w-5" />
-                    Falar com especialista
-                    <ArrowRight className="ml-2 h-5 w-5" />
-                  </Button>
-                }
-              />
-            </div>
-
-            <div className="mt-8 text-center">
-              <p className="text-gray-300 text-sm">
-                ⚡ Diagnóstico gratuito em 15 minutos<br/>
-                🎯 Descubra exatamente quanto você está perdendo<br/>
-                💰 Veja como recuperar tudo isso em 30 dias<br/>
-                🔥 Sem compromisso - apenas resultados reais
+          <div className="max-w-4xl mx-auto">
+            <div className="text-center mb-16">
+              <Badge className="mb-4 bg-green-500/20 text-green-200 border-green-500/30">
+                <Target className="mr-2 h-3 w-3" />
+                Diagnóstico Gratuito
+              </Badge>
+              <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">
+                Pronto para <span className="text-green-400">escalar</span> seu negócio?
+              </h2>
+              <p className="text-xl text-gray-200 max-w-3xl mx-auto">
+                Fale com um especialista agora e descubra como automatizar seu atendimento em 7 dias
               </p>
             </div>
+
+            {showSuccess ? (
+              <Card className="bg-gradient-to-br from-green-900/50 to-slate-900/50 border-green-500/30 max-w-2xl mx-auto">
+                <CardContent className="p-8 text-center">
+                  <CheckCircle className="w-16 h-16 text-green-400 mx-auto mb-4" />
+                  <h3 className="text-2xl font-bold text-white mb-4">Obrigado!</h3>
+                  <p className="text-gray-100 mb-4">
+                    Em breve nossa equipe entrará em contato com você pelo WhatsApp.
+                  </p>
+                  <p className="text-sm text-gray-300">
+                    Redirecionando para o WhatsApp em alguns segundos...
+                  </p>
+                </CardContent>
+              </Card>
+            ) : (
+              <Card className="bg-slate-900/50 border-purple-500/20 max-w-2xl mx-auto">
+                <CardContent className="p-8">
+                  <form onSubmit={handleSubmit} className="space-y-6">
+                    <div className="grid md:grid-cols-2 gap-6">
+                      <div>
+                        <label className="block text-sm font-medium text-gray-300 mb-2">
+                          Nome *
+                        </label>
+                        <Input
+                          required
+                          value={formData.nome}
+                          onChange={(e) => setFormData({ ...formData, nome: e.target.value })}
+                          className="bg-slate-800 border-purple-500/30 text-white"
+                          placeholder="Seu nome completo"
+                        />
+                      </div>
+                      <div>
+                        <label className="block text-sm font-medium text-gray-300 mb-2">
+                          Telefone *
+                        </label>
+                        <Input
+                          required
+                          value={formData.telefone}
+                          onChange={(e) => setFormData({ ...formData, telefone: e.target.value })}
+                          className="bg-slate-800 border-purple-500/30 text-white"
+                          placeholder="(11) 99999-9999"
+                        />
+                      </div>
+                    </div>
+                    
+                    <div>
+                      <label className="block text-sm font-medium text-gray-300 mb-2">
+                        Nome da empresa
+                      </label>
+                      <Input
+                        value={formData.empresa}
+                        onChange={(e) => setFormData({ ...formData, empresa: e.target.value })}
+                        className="bg-slate-800 border-purple-500/30 text-white"
+                        placeholder="Nome da sua empresa"
+                      />
+                    </div>
+                    
+                    <div>
+                      <label className="block text-sm font-medium text-gray-300 mb-2">
+                        Para garantir que conseguimos te atender no momento certo, selecione seu faturamento mensal estimado *
+                      </label>
+                      <select
+                        value={formData.faturamento}
+                        onChange={(e) => setFormData({ ...formData, faturamento: e.target.value })}
+                        className="w-full bg-slate-800 border border-purple-500/30 text-white rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-purple-500"
+                        required
+                      >
+                        <option value="">Selecione uma faixa</option>
+                        <option value="ate-10k">Abaixo de R$ 10 mil</option>
+                        <option value="10k-30k">Entre R$ 10 mil e R$ 30 mil</option>
+                        <option value="acima-30k">Acima de R$ 30 mil</option>
+                      </select>
+                    </div>
+                    
+                    <div>
+                      <label className="block text-sm font-medium text-gray-300 mb-2">
+                        Qual sua maior dor no atendimento? *
+                      </label>
+                      <Textarea
+                        value={formData.dor}
+                        onChange={(e) => setFormData({ ...formData, dor: e.target.value })}
+                        className="bg-slate-800 border-purple-500/30 text-white min-h-[120px]"
+                        placeholder="Ex: Perco cerca de 10 clientes por semana que vão para a concorrência porque demoro para responder no WhatsApp..."
+                        required
+                      />
+                    </div>
+                    
+                    <Button
+                      type="submit"
+                      size="lg"
+                      className="w-full bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white"
+                      disabled={contactMutation.isPending}
+                    >
+                      {contactMutation.isPending ? (
+                        <>
+                          <Clock className="mr-2 h-5 w-5 animate-spin" />
+                          Enviando...
+                        </>
+                      ) : (
+                        <>
+                          <MessageSquare className="mr-2 h-5 w-5" />
+                          Quero escalar meu atendimento com IA
+                          <ArrowRight className="ml-2 h-5 w-5" />
+                        </>
+                      )}
+                    </Button>
+                  </form>
+                </CardContent>
+              </Card>
+            )}
           </div>
         </div>
       </section>
