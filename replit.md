@@ -100,6 +100,10 @@ The application uses Drizzle ORM with a PostgreSQL-ready schema:
   - Added interactive components using shadcn/ui
   - Enhanced mobile responsiveness and animations
   - Improved contact form with better UX
+  - Added WhatsApp popup modal for "Falar com especialista" button
+  - Implemented new sections: Para Quem É, Benefícios, Garantia, Plano de Crescimento
+  - Updated FAQ with new questions from briefing
+  - Improved responsive design for all screen sizes
 - June 24, 2025: Initial setup and basic landing page
 
 ## User Preferences

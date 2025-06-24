@@ -8,6 +8,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
+import { WhatsAppModal } from "@/components/WhatsAppModal";
 import { 
   Bot, 
   Zap, 
@@ -26,7 +27,13 @@ import {
   MessageSquare,
   Cpu,
   Globe,
-  BookOpen
+  BookOpen,
+  Store,
+  UserCheck,
+  Award,
+  Shield,
+  Briefcase,
+  Heart
 } from "lucide-react";
 
 interface ContactForm {
@@ -122,15 +129,14 @@ export default function ModernHome() {
               </button>
             </div>
 
-            <Button 
-              asChild 
-              className="hidden md:flex bg-gradient-to-r from-purple-600 to-purple-700 hover:from-purple-700 hover:to-purple-800 text-white"
-            >
-              <a href="https://wa.me/5511999999999?text=Ol%C3%A1%2C%20quero%20automatizar%20minha%20empresa%20com%20o%20MeuSuper.app" target="_blank">
-                <MessageSquare className="mr-2 h-4 w-4" />
-                Falar com especialista
-              </a>
-            </Button>
+            <WhatsAppModal
+              trigger={
+                <Button className="hidden md:flex bg-gradient-to-r from-purple-600 to-purple-700 hover:from-purple-700 hover:to-purple-800 text-white">
+                  <MessageSquare className="mr-2 h-4 w-4" />
+                  Falar com especialista
+                </Button>
+              }
+            />
 
             <Button
               variant="ghost"
@@ -161,12 +167,14 @@ export default function ModernHome() {
                 <button onClick={() => scrollToSection('contato')} className="text-gray-300 hover:text-purple-400 transition-colors text-left">
                   Contato
                 </button>
-                <Button asChild className="w-full bg-gradient-to-r from-purple-600 to-purple-700 hover:from-purple-700 hover:to-purple-800 text-white">
-                  <a href="https://wa.me/5511999999999?text=Ol%C3%A1%2C%20quero%20automatizar%20minha%20empresa%20com%20o%20MeuSuper.app" target="_blank">
-                    <MessageSquare className="mr-2 h-4 w-4" />
-                    Falar com especialista
-                  </a>
-                </Button>
+                <WhatsAppModal
+                  trigger={
+                    <Button className="w-full bg-gradient-to-r from-purple-600 to-purple-700 hover:from-purple-700 hover:to-purple-800 text-white">
+                      <MessageSquare className="mr-2 h-4 w-4" />
+                      Falar com especialista
+                    </Button>
+                  }
+                />
               </div>
             </div>
           )}
@@ -186,54 +194,54 @@ export default function ModernHome() {
               A maneira mais rápida de automatizar seu negócio
             </Badge>
             
-            <h1 className="text-5xl md:text-7xl font-bold text-white mb-8 leading-tight">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-white mb-6 md:mb-8 leading-tight">
               Automação com <span className="bg-gradient-to-r from-purple-400 to-yellow-400 bg-clip-text text-transparent">IA</span> sob medida para escalar seu negócio
             </h1>
             
-            <p className="text-xl md:text-2xl text-gray-300 mb-12 max-w-3xl mx-auto leading-relaxed">
+            <p className="text-lg sm:text-xl md:text-2xl text-gray-300 mb-8 md:mb-12 max-w-3xl mx-auto leading-relaxed">
               Atenda, venda e prospecte no WhatsApp com bots inteligentes e integrações que realmente funcionam. 
               <span className="text-purple-400 font-semibold"> Aumente suas vendas em até 300%</span>
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-6 justify-center mb-16">
+            <div className="flex flex-col sm:flex-row gap-4 md:gap-6 justify-center mb-16">
               <Button 
                 size="lg" 
-                className="bg-gradient-to-r from-purple-600 to-purple-700 hover:from-purple-700 hover:to-purple-800 text-white px-8 py-4 text-lg"
+                className="bg-gradient-to-r from-purple-600 to-purple-700 hover:from-purple-700 hover:to-purple-800 text-white px-6 md:px-8 py-4 text-base md:text-lg"
                 onClick={() => scrollToSection('contato')}
               >
-                <Bot className="mr-2 h-5 w-5" />
+                <Bot className="mr-2 h-4 md:h-5 w-4 md:w-5" />
                 Quero automatizar agora
-                <ArrowRight className="ml-2 h-5 w-5" />
+                <ArrowRight className="ml-2 h-4 md:h-5 w-4 md:w-5" />
               </Button>
               
               <Button 
                 size="lg" 
                 variant="outline" 
-                className="border-purple-400 text-purple-400 hover:bg-purple-400 hover:text-white px-8 py-4 text-lg"
+                className="border-purple-400 text-purple-400 hover:bg-purple-400 hover:text-white px-6 md:px-8 py-4 text-base md:text-lg"
                 onClick={() => scrollToSection('servicos')}
               >
-                <Globe className="mr-2 h-5 w-5" />
+                <Globe className="mr-2 h-4 md:h-5 w-4 md:w-5" />
                 Conhecer serviços
               </Button>
             </div>
 
             {/* Stats */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto">
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-8 max-w-4xl mx-auto">
               <div className="text-center">
-                <div className="text-3xl md:text-4xl font-bold text-white mb-2">100+</div>
-                <div className="text-gray-400">Projetos Entregues</div>
+                <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-2">100+</div>
+                <div className="text-gray-400 text-sm md:text-base">Projetos Entregues</div>
               </div>
               <div className="text-center">
-                <div className="text-3xl md:text-4xl font-bold text-white mb-2">50+</div>
-                <div className="text-gray-400">Clientes Satisfeitos</div>
+                <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-2">50+</div>
+                <div className="text-gray-400 text-sm md:text-base">Clientes Satisfeitos</div>
               </div>
               <div className="text-center">
-                <div className="text-3xl md:text-4xl font-bold text-white mb-2">24/7</div>
-                <div className="text-gray-400">Suporte Automatizado</div>
+                <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-2">24/7</div>
+                <div className="text-gray-400 text-sm md:text-base">Suporte Automatizado</div>
               </div>
               <div className="text-center">
-                <div className="text-3xl md:text-4xl font-bold text-purple-400 mb-2">300%</div>
-                <div className="text-gray-400">Aumento em Vendas</div>
+                <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-purple-400 mb-2">300%</div>
+                <div className="text-gray-400 text-sm md:text-base">Aumento em Vendas</div>
               </div>
             </div>
           </div>
@@ -249,10 +257,10 @@ export default function ModernHome() {
                 <Users className="mr-2 h-3 w-3" />
                 Quem somos
               </Badge>
-              <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-6">
                 Especialistas em automação inteligente
               </h2>
-              <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+              <p className="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto">
                 Criamos soluções que realmente funcionam para negócios que querem crescer
               </p>
             </div>
@@ -326,10 +334,10 @@ export default function ModernHome() {
                 <Zap className="mr-2 h-3 w-3" />
                 Nossos serviços
               </Badge>
-              <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-6">
                 Soluções que <span className="text-purple-400">transformam</span> negócios
               </h2>
-              <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+              <p className="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto">
                 Automatize processos, aumente vendas e melhore o atendimento com nossas soluções personalizadas
               </p>
             </div>
@@ -416,41 +424,195 @@ export default function ModernHome() {
                 <Target className="mr-2 h-3 w-3" />
                 Como funciona
               </Badge>
-              <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+              <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">
                 Processo simples e <span className="text-purple-400">eficiente</span>
               </h2>
             </div>
 
-            <div className="grid md:grid-cols-3 gap-12">
+            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
               <div className="text-center">
-                <div className="mx-auto mb-6 w-20 h-20 bg-gradient-to-br from-purple-500 to-purple-600 rounded-full flex items-center justify-center text-2xl font-bold text-white">
+                <div className="mx-auto mb-6 w-16 h-16 md:w-20 md:h-20 bg-gradient-to-br from-purple-500 to-purple-600 rounded-full flex items-center justify-center text-xl md:text-2xl font-bold text-white">
                   1
                 </div>
-                <h3 className="text-2xl font-bold text-white mb-4">Análise do seu negócio</h3>
-                <p className="text-gray-300">
-                  Identificamos oportunidades de automação e criamos uma estratégia personalizada para seu negócio.
+                <h3 className="text-lg md:text-xl font-bold text-white mb-3">Você preenche o formulário</h3>
+                <p className="text-gray-300 text-sm md:text-base">
+                  Ou fala com nosso especialista pelo WhatsApp
                 </p>
               </div>
 
               <div className="text-center">
-                <div className="mx-auto mb-6 w-20 h-20 bg-gradient-to-br from-yellow-500 to-yellow-600 rounded-full flex items-center justify-center text-2xl font-bold text-white">
+                <div className="mx-auto mb-6 w-16 h-16 md:w-20 md:h-20 bg-gradient-to-br from-yellow-500 to-yellow-600 rounded-full flex items-center justify-center text-xl md:text-2xl font-bold text-white">
                   2
                 </div>
-                <h3 className="text-2xl font-bold text-white mb-4">Desenvolvimento da solução</h3>
-                <p className="text-gray-300">
-                  Criamos e configuramos todas as automações, bots e integrações necessárias para seu projeto.
+                <h3 className="text-lg md:text-xl font-bold text-white mb-3">Diagnóstico gratuito</h3>
+                <p className="text-gray-300 text-sm md:text-base">
+                  Analisamos seu atendimento atual sem custo
                 </p>
               </div>
 
               <div className="text-center">
-                <div className="mx-auto mb-6 w-20 h-20 bg-gradient-to-br from-green-500 to-green-600 rounded-full flex items-center justify-center text-2xl font-bold text-white">
+                <div className="mx-auto mb-6 w-16 h-16 md:w-20 md:h-20 bg-gradient-to-br from-green-500 to-green-600 rounded-full flex items-center justify-center text-xl md:text-2xl font-bold text-white">
                   3
                 </div>
-                <h3 className="text-2xl font-bold text-white mb-4">Entrega e suporte</h3>
-                <p className="text-gray-300">
-                  Implementamos a solução em seu negócio e oferecemos treinamento e suporte contínuo.
+                <h3 className="text-lg md:text-xl font-bold text-white mb-3">Proposta personalizada</h3>
+                <p className="text-gray-300 text-sm md:text-base">
+                  Automação sob medida para seu negócio
                 </p>
               </div>
+
+              <div className="text-center">
+                <div className="mx-auto mb-6 w-16 h-16 md:w-20 md:h-20 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full flex items-center justify-center text-xl md:text-2xl font-bold text-white">
+                  4
+                </div>
+                <h3 className="text-lg md:text-xl font-bold text-white mb-3">Implementação rápida</h3>
+                <p className="text-gray-300 text-sm md:text-base">
+                  Entrega e acompanhamento contínuo
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Para quem é */}
+      <section className="py-20 px-6">
+        <div className="container mx-auto">
+          <div className="max-w-6xl mx-auto">
+            <div className="text-center mb-16">
+              <Badge className="mb-4 bg-purple-500/20 text-purple-300 border-purple-500/30">
+                <Users className="mr-2 h-3 w-3" />
+                Para quem é
+              </Badge>
+              <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">
+                Para quem é o <span className="text-purple-400">MeuSuper.app</span>?
+              </h2>
+              <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+                Soluções que se adaptam a qualquer tipo de negócio
+              </p>
+            </div>
+
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              <Card className="bg-slate-900/50 border-purple-500/20 hover:border-purple-400/50 transition-all duration-300">
+                <CardContent className="p-6 text-center">
+                  <div className="mx-auto mb-4 w-12 h-12 bg-gradient-to-br from-purple-500 to-purple-600 rounded-xl flex items-center justify-center">
+                    <Building2 className="h-6 w-6 text-white" />
+                  </div>
+                  <h3 className="text-lg font-bold text-white mb-2">Pequenas e médias empresas</h3>
+                  <p className="text-gray-300 text-sm">Automatize processos e escale sem aumentar custos</p>
+                </CardContent>
+              </Card>
+
+              <Card className="bg-slate-900/50 border-purple-500/20 hover:border-purple-400/50 transition-all duration-300">
+                <CardContent className="p-6 text-center">
+                  <div className="mx-auto mb-4 w-12 h-12 bg-gradient-to-br from-yellow-500 to-yellow-600 rounded-xl flex items-center justify-center">
+                    <TrendingUp className="h-6 w-6 text-white" />
+                  </div>
+                  <h3 className="text-lg font-bold text-white mb-2">Agências de marketing</h3>
+                  <p className="text-gray-300 text-sm">Ofereça automação como serviço para seus clientes</p>
+                </CardContent>
+              </Card>
+
+              <Card className="bg-slate-900/50 border-purple-500/20 hover:border-purple-400/50 transition-all duration-300">
+                <CardContent className="p-6 text-center">
+                  <div className="mx-auto mb-4 w-12 h-12 bg-gradient-to-br from-green-500 to-green-600 rounded-xl flex items-center justify-center">
+                    <Store className="h-6 w-6 text-white" />
+                  </div>
+                  <h3 className="text-lg font-bold text-white mb-2">E-commerces</h3>
+                  <p className="text-gray-300 text-sm">Atendimento 24/7 e recuperação de carrinho abandonado</p>
+                </CardContent>
+              </Card>
+
+              <Card className="bg-slate-900/50 border-purple-500/20 hover:border-purple-400/50 transition-all duration-300">
+                <CardContent className="p-6 text-center">
+                  <div className="mx-auto mb-4 w-12 h-12 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center">
+                    <UserCheck className="h-6 w-6 text-white" />
+                  </div>
+                  <h3 className="text-lg font-bold text-white mb-2">Prestadores de serviço</h3>
+                  <p className="text-gray-300 text-sm">Agendamentos automáticos e follow-up de clientes</p>
+                </CardContent>
+              </Card>
+
+              <Card className="bg-slate-900/50 border-purple-500/20 hover:border-purple-400/50 transition-all duration-300">
+                <CardContent className="p-6 text-center">
+                  <div className="mx-auto mb-4 w-12 h-12 bg-gradient-to-br from-indigo-500 to-indigo-600 rounded-xl flex items-center justify-center">
+                    <Briefcase className="h-6 w-6 text-white" />
+                  </div>
+                  <h3 className="text-lg font-bold text-white mb-2">Profissionais autônomos</h3>
+                  <p className="text-gray-300 text-sm">Automatize seu atendimento e foque no que importa</p>
+                </CardContent>
+              </Card>
+
+              <Card className="bg-slate-900/50 border-purple-500/20 hover:border-purple-400/50 transition-all duration-300">
+                <CardContent className="p-6 text-center">
+                  <div className="mx-auto mb-4 w-12 h-12 bg-gradient-to-br from-pink-500 to-pink-600 rounded-xl flex items-center justify-center">
+                    <Heart className="h-6 w-6 text-white" />
+                  </div>
+                  <h3 className="text-lg font-bold text-white mb-2">Qualquer negócio</h3>
+                  <p className="text-gray-300 text-sm">Se você atende clientes, temos uma solução para você</p>
+                </CardContent>
+              </Card>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Benefícios */}
+      <section className="py-20 px-6 bg-slate-800/50">
+        <div className="container mx-auto">
+          <div className="max-w-6xl mx-auto">
+            <div className="text-center mb-16">
+              <Badge className="mb-4 bg-purple-500/20 text-purple-300 border-purple-500/30">
+                <Award className="mr-2 h-3 w-3" />
+                Benefícios
+              </Badge>
+              <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">
+                O que você <span className="text-purple-400">ganha</span> com IA
+              </h2>
+              <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+                Resultados reais que transformam seu negócio
+              </p>
+            </div>
+
+            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
+              <Card className="bg-gradient-to-br from-purple-900/50 to-slate-900/50 border-purple-500/20 text-center">
+                <CardContent className="p-6">
+                  <div className="mx-auto mb-4 w-16 h-16 bg-gradient-to-br from-purple-500 to-purple-600 rounded-2xl flex items-center justify-center">
+                    <Clock className="h-8 w-8 text-white" />
+                  </div>
+                  <h3 className="text-2xl font-bold text-white mb-2">40h/mês</h3>
+                  <p className="text-gray-300 text-sm">Economizadas com atendimento automatizado</p>
+                </CardContent>
+              </Card>
+
+              <Card className="bg-gradient-to-br from-yellow-900/50 to-slate-900/50 border-yellow-500/20 text-center">
+                <CardContent className="p-6">
+                  <div className="mx-auto mb-4 w-16 h-16 bg-gradient-to-br from-yellow-500 to-yellow-600 rounded-2xl flex items-center justify-center">
+                    <TrendingUp className="h-8 w-8 text-white" />
+                  </div>
+                  <h3 className="text-2xl font-bold text-white mb-2">2.5x</h3>
+                  <p className="text-gray-300 text-sm">Aumento nas conversões em média</p>
+                </CardContent>
+              </Card>
+
+              <Card className="bg-gradient-to-br from-green-900/50 to-slate-900/50 border-green-500/20 text-center">
+                <CardContent className="p-6">
+                  <div className="mx-auto mb-4 w-16 h-16 bg-gradient-to-br from-green-500 to-green-600 rounded-2xl flex items-center justify-center">
+                    <Bot className="h-8 w-8 text-white" />
+                  </div>
+                  <h3 className="text-2xl font-bold text-white mb-2">24/7</h3>
+                  <p className="text-gray-300 text-sm">Bot ativo todos os dias da semana</p>
+                </CardContent>
+              </Card>
+
+              <Card className="bg-gradient-to-br from-blue-900/50 to-slate-900/50 border-blue-500/20 text-center">
+                <CardContent className="p-6">
+                  <div className="mx-auto mb-4 w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl flex items-center justify-center">
+                    <Target className="h-8 w-8 text-white" />
+                  </div>
+                  <h3 className="text-2xl font-bold text-white mb-2">-60%</h3>
+                  <p className="text-gray-300 text-sm">Redução de custos operacionais</p>
+                </CardContent>
+              </Card>
             </div>
           </div>
         </div>
@@ -540,20 +702,24 @@ export default function ModernHome() {
             <div className="space-y-4">
               {[
                 {
-                  question: "Quanto tempo leva para implementar uma automação?",
-                  answer: "O tempo varia conforme a complexidade, mas geralmente entregamos soluções simples em 1-2 semanas e projetos mais complexos em 1-2 meses."
+                  question: "Preciso saber programar?",
+                  answer: "Não, nossas soluções são no-code. Você não precisa ter conhecimento técnico, cuidamos de toda a implementação para você."
                 },
                 {
-                  question: "Vocês oferecem suporte após a entrega?",
-                  answer: "Sim! Oferecemos suporte técnico contínuo e treinamento para sua equipe. Também fazemos atualizações e melhorias conforme necessário."
+                  question: "Funciona com meu CRM atual?",
+                  answer: "Sim, integramos com qualquer ferramenta através de APIs. Se não tiver API, criamos soluções alternativas."
                 },
                 {
-                  question: "As automações funcionam com qualquer sistema?",
-                  answer: "Trabalhamos com a maioria dos sistemas através de APIs. Se seu sistema não tem API, podemos criar soluções alternativas como web scraping ou integrações via planilhas."
+                  question: "E se eu não tiver site?",
+                  answer: "Não precisa. Podemos automatizar direto no WhatsApp e criar soluções que funcionam independente de ter um site."
                 },
                 {
-                  question: "Qual o investimento necessário?",
-                  answer: "Os valores variam conforme o escopo do projeto. Fazemos uma análise gratuita e apresentamos um orçamento personalizado sem compromisso."
+                  question: "Em quanto tempo vejo resultados?",
+                  answer: "Em média 7 a 15 dias após implantação você já começa a ver os primeiros resultados da automação."
+                },
+                {
+                  question: "É seguro?",
+                  answer: "Sim, usamos servidores protegidos e aderentes à LGPD. Seus dados e de seus clientes estão sempre seguros."
                 }
               ].map((faq, index) => (
                 <Card key={index} className="bg-slate-900/50 border-purple-500/20">
@@ -694,27 +860,128 @@ export default function ModernHome() {
         </div>
       </section>
 
+      {/* Garantia e Suporte */}
+      <section className="py-20 px-6">
+        <div className="container mx-auto">
+          <div className="max-w-4xl mx-auto text-center">
+            <Badge className="mb-4 bg-purple-500/20 text-purple-300 border-purple-500/30">
+              <Shield className="mr-2 h-3 w-3" />
+              Garantia
+            </Badge>
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
+              E depois da <span className="text-purple-400">entrega</span>?
+            </h2>
+            <Card className="bg-slate-900/50 border-purple-500/20">
+              <CardContent className="p-8">
+                <p className="text-lg text-gray-300 leading-relaxed mb-6">
+                  Você não está sozinho. Após a entrega, seguimos com você por 
+                  <span className="text-purple-400 font-semibold"> 60 dias</span> com suporte técnico e melhorias contínuas. 
+                  E sim: <span className="text-yellow-400 font-semibold">atualizações inclusas</span>.
+                </p>
+                <div className="grid sm:grid-cols-3 gap-6 mt-8">
+                  <div className="text-center">
+                    <div className="mx-auto mb-3 w-12 h-12 bg-gradient-to-br from-green-500 to-green-600 rounded-xl flex items-center justify-center">
+                      <Shield className="h-6 w-6 text-white" />
+                    </div>
+                    <h4 className="text-white font-semibold mb-2">60 dias de garantia</h4>
+                    <p className="text-gray-400 text-sm">Suporte completo pós-entrega</p>
+                  </div>
+                  <div className="text-center">
+                    <div className="mx-auto mb-3 w-12 h-12 bg-gradient-to-br from-purple-500 to-purple-600 rounded-xl flex items-center justify-center">
+                      <Zap className="h-6 w-6 text-white" />
+                    </div>
+                    <h4 className="text-white font-semibold mb-2">Atualizações inclusas</h4>
+                    <p className="text-gray-400 text-sm">Melhorias sem custo adicional</p>
+                  </div>
+                  <div className="text-center">
+                    <div className="mx-auto mb-3 w-12 h-12 bg-gradient-to-br from-yellow-500 to-yellow-600 rounded-xl flex items-center justify-center">
+                      <MessageSquare className="h-6 w-6 text-white" />
+                    </div>
+                    <h4 className="text-white font-semibold mb-2">Suporte direto</h4>
+                    <p className="text-gray-400 text-sm">Atendimento pelo WhatsApp</p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </section>
+
+      {/* Plano de Crescimento */}
+      <section className="py-20 px-6 bg-slate-800/50">
+        <div className="container mx-auto">
+          <div className="max-w-4xl mx-auto text-center">
+            <Badge className="mb-4 bg-purple-500/20 text-purple-300 border-purple-500/30">
+              <TrendingUp className="mr-2 h-3 w-3" />
+              Crescimento
+            </Badge>
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
+              Nosso plano de <span className="text-purple-400">crescimento</span> com você
+            </h2>
+            <Card className="bg-slate-900/50 border-purple-500/20">
+              <CardContent className="p-8">
+                <p className="text-lg text-gray-300 leading-relaxed mb-8">
+                  Começamos com o básico: um bot que atende, responde e converte. 
+                  Mas o céu é o limite — agende rotinas, colete leads, conecte com IA de voz, CRM e muito mais.
+                </p>
+                <div className="grid sm:grid-cols-2 md:grid-cols-4 gap-6">
+                  <div className="text-center">
+                    <div className="mx-auto mb-3 w-10 h-10 bg-gradient-to-br from-purple-500 to-purple-600 rounded-lg flex items-center justify-center text-white font-bold">
+                      1
+                    </div>
+                    <h4 className="text-white font-semibold text-sm">Bot Básico</h4>
+                    <p className="text-gray-400 text-xs">Atendimento automatizado</p>
+                  </div>
+                  <div className="text-center">
+                    <div className="mx-auto mb-3 w-10 h-10 bg-gradient-to-br from-yellow-500 to-yellow-600 rounded-lg flex items-center justify-center text-white font-bold">
+                      2
+                    </div>
+                    <h4 className="text-white font-semibold text-sm">Integrações</h4>
+                    <p className="text-gray-400 text-xs">CRM e sistemas</p>
+                  </div>
+                  <div className="text-center">
+                    <div className="mx-auto mb-3 w-10 h-10 bg-gradient-to-br from-green-500 to-green-600 rounded-lg flex items-center justify-center text-white font-bold">
+                      3
+                    </div>
+                    <h4 className="text-white font-semibold text-sm">IA Avançada</h4>
+                    <p className="text-gray-400 text-xs">Voz e análise</p>
+                  </div>
+                  <div className="text-center">
+                    <div className="mx-auto mb-3 w-10 h-10 bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg flex items-center justify-center text-white font-bold">
+                      4
+                    </div>
+                    <h4 className="text-white font-semibold text-sm">Escalabilidade</h4>
+                    <p className="text-gray-400 text-xs">Crescimento ilimitado</p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </section>
+
       {/* CTA Final */}
       <section className="py-20 px-6 bg-gradient-to-r from-purple-900 to-slate-900">
         <div className="container mx-auto text-center">
           <div className="max-w-4xl mx-auto">
-            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+            <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">
               Junte-se a mais de <span className="text-yellow-400">200.000</span> empreendedores
             </h2>
             <p className="text-xl text-gray-300 mb-8">
               Que já estão automatizando seus negócios e aumentando suas vendas
             </p>
-            <Button 
-              size="lg" 
-              asChild
-              className="bg-gradient-to-r from-yellow-500 to-yellow-600 hover:from-yellow-600 hover:to-yellow-700 text-black font-bold px-12 py-4 text-lg"
-            >
-              <a href="https://wa.me/5511999999999?text=Ol%C3%A1%2C%20quero%20automatizar%20minha%20empresa%20com%20o%20MeuSuper.app" target="_blank">
-                <MessageSquare className="mr-2 h-5 w-5" />
-                Começar agora pelo WhatsApp
-                <ArrowRight className="ml-2 h-5 w-5" />
-              </a>
-            </Button>
+            <WhatsAppModal
+              trigger={
+                <Button 
+                  size="lg" 
+                  className="bg-gradient-to-r from-yellow-500 to-yellow-600 hover:from-yellow-600 hover:to-yellow-700 text-black font-bold px-8 md:px-12 py-4 text-lg"
+                >
+                  <MessageSquare className="mr-2 h-5 w-5" />
+                  Começar agora pelo WhatsApp
+                  <ArrowRight className="ml-2 h-5 w-5" />
+                </Button>
+              }
+            />
           </div>
         </div>
       </section>

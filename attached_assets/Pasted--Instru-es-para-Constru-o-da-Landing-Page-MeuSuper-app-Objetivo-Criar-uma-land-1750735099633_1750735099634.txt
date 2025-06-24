@@ -1,0 +1,158 @@
+## 🧠 Instruções para Construção da Landing Page — MeuSuper.app
+
+### 🎯 Objetivo
+
+Criar uma landing page de alta conversão para apresentar o MeuSuper.app, gerar autoridade e captar leads interessados em automatizar seus negócios com IA. O foco é atrair empreendedores, agências e empresas que querem escalar vendas e atendimento.
+
+---
+
+### 🔧 Estrutura da Página
+
+#### 1. **Hero (Cabeçalho de Impacto)**
+
+* **Headline:** "Automação com IA sob medida para escalar seu negócio"
+* **Subheadline:** "Atenda, venda e prospecte no WhatsApp com bots inteligentes e integrações que realmente funcionam."
+* **Call to Action (CTA):** Botão amarelo "Falar com um especialista" levando para o WhatsApp
+* **Estilo visual:** Fundo com gradiente roxo, fonte branca e moderna
+
+#### 2. **Sobre Nós**
+
+* **Título:** "Quem somos"
+* **Texto:**
+
+  > O MeuSuper.app nasceu da mente de Samuel Vicente Ferreira, desenvolvedor e estrategista que une IA, automações e visão de negócio para construir soluções inteligentes de atendimento, vendas e prospecção digital.
+
+#### 3. **Serviços (O que fazemos)**
+
+* **Título:** "O que fazemos"
+* **Cards de serviços:**
+
+  * 🤖 **Bots com IA para WhatsApp**
+
+    * Descrição: Criação de agentes inteligentes que respondem em tempo real, com voz, áudio, leitura de PDFs, acesso a banco de dados e muito mais.
+  * 🔌 **Integrações via API**
+
+    * Descrição: Conectamos seu negócio ao que importa: CRM, e-commerce, planilhas, ERP ou qualquer sistema com n8n e automações sob medida.
+  * 🧱 **Plataformas sob demanda**
+
+    * Descrição: Desenvolvimento de sistemas SaaS, painéis, sites e aplicativos completos com foco em automação e escalabilidade.
+  * 📈 **Consultorias e Mentorias**
+
+    * Descrição: Treinamentos personalizados para dominar ferramentas no-code e implementar automações reais, sem depender de devs.
+
+#### 4. **Como Funciona (Etapas da Jornada)**
+
+* **Título:** "Como funciona?"
+* **Etapas:**
+
+  1. Você preenche o formulário ou fala com nosso especialista.
+  2. Diagnóstico gratuito do seu atendimento atual.
+  3. Proposta de automação personalizada.
+  4. Implementação rápida e acompanhamento.
+
+#### 5. **Para Quem é o MeuSuper.app**
+
+* **Título:** "Para quem é o MeuSuper.app?"
+* **Segmentos atendidos:**
+
+  * Pequenas e médias empresas
+  * Agências de marketing
+  * E-commerces
+  * Prestadores de serviço
+  * Profissionais autônomos
+
+#### 6. **Benefícios (O que você ganha com IA)**
+
+* **Título:** "O que você ganha com IA"
+* **Benefícios destacados:**
+
+  * ⏰ Economize até 40 horas/mês com atendimento automatizado
+  * 📈 Aumente suas conversões em até 2.5x
+  * 🤖 Bot ativo 24h/dia, 7 dias/semana
+  * 💰 Redução de custos operacionais
+
+#### 7. **Provas Sociais (Resultados)**
+
+* **Título:** "Clientes e Resultados"
+* **Depoimentos:**
+
+  > “Dobrei minhas vendas em 3 meses com o bot do Samuel. Ele entende de tech e de negócio.”
+  >
+  > “Economizamos mais de R\$ 15 mil por mês com automações. Atendimento 24/7, sem contratar mais ninguém.”
+
+#### 8. **FAQ (Perguntas Frequentes)**
+
+* **Título:** "Dúvidas Frequentes"
+* **Perguntas e respostas:**
+
+  * Preciso saber programar? → Não, nossas soluções são no-code.
+  * Funciona com meu CRM atual? → Sim, integramos com qualquer ferramenta.
+  * E se eu não tiver site? → Não precisa. Podemos automatizar direto no WhatsApp.
+  * Em quanto tempo vejo resultados? → Em média 7 a 15 dias após implantação.
+  * É seguro? → Sim, usamos servidores protegidos e aderentes à LGPD.
+
+#### 9. **Formulário de Contato (Captação via Webhook)**
+
+* **Título:** "Pronto para automatizar seu negócio?"
+* **Texto de apoio:** "Fale com um especialista agora e veja como seu atendimento pode trabalhar por você 24 horas por dia."
+* **Campos do formulário:**
+
+  * Nome (obrigatório)
+  * Telefone (obrigatório)
+  * Nome da empresa (opcional)
+  * Qual sua maior dor hoje? (textarea)
+  * Botão: "Quero automatizar agora"
+* **Ação:** Ao enviar, os dados devem ser enviados para um webhook personalizado (ex: `https://automacao.meusuper.app/webhook`)
+* **Mensagem de sucesso:** "Obrigado! Em breve nossa equipe entrará em contato com você pelo WhatsApp."
+
+#### 10. **Garantia de Suporte e Atualizações**
+
+* **Título:** "E depois da entrega?"
+* **Texto:**
+
+  > Você não está sozinho. Após a entrega, seguimos com você por 60 dias com suporte técnico e melhorias contínuas. E sim: atualizações inclusas.
+
+#### 11. **Plano de Crescimento (Upsell)**
+
+* **Título:** "Nosso plano de crescimento com você"
+* **Texto:**
+
+  > Começamos com o básico: um bot que atende, responde e converte. Mas o céu é o limite — agende rotinas, colete leads, conecte com IA de voz, CRM e muito mais.
+
+#### 12. **Rodapé**
+
+* Texto simples com direitos autorais: "MeuSuper.app © 2025 — Todos os direitos reservados"
+* Links: Política de privacidade, WhatsApp, redes sociais (futuros)
+
+---
+
+### ✨ Design & Estética
+
+* **Paleta de cores:** Roxo escuro, dourado, branco
+* **Fonte:** Inter ou similar moderna e limpa
+* **Layout:** One Page, responsivo, fluido
+* **Estilo:** Tech, premium, inspirado em OpenAI e Zapier
+
+---
+
+### 🧩 Extras Técnicos
+
+* Integração com webhook (via JS `fetch`) no formulário
+* Scroll suave entre seções
+* Preparado para integrar com pixel ou analytics no futuro
+
+---
+
+### ✅ CTA Final
+
+Botão final com mensagem pré-preenchida para WhatsApp:
+
+```html
+https://wa.me/SEUNUMERO?text=Ol%C3%A1%2C%20quero%20automatizar%20minha%20empresa%20com%20o%20MeuSuper.app
+```
+
+Substituir `SEUNUMERO` pelo número com DDI. Exemplo: `5511999999999`
+
+---
+
+Se precisar, posso agora gerar o **formulário com webhook** 100% funcional para adicionar na sua página.
