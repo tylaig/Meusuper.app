@@ -94,12 +94,18 @@ The application uses Drizzle ORM with a PostgreSQL-ready schema:
 
 ## Recent Changes
 
+- June 24, 2025: Major layout and copy improvements focused on brutal pain points
+  - **Enhanced contrast**: New CSS classes for better text readability (text-white-strong, text-pain-red, text-success-green)
+  - **Pain-focused copy**: Updated hero section emphasizing "stop losing sales while you sleep"
+  - **Brutal pain cards**: 6 specific problems based on user feedback - "preso na operação", "leads quentes perdidos"
+  - **Transformation promises**: 15 key benefits from user briefing - tripling sales, 90% support reduction
+  - **Stronger CTAs**: "Parar de perder vendas agora" and "Quero essa transformação agora"
+  - **Visual hierarchy**: Pain points in red, solutions in green, clear color coding
 - June 24, 2025: Implemented all briefing improvements
   - **Enhanced bio**: Samuel's professional credentials with Dubotics partnership
   - **Real metrics**: +R$100k sales, +10k hours, 4.9⭐ rating, 3 countries served
   - **Empathetic copy**: Pain points focused on real money loss
   - **Use case specifics**: Practical applications for each business niche
-  - **Stronger CTAs**: "Quero escalar meu atendimento com IA"
   - **Lead qualification**: Revenue-based form filtering for priority handling
 - June 24, 2025: Fixed Docker Stack Traefik configuration
   - **Naming consistency**: Aligned service names across all files

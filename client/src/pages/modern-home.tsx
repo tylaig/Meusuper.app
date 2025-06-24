@@ -236,12 +236,16 @@ export default function ModernHome() {
               Agentes de IA Multicanal
             </Badge>
             
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-tight mb-8">
-              Agentes de IA que vendem <span className="bg-gradient-to-r from-orange-400 to-orange-500 bg-clip-text text-transparent">24 horas</span> por você
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white-strong leading-tight mb-8">
+              Pare de <span className="text-pain-red">perder vendas</span> enquanto você dorme
+              <br />
+              <span className="bg-gradient-to-r from-orange-400 to-orange-500 bg-clip-text text-transparent">Agentes de IA</span> que trabalham <span className="text-success-green">24h por dia</span>
             </h1>
             
-            <p className="text-lg sm:text-xl md:text-2xl text-gray-200 max-w-3xl mx-auto leading-relaxed mb-12">
-              Conecte agentes inteligentes no WhatsApp, Instagram, Facebook, SMS e Email que qualificam leads e fecham vendas automaticamente
+            <p className="text-lg sm:text-xl md:text-2xl text-medium-contrast max-w-4xl mx-auto leading-relaxed mb-12">
+              <span className="text-pain-red font-bold">Chega de perder leads quentes por falta de resposta rápida.</span> 
+              Automatize <span className="text-orange-highlight">WhatsApp, Instagram, Email e SMS</span> com IA própria. 
+              <span className="text-success-green font-bold">Sem depender de plataformas que travam, sem programar, retorno em 30 dias</span>.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-16">
@@ -252,7 +256,7 @@ export default function ModernHome() {
                     className="bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white font-bold px-8 py-4 text-lg shadow-lg shadow-green-500/30 hover:shadow-green-500/50 transition-all duration-300"
                   >
                     <MessageSquare className="mr-2 h-5 w-5" />
-                    Quero escalar meu atendimento com IA
+                    Parar de perder vendas agora
                     <ArrowRight className="ml-2 h-5 w-5" />
                   </Button>
                 }
@@ -260,10 +264,10 @@ export default function ModernHome() {
               
               <button 
                 onClick={() => scrollToSection('calculadora')}
-                className="text-orange-400 hover:text-orange-300 font-semibold flex items-center gap-2 transition-all duration-300 hover:scale-105"
+                className="text-orange-highlight hover:text-orange-300 font-semibold flex items-center gap-2 transition-all duration-300 hover:scale-105"
               >
                 <Target className="h-5 w-5" />
-                Me mostre como automatizar agora
+                Descobrir quanto estou perdendo agora
                 <ArrowRight className="h-4 w-4" />
               </button>
             </div>
@@ -331,11 +335,11 @@ export default function ModernHome() {
                 <Zap className="mr-2 h-3 w-3" />
                 Como Funciona
               </Badge>
-              <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">
-                Implementação em <span className="text-orange-400">4 passos simples</span>
+              <h2 className="text-3xl md:text-5xl font-bold text-white-strong mb-6">
+                Implementação em <span className="text-orange-highlight">4 passos simples</span>
               </h2>
-              <p className="text-xl text-gray-200 max-w-3xl mx-auto">
-                Do primeiro contato até seus agentes vendendo 24h por dia
+              <p className="text-xl text-medium-contrast max-w-3xl mx-auto">
+                <span className="text-success-green font-bold">Do primeiro contato até seus agentes vendendo 24h por dia</span> - processo testado e aprovado
               </p>
             </div>
 
@@ -346,9 +350,9 @@ export default function ModernHome() {
                 </div>
                 <CardContent className="p-6 pt-8">
                   <MessageSquare className="w-12 h-12 text-blue-400 mx-auto mb-4" />
-                  <h3 className="text-lg font-bold text-white mb-3">Análise Gratuita</h3>
-                  <p className="text-gray-200 text-sm">
-                    Diagnóstico completo do seu atendimento atual e identificação de oportunidades
+                  <h3 className="text-lg font-bold text-white-strong mb-3">Análise Gratuita</h3>
+                  <p className="text-medium-contrast text-sm">
+                    <span className="text-success-green font-bold">Diagnóstico completo do seu atendimento atual</span> e identificação de quanto você está perdendo sem automação
                   </p>
                 </CardContent>
               </Card>
@@ -359,9 +363,9 @@ export default function ModernHome() {
                 </div>
                 <CardContent className="p-6 pt-8">
                   <Building2 className="w-12 h-12 text-purple-400 mx-auto mb-4" />
-                  <h3 className="text-lg font-bold text-white mb-3">Configuração</h3>
-                  <p className="text-gray-200 text-sm">
-                    Criação e treinamento dos agentes de IA específicos para seu negócio
+                  <h3 className="text-lg font-bold text-white-strong mb-3">Configuração</h3>
+                  <p className="text-medium-contrast text-sm">
+                    <span className="text-success-green font-bold">Criação e treinamento dos agentes de IA</span> específicos para seu negócio e suas dores
                   </p>
                 </CardContent>
               </Card>
@@ -372,9 +376,9 @@ export default function ModernHome() {
                 </div>
                 <CardContent className="p-6 pt-8">
                   <Users className="w-12 h-12 text-green-400 mx-auto mb-4" />
-                  <h3 className="text-lg font-bold text-white mb-3">Integração</h3>
-                  <p className="text-gray-200 text-sm">
-                    Conexão com WhatsApp, Instagram, Facebook, Email e SMS em 15 dias
+                  <h3 className="text-lg font-bold text-white-strong mb-3">Integração</h3>
+                  <p className="text-medium-contrast text-sm">
+                    <span className="text-success-green font-bold">Conexão com WhatsApp, Instagram, Facebook, Email e SMS</span> em 15 dias máximo
                   </p>
                 </CardContent>
               </Card>
@@ -385,9 +389,9 @@ export default function ModernHome() {
                 </div>
                 <CardContent className="p-6 pt-8">
                   <TrendingUp className="w-12 h-12 text-orange-400 mx-auto mb-4" />
-                  <h3 className="text-lg font-bold text-white mb-3">Otimização</h3>
-                  <p className="text-gray-200 text-sm">
-                    Monitoramento contínuo e melhorias mensais nos agentes
+                  <h3 className="text-lg font-bold text-white-strong mb-3">Otimização</h3>
+                  <p className="text-medium-contrast text-sm">
+                    <span className="text-success-green font-bold">Monitoramento contínuo e melhorias mensais</span> para maximizar resultados
                   </p>
                 </CardContent>
               </Card>
@@ -863,8 +867,8 @@ export default function ModernHome() {
               <Shield className="mr-2 h-3 w-3" />
               Garantia Total
             </Badge>
-            <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">
-              Garantia de <span className="text-green-400">Satisfação</span> 100%
+            <h2 className="text-3xl md:text-5xl font-bold text-white-strong mb-6">
+              Garantia de <span className="text-success-green">Satisfação</span> 100%
             </h2>
             
             <div className="grid md:grid-cols-3 gap-8 mt-12">
@@ -873,9 +877,9 @@ export default function ModernHome() {
                   <div className="w-16 h-16 bg-gradient-to-br from-green-500 to-green-600 rounded-full mx-auto mb-4 flex items-center justify-center">
                     <CheckCircle className="h-8 w-8 text-white" />
                   </div>
-                  <h3 className="text-lg font-bold text-white mb-3">Implementação Garantida</h3>
-                  <p className="text-gray-200 text-sm">
-                    Seu agente de IA funcionando em 15 dias ou devolvemos 100% do investimento
+                  <h3 className="text-lg font-bold text-white-strong mb-3">Implementação Garantida</h3>
+                  <p className="text-medium-contrast text-sm">
+                    <span className="text-success-green font-bold">Seu agente de IA funcionando em 15 dias</span> ou devolvemos 100% do investimento
                   </p>
                 </CardContent>
               </Card>
@@ -885,9 +889,9 @@ export default function ModernHome() {
                   <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full mx-auto mb-4 flex items-center justify-center">
                     <Users className="h-8 w-8 text-white" />
                   </div>
-                  <h3 className="text-lg font-bold text-white mb-3">Suporte Vitalício</h3>
-                  <p className="text-gray-200 text-sm">
-                    Equipe especializada disponível durante todo o período de assinatura
+                  <h3 className="text-lg font-bold text-white-strong mb-3">Suporte Vitalício</h3>
+                  <p className="text-medium-contrast text-sm">
+                    <span className="text-success-green font-bold">Equipe especializada disponível</span> durante todo o período de assinatura
                   </p>
                 </CardContent>
               </Card>
@@ -1099,62 +1103,99 @@ export default function ModernHome() {
         </div>
       </section>
 
-      {/* CTA Final */}
-      <section className="py-20 px-6 bg-gradient-to-r from-purple-900 to-slate-900 relative z-10">
-        <div className="container mx-auto text-center">
-          <div className="max-w-4xl mx-auto">
-            <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">
-              Faça parte do <span className="text-yellow-400">futuro</span> do atendimento
-            </h2>
-            <p className="text-xl text-gray-100 mb-8">
-              Empresas inovadoras já usam agentes de IA para escalar suas vendas sem aumentar custos
-            </p>
-            <div className="space-y-6">
-              <WhatsAppModal
-                trigger={
-                  <Button 
-                    size="lg" 
-                    className="bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white font-bold px-8 md:px-12 py-4 text-lg"
-                  >
-                    <MessageSquare className="mr-2 h-5 w-5" />
-                    Quero escalar meu atendimento com IA
-                    <ArrowRight className="ml-2 h-5 w-5" />
-                  </Button>
-                }
-              />
+      {/* Promessas da Transformação */}
+      <section className="py-20 px-6 bg-gradient-to-br from-purple-900/50 to-orange-900/50 relative z-10">
+        <div className="container mx-auto">
+          <div className="max-w-6xl mx-auto">
+            <div className="text-center mb-16">
+              <Badge className="mb-4 bg-orange-500/20 text-orange-200 border-orange-500/30">
+                <Target className="mr-2 h-3 w-3" />
+                Transformação Completa
+              </Badge>
+              <h2 className="text-3xl md:text-5xl font-bold text-white-strong mb-6">
+                Do <span className="text-pain-red">caos manual</span> para uma <span className="text-success-green">operação enxuta</span> que trabalha por você
+              </h2>
+              <p className="text-xl text-medium-contrast mb-8 max-w-4xl mx-auto">
+                <span className="text-success-green font-bold">Triplicar vendas automatizando atendimentos, processos e canais</span> - 
+                sem depender de plataformas fechadas, sem precisar programar, com retorno em poucos meses
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
+              <Card className="solution-card">
+                <CardContent className="p-6">
+                  <TrendingUp className="w-10 h-10 text-success-green mb-4" />
+                  <h3 className="text-lg font-bold text-white-strong mb-3">Vendas que funcionam sozinhas</h3>
+                  <p className="text-medium-contrast text-sm">
+                    <span className="text-success-green font-bold">Triplicar vendas no WhatsApp</span> com estrutura automatizada que responde leads em segundos, mesmo enquanto você dorme
+                  </p>
+                </CardContent>
+              </Card>
+
+              <Card className="solution-card">
+                <CardContent className="p-6">
+                  <Shield className="w-10 h-10 text-success-green mb-4" />
+                  <h3 className="text-lg font-bold text-white-strong mb-3">Plataforma própria em 30 dias</h3>
+                  <p className="text-medium-contrast text-sm">
+                    <span className="text-success-green font-bold">Comunicação conectando WhatsApp, Instagram, site e e-mail</span> - sem depender de ferramentas caras e limitadas
+                  </p>
+                </CardContent>
+              </Card>
+
+              <Card className="solution-card">
+                <CardContent className="p-6">
+                  <Bot className="w-10 h-10 text-success-green mb-4" />
+                  <h3 className="text-lg font-bold text-white-strong mb-3">Agente IA 24/7</h3>
+                  <p className="text-medium-contrast text-sm">
+                    <span className="text-success-green font-bold">Inteligência artificial própria</span> capaz de responder dúvidas, agendar reuniões e recuperar vendas automaticamente
+                  </p>
+                </CardContent>
+              </Card>
+
+              <Card className="solution-card">
+                <CardContent className="p-6">
+                  <Users className="w-10 h-10 text-success-green mb-4" />
+                  <h3 className="text-lg font-bold text-white-strong mb-3">Redução de 90% no suporte</h3>
+                  <p className="text-medium-contrast text-sm">
+                    <span className="text-success-green font-bold">Automação que reduz mensagens repetitivas</span> com respostas personalizadas, sem precisar de equipe
+                  </p>
+                </CardContent>
+              </Card>
+
+              <Card className="solution-card">
+                <CardContent className="p-6">
+                  <CheckCircle className="w-10 h-10 text-success-green mb-4" />
+                  <h3 className="text-lg font-bold text-white-strong mb-3">Nunca mais perca leads</h3>
+                  <p className="text-medium-contrast text-sm">
+                    <span className="text-success-green font-bold">Funil inteligente com mensagens automáticas</span> quando cliente está pronto para comprar
+                  </p>
+                </CardContent>
+              </Card>
+
+              <Card className="solution-card">
+                <CardContent className="p-6">
+                  <Award className="w-10 h-10 text-success-green mb-4" />
+                  <h3 className="text-lg font-bold text-white-strong mb-3">Custo operacional -70%</h3>
+                  <p className="text-medium-contrast text-sm">
+                    <span className="text-success-green font-bold">Substituir tarefas manuais por fluxos automáticos</span> inteligentes, sem depender de agências
+                  </p>
+                </CardContent>
+              </Card>
+            </div>
+
+            <div className="text-center">
+              <WhatsAppModal trigger={
+                <Button size="lg" className="bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white-strong px-12 py-6 text-xl font-bold shadow-lg shadow-green-500/30 hover:shadow-green-500/50 transition-all duration-300 transform hover:scale-105">
+                  <MessageSquare className="mr-3 h-6 w-6" />
+                  Quero essa transformação agora
+                  <ArrowRight className="ml-3 h-6 w-6" />
+                </Button>
+              } />
               
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <WhatsAppModal
-                  trigger={
-                    <Button 
-                      size="lg" 
-                      variant="outline"
-                      className="border-orange-400 text-orange-400 hover:bg-orange-400 hover:text-white font-bold px-6 py-3"
-                    >
-                      <Clock className="mr-2 h-4 w-4" />
-                      Me mostre como automatizar agora
-                    </Button>
-                  }
-                />
-                
-                <WhatsAppModal
-                  trigger={
-                    <Button 
-                      size="lg" 
-                      variant="outline"
-                      className="border-green-400 text-green-400 hover:bg-green-400 hover:text-white font-bold px-6 py-3"
-                    >
-                      <MessageSquare className="mr-2 h-4 w-4" />
-                      Falar com especialista no WhatsApp
-                    </Button>
-                  }
-                />
-              </div>
-              
-              <p className="text-gray-200 text-sm max-w-md mx-auto">
-                ⚡ Diagnóstico gratuito em 15 minutos<br/>
-                🎯 Descubra exatamente quanto você está perdendo<br/>
-                💰 Veja como recuperar tudo isso em 30 dias
+              <p className="text-medium-contrast mt-6 max-w-2xl mx-auto">
+                <span className="text-success-green font-bold">✅ Análise gratuita</span> • 
+                <span className="text-success-green font-bold">✅ Implementação em 15 dias</span> • 
+                <span className="text-success-green font-bold">✅ Garantia de satisfação</span>
               </p>
             </div>
           </div>
