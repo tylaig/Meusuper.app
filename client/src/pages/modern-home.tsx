@@ -351,16 +351,16 @@ export default function ModernHome() {
                 <div className="text-gray-200 text-sm md:text-base">Vendas Recuperadas</div>
               </div>
               <div className="text-center">
-                <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-orange-400 mb-2">10.000h</div>
-                <div className="text-gray-200 text-sm md:text-base">Horas Economizadas</div>
+                <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-orange-400 mb-2">5+</div>
+                <div className="text-gray-200 text-sm md:text-base">Anos de Experiência</div>
               </div>
               <div className="text-center">
                 <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-yellow-400 mb-2">4.9⭐</div>
                 <div className="text-gray-200 text-sm md:text-base">Avaliação Média</div>
               </div>
               <div className="text-center">
-                <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-purple-400 mb-2">97%</div>
-                <div className="text-gray-200 text-sm md:text-base">Taxa de Satisfação</div>
+                <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-purple-400 mb-2">10.000h</div>
+                <div className="text-gray-200 text-sm md:text-base">Tempo Economizado</div>
               </div>
             </div>
           </div>
@@ -428,6 +428,62 @@ export default function ModernHome() {
               ))}
             </div>
 
+            <div className="grid md:grid-cols-2 gap-8">
+              {[
+                {
+                  icon: Clock,
+                  title: "Respostas demoram horas ou dias",
+                  description: "Cliente espera 2h+ para ser atendido e vai direto para a concorrência que responde em minutos.",
+                  impact: "💸 Cada hora perdida = R$ 500-2.000 em vendas"
+                },
+                {
+                  icon: Users,
+                  title: "Equipe sobrecarregada com tarefas repetitivas", 
+                  description: "Funcionários gastam 70% do tempo respondendo sempre as mesmas perguntas básicas.",
+                  impact: "⏰ 40h/semana perdidas por funcionário"
+                },
+                {
+                  icon: MessageSquare,
+                  title: "Leads quentes esfriam sem follow-up",
+                  description: "Cliente interessado hoje, esquecido amanhã. Sem nutrição automática, perdem interesse.",
+                  impact: "🎯 80% dos leads se perdem por falta de acompanhamento"
+                },
+                {
+                  icon: TrendingUp,
+                  title: "Informações importantes se perdem no WhatsApp",
+                  description: "Dados de clientes, pedidos e oportunidades se perdem no meio de centenas de conversas.",
+                  impact: "📊 Dados valiosos jogados fora todos os dias"
+                },
+                {
+                  icon: Zap,
+                  title: "Mensagens perdidas entre múltiplos canais",
+                  description: "WhatsApp, Instagram, Facebook, Email - clientes tentam contato por vários caminhos e você não consegue acompanhar.",
+                  impact: "🌐 Oportunidades perdidas em todos os canais"
+                },
+                {
+                  icon: Target,
+                  title: "Equipe esgotada tentando atender todos os canais",
+                  description: "Funcionários pulando entre WhatsApp, Instagram, Email, Facebook - burnout garantido.",
+                  impact: "😰 Equipe sobrecarregada, clientes insatisfeitos"
+                }
+              ].map((problema, index) => (
+                <Card key={index} className="bg-slate-900/70 border-red-500/30 hover:border-red-400/50 transition-all duration-300">
+                  <CardContent className="p-6">
+                    <div className="flex items-start space-x-4">
+                      <div className="w-12 h-12 bg-gradient-to-br from-red-500 to-red-600 rounded-xl flex items-center justify-center flex-shrink-0">
+                        <problema.icon className="h-6 w-6 text-white" />
+                      </div>
+                      <div className="flex-1">
+                        <h3 className="text-lg font-bold text-white mb-3">{problema.title}</h3>
+                        <p className="text-gray-200 mb-3 leading-relaxed">{problema.description}</p>
+                        <div className="text-orange-400 font-semibold text-sm">{problema.impact}</div>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+
             <div className="text-center mt-12">
               <Card className="bg-gradient-to-r from-red-900/50 to-orange-900/50 border-red-500/30 max-w-2xl mx-auto">
                 <CardContent className="p-8">
@@ -438,18 +494,18 @@ export default function ModernHome() {
                     Sua empresa está perdendo <span className="text-orange-400 font-bold">no mínimo R$ 10.000/mês</span> em vendas perdidas, 
                     tempo desperdiçado e oportunidades que vão para a concorrência.
                   </p>
-                  <WhatsAppModal
-                    trigger={
-                      <Button 
-                        size="lg" 
-                        className="bg-gradient-to-r from-orange-600 to-red-600 hover:from-orange-700 hover:to-red-700 text-white"
-                      >
-                        <Target className="mr-2 h-5 w-5" />
-                        Calcular quanto estou perdendo
-                        <ArrowRight className="ml-2 h-5 w-5" />
-                      </Button>
-                    }
-                  />
+                  <Button 
+                    size="lg" 
+                    className="bg-gradient-to-r from-orange-600 to-red-600 hover:from-orange-700 hover:to-red-700 text-white"
+                    onClick={() => {
+                      const problemasSection = document.getElementById('calculadora');
+                      problemasSection?.scrollIntoView({ behavior: 'smooth' });
+                    }}
+                  >
+                    <Target className="mr-2 h-5 w-5" />
+                    Calcular quanto estou perdendo
+                    <ArrowRight className="ml-2 h-5 w-5" />
+                  </Button>
                 </CardContent>
               </Card>
             </div>
@@ -850,7 +906,7 @@ export default function ModernHome() {
                 Pare de sofrer com <span className="text-red-400">estes problemas</span>
               </h2>
               <p className="text-xl text-gray-200 max-w-3xl mx-auto">
-                Problemas reais que nossa automação resolve definitivamente
+                Problemas reais que nossos agentes de IA resolvem definitivamente em todos os canais
               </p>
             </div>
 
@@ -860,8 +916,8 @@ export default function ModernHome() {
                   <div className="mx-auto mb-4 w-16 h-16 bg-gradient-to-br from-red-500 to-red-600 rounded-2xl flex items-center justify-center">
                     <Clock className="h-8 w-8 text-white" />
                   </div>
-                  <h3 className="text-xl font-bold text-white mb-3">Respostas lentas que fazem você perder vendas</h3>
-                  <p className="text-gray-100 text-sm">Cliente espera 2h para ser atendido e vai para a concorrência</p>
+                  <h3 className="text-xl font-bold text-white mb-3">Respostas lentas em todos os canais</h3>
+                  <p className="text-gray-100 text-sm">Clientes esperando horas no WhatsApp, Instagram, Facebook enquanto concorrentes respondem em segundos</p>
                 </CardContent>
               </Card>
 
@@ -870,8 +926,8 @@ export default function ModernHome() {
                   <div className="mx-auto mb-4 w-16 h-16 bg-gradient-to-br from-orange-500 to-orange-600 rounded-2xl flex items-center justify-center">
                     <Users className="h-8 w-8 text-white" />
                   </div>
-                  <h3 className="text-xl font-bold text-white mb-3">Falta de equipe fora do horário comercial</h3>
-                  <p className="text-gray-100 text-sm">Vendas perdidas à noite, fins de semana e feriados</p>
+                  <h3 className="text-xl font-bold text-white mb-3">Atendimento limitado ao horário comercial</h3>
+                  <p className="text-gray-100 text-sm">Leads chegando 24h por todos os canais mas você só atende 8h por dia</p>
                 </CardContent>
               </Card>
 
@@ -880,8 +936,8 @@ export default function ModernHome() {
                   <div className="mx-auto mb-4 w-16 h-16 bg-gradient-to-br from-purple-500 to-purple-600 rounded-2xl flex items-center justify-center">
                     <MessageSquare className="h-8 w-8 text-white" />
                   </div>
-                  <h3 className="text-xl font-bold text-white mb-3">Perda de leads por falta de follow-up</h3>
-                  <p className="text-gray-100 text-sm">Lead interessado hoje, esquecido amanhã</p>
+                  <h3 className="text-xl font-bold text-white mb-3">Leads se perdendo em múltiplos canais</h3>
+                  <p className="text-gray-100 text-sm">WhatsApp, Instagram, Facebook, Email - impossível acompanhar e nutrir todos manualmente</p>
                 </CardContent>
               </Card>
 
@@ -890,8 +946,8 @@ export default function ModernHome() {
                   <div className="mx-auto mb-4 w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl flex items-center justify-center">
                     <Zap className="h-8 w-8 text-white" />
                   </div>
-                  <h3 className="text-xl font-bold text-white mb-3">Dificuldade de integrar ferramentas e CRMs</h3>
-                  <p className="text-gray-100 text-sm">Dados soltos, sem conexão entre sistemas</p>
+                  <h3 className="text-xl font-bold text-white mb-3">Informações espalhadas em vários canais</h3>
+                  <p className="text-gray-100 text-sm">Dados de clientes perdidos entre WhatsApp, Instagram, Email e outros canais sem integração</p>
                 </CardContent>
               </Card>
 
@@ -900,8 +956,8 @@ export default function ModernHome() {
                   <div className="mx-auto mb-4 w-16 h-16 bg-gradient-to-br from-green-500 to-green-600 rounded-2xl flex items-center justify-center">
                     <Target className="h-8 w-8 text-white" />
                   </div>
-                  <h3 className="text-xl font-bold text-white mb-3">Atendimento manual que não escala</h3>
-                  <p className="text-gray-100 text-sm">Mais clientes = mais dor de cabeça</p>
+                  <h3 className="text-xl font-bold text-white mb-3">Impossível escalar atendimento multicanal</h3>
+                  <p className="text-gray-100 text-sm">Cada novo canal = mais funcionários = custos que explodem sem controle</p>
                 </CardContent>
               </Card>
 
@@ -1049,132 +1105,122 @@ export default function ModernHome() {
         </div>
       </section>
 
-      {/* Contact Form */}
-      <section id="contato" className="py-20 px-6 relative z-10">
+      {/* Calculadora de Perdas */}
+      <section id="calculadora" className="py-20 px-6 bg-gradient-to-br from-orange-900/30 to-red-900/30 relative z-10">
         <div className="container mx-auto">
-          <div className="max-w-4xl mx-auto">
-            <div className="text-center mb-16">
-              <Badge className="mb-4 bg-green-500/20 text-green-200 border-green-500/30">
-                <Target className="mr-2 h-3 w-3" />
-                Diagnóstico Gratuito
-              </Badge>
-              <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">
-                Pronto para <span className="text-green-400">escalar</span> seu negócio?
-              </h2>
-              <p className="text-xl text-gray-200 max-w-3xl mx-auto">
-                Fale com um especialista agora e descubra como automatizar seu atendimento em 7 dias
-              </p>
-            </div>
+          <div className="max-w-4xl mx-auto text-center">
+            <Badge className="mb-4 bg-orange-500/20 text-orange-200 border-orange-500/30">
+              <Target className="mr-2 h-3 w-3" />
+              Calculadora de Perdas
+            </Badge>
+            <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">
+              Descubra quanto você está <span className="text-orange-400">perdendo</span> por mês
+            </h2>
+            <p className="text-xl text-gray-200 max-w-3xl mx-auto mb-12">
+              Calcule o impacto real da demora no atendimento no seu faturamento
+            </p>
 
-            {showSuccess ? (
-              <Card className="bg-gradient-to-br from-green-900/50 to-slate-900/50 border-green-500/30 max-w-2xl mx-auto">
-                <CardContent className="p-8 text-center">
-                  <CheckCircle className="w-16 h-16 text-green-400 mx-auto mb-4" />
-                  <h3 className="text-2xl font-bold text-white mb-4">Obrigado!</h3>
-                  <p className="text-gray-100 mb-4">
-                    Em breve nossa equipe entrará em contato com você pelo WhatsApp.
+            <Card className="bg-slate-900/70 border-orange-500/20 max-w-3xl mx-auto">
+              <CardContent className="p-8">
+                <div className="grid md:grid-cols-2 gap-8">
+                  <div>
+                    <label className="block text-sm font-medium text-gray-300 mb-3">
+                      Quantos leads você recebe por mês?
+                    </label>
+                    <Input
+                      type="number"
+                      placeholder="Ex: 100"
+                      className="bg-slate-800 border-orange-500/30 text-white text-center text-lg"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-300 mb-3">
+                      Qual o valor médio da sua venda?
+                    </label>
+                    <Input
+                      type="number"
+                      placeholder="Ex: 500"
+                      className="bg-slate-800 border-orange-500/30 text-white text-center text-lg"
+                    />
+                  </div>
+                </div>
+
+                <div className="mt-8 p-6 bg-gradient-to-r from-red-900/50 to-orange-900/50 rounded-lg border border-red-500/30">
+                  <h3 className="text-xl font-bold text-white mb-4">Suas perdas mensais estimadas:</h3>
+                  <div className="text-3xl font-bold text-red-400 mb-2">R$ 15.000</div>
+                  <p className="text-gray-200 text-sm">
+                    Baseado em 30% de leads perdidos por demora no atendimento
                   </p>
-                  <p className="text-sm text-gray-300">
-                    Redirecionando para o WhatsApp em alguns segundos...
-                  </p>
-                </CardContent>
-              </Card>
-            ) : (
-              <Card className="bg-slate-900/50 border-purple-500/20 max-w-2xl mx-auto">
-                <CardContent className="p-8">
-                  <form onSubmit={handleSubmit} className="space-y-6">
-                    <div className="grid md:grid-cols-2 gap-6">
-                      <div>
-                        <label className="block text-sm font-medium text-gray-300 mb-2">
-                          Nome *
-                        </label>
-                        <Input
-                          required
-                          value={formData.nome}
-                          onChange={(e) => setFormData({ ...formData, nome: e.target.value })}
-                          className="bg-slate-800 border-purple-500/30 text-white"
-                          placeholder="Seu nome completo"
-                        />
-                      </div>
-                      <div>
-                        <label className="block text-sm font-medium text-gray-300 mb-2">
-                          Telefone *
-                        </label>
-                        <Input
-                          required
-                          value={formData.telefone}
-                          onChange={(e) => setFormData({ ...formData, telefone: e.target.value })}
-                          className="bg-slate-800 border-purple-500/30 text-white"
-                          placeholder="(11) 99999-9999"
-                        />
-                      </div>
-                    </div>
-                    
-                    <div>
-                      <label className="block text-sm font-medium text-gray-300 mb-2">
-                        Nome da empresa
-                      </label>
-                      <Input
-                        value={formData.empresa}
-                        onChange={(e) => setFormData({ ...formData, empresa: e.target.value })}
-                        className="bg-slate-800 border-purple-500/30 text-white"
-                        placeholder="Nome da sua empresa"
-                      />
-                    </div>
-                    
-                    <div>
-                      <label className="block text-sm font-medium text-gray-300 mb-2">
-                        Para garantir que conseguimos te atender no momento certo, selecione seu faturamento mensal estimado *
-                      </label>
-                      <select
-                        value={formData.faturamento}
-                        onChange={(e) => setFormData({ ...formData, faturamento: e.target.value })}
-                        className="w-full bg-slate-800 border border-purple-500/30 text-white rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-purple-500"
-                        required
+                </div>
+
+                <div className="mt-8">
+                  <WhatsAppModal
+                    trigger={
+                      <Button 
+                        size="lg" 
+                        className="w-full bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white"
                       >
-                        <option value="">Selecione uma faixa</option>
-                        <option value="ate-10k">Abaixo de R$ 10 mil</option>
-                        <option value="10k-30k">Entre R$ 10 mil e R$ 30 mil</option>
-                        <option value="acima-30k">Acima de R$ 30 mil</option>
-                      </select>
-                    </div>
-                    
-                    <div>
-                      <label className="block text-sm font-medium text-gray-300 mb-2">
-                        Qual sua maior dor no atendimento? *
-                      </label>
-                      <Textarea
-                        value={formData.dor}
-                        onChange={(e) => setFormData({ ...formData, dor: e.target.value })}
-                        className="bg-slate-800 border-purple-500/30 text-white min-h-[120px]"
-                        placeholder="Ex: Perco cerca de 10 clientes por semana que vão para a concorrência porque demoro para responder no WhatsApp..."
-                        required
-                      />
-                    </div>
-                    
-                    <Button
-                      type="submit"
-                      size="lg"
-                      className="w-full bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white"
-                      disabled={contactMutation.isPending}
-                    >
-                      {contactMutation.isPending ? (
-                        <>
-                          <Clock className="mr-2 h-5 w-5 animate-spin" />
-                          Enviando...
-                        </>
-                      ) : (
-                        <>
-                          <MessageSquare className="mr-2 h-5 w-5" />
-                          Quero escalar meu atendimento com IA
-                          <ArrowRight className="ml-2 h-5 w-5" />
-                        </>
-                      )}
+                        <MessageSquare className="mr-2 h-5 w-5" />
+                        Quero recuperar essas vendas perdidas
+                        <ArrowRight className="ml-2 h-5 w-5" />
+                      </Button>
+                    }
+                  />
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Sections */}
+      <section className="py-16 px-6 relative z-10">
+        <div className="container mx-auto">
+          <div className="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto">
+            <WhatsAppModal
+              trigger={
+                <Card className="bg-gradient-to-br from-purple-900/50 to-slate-900/50 border-purple-500/20 hover:border-purple-400/50 transition-all duration-300 cursor-pointer">
+                  <CardContent className="p-6 text-center">
+                    <Clock className="w-12 h-12 text-purple-400 mx-auto mb-4" />
+                    <h3 className="text-lg font-bold text-white mb-3">Atendimento 24h</h3>
+                    <p className="text-gray-200 text-sm mb-4">Nunca mais perca vendas por estar offline</p>
+                    <Button size="sm" variant="outline" className="border-purple-400 text-purple-300 hover:bg-purple-400 hover:text-white">
+                      Quero isso
                     </Button>
-                  </form>
-                </CardContent>
-              </Card>
-            )}
+                  </CardContent>
+                </Card>
+              }
+            />
+
+            <WhatsAppModal
+              trigger={
+                <Card className="bg-gradient-to-br from-green-900/50 to-slate-900/50 border-green-500/20 hover:border-green-400/50 transition-all duration-300 cursor-pointer">
+                  <CardContent className="p-6 text-center">
+                    <Users className="w-12 h-12 text-green-400 mx-auto mb-4" />
+                    <h3 className="text-lg font-bold text-white mb-3">Equipe sobrecarregada</h3>
+                    <p className="text-gray-200 text-sm mb-4">Libere sua equipe para vender mais</p>
+                    <Button size="sm" variant="outline" className="border-green-400 text-green-300 hover:bg-green-400 hover:text-white">
+                      Me ajude
+                    </Button>
+                  </CardContent>
+                </Card>
+              }
+            />
+
+            <WhatsAppModal
+              trigger={
+                <Card className="bg-gradient-to-br from-orange-900/50 to-slate-900/50 border-orange-500/20 hover:border-orange-400/50 transition-all duration-300 cursor-pointer">
+                  <CardContent className="p-6 text-center">
+                    <TrendingUp className="w-12 h-12 text-orange-400 mx-auto mb-4" />
+                    <h3 className="text-lg font-bold text-white mb-3">Perdendo para concorrência</h3>
+                    <p className="text-gray-200 text-sm mb-4">Seja mais rápido que seus concorrentes</p>
+                    <Button size="sm" variant="outline" className="border-orange-400 text-orange-300 hover:bg-orange-400 hover:text-white">
+                      Resolver agora
+                    </Button>
+                  </CardContent>
+                </Card>
+              }
+            />
           </div>
         </div>
       </section>
