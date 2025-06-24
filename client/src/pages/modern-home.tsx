@@ -880,47 +880,47 @@ export default function ModernHome() {
       <section className="py-20 px-6 bg-gradient-to-br from-green-900/30 to-blue-900/30 relative z-10">
         <div className="container mx-auto">
           <div className="max-w-4xl mx-auto text-center">
-            <Badge className="mb-4 bg-green-500/20 text-green-200 border-green-500/30">
+            <Badge className="mb-4 bg-purple-500/20 text-purple-200 border-purple-500/30">
               <Shield className="mr-2 h-3 w-3" />
-              Garantia Total
+              Compromisso com Resultados
             </Badge>
             <h2 className="text-3xl md:text-5xl font-bold text-white-strong mb-6">
-              Garantia de <span className="text-solution-purple">Satisfação</span> 100%
+              Compromisso com <span className="text-solution-purple">Seus Resultados</span>
             </h2>
             
             <div className="grid md:grid-cols-3 gap-8 mt-12">
-              <Card className="bg-slate-900/50 border-green-500/20">
+              <Card className="bg-slate-900/50 border-purple-500/20">
                 <CardContent className="p-6 text-center">
-                  <div className="w-16 h-16 bg-gradient-to-br from-green-500 to-green-600 rounded-full mx-auto mb-4 flex items-center justify-center">
+                  <div className="w-16 h-16 bg-gradient-to-br from-purple-500 to-purple-600 rounded-full mx-auto mb-4 flex items-center justify-center">
                     <CheckCircle className="h-8 w-8 text-white" />
                   </div>
                   <h3 className="text-lg font-bold text-white-strong mb-3">Implementação Garantida</h3>
                   <p className="text-medium-contrast text-sm">
-                    <span className="text-solution-purple font-bold">Seu agente de IA funcionando em 15 dias</span> ou devolvemos 100% do investimento
+                    <span className="text-solution-purple font-bold">Seu agente de IA funcionando perfeitamente em 15 dias</span> com todos os canais integrados
                   </p>
                 </CardContent>
               </Card>
 
-              <Card className="bg-slate-900/50 border-green-500/20">
+              <Card className="bg-slate-900/50 border-orange-500/20">
                 <CardContent className="p-6 text-center">
-                  <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full mx-auto mb-4 flex items-center justify-center">
+                  <div className="w-16 h-16 bg-gradient-to-br from-orange-500 to-orange-600 rounded-full mx-auto mb-4 flex items-center justify-center">
                     <Users className="h-8 w-8 text-white" />
                   </div>
-                  <h3 className="text-lg font-bold text-white-strong mb-3">Suporte Vitalício</h3>
+                  <h3 className="text-lg font-bold text-white-strong mb-3">Parceria até o Sucesso</h3>
                   <p className="text-medium-contrast text-sm">
-                    <span className="text-solution-purple font-bold">Equipe especializada disponível</span> durante todo o período de assinatura
+                    <span className="text-pain-highlight font-bold">Ficamos com você até alcançar os resultados esperados</span> - suporte contínuo e otimizações
                   </p>
                 </CardContent>
               </Card>
 
-              <Card className="bg-slate-900/50 border-green-500/20">
+              <Card className="bg-slate-900/50 border-purple-500/20">
                 <CardContent className="p-6 text-center">
                   <div className="w-16 h-16 bg-gradient-to-br from-purple-500 to-purple-600 rounded-full mx-auto mb-4 flex items-center justify-center">
                     <TrendingUp className="h-8 w-8 text-white" />
                   </div>
-                  <h3 className="text-lg font-bold text-white mb-3">Resultados Comprovados</h3>
-                  <p className="text-gray-200 text-sm">
-                    97% dos clientes reportam aumento significativo em vendas no primeiro mês
+                  <h3 className="text-lg font-bold text-white-strong mb-3">Compromisso de Performance</h3>
+                  <p className="text-medium-contrast text-sm">
+                    <span className="text-solution-purple font-bold">Monitoramento mensal e ajustes contínuos</span> até atingir o crescimento desejado
                   </p>
                 </CardContent>
               </Card>

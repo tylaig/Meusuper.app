@@ -95,6 +95,7 @@ The application uses Drizzle ORM with a PostgreSQL-ready schema:
 ## Recent Changes
 
 - June 24, 2025: Major layout and copy improvements focused on brutal pain points
+  - **Realistic guarantee**: Removed money-back promise, focused on partnership and commitment to results
   - **Professional bio added**: Samuel's photo and enhanced bio with Dubotics partnership, Dubai experience
   - **Responsive header**: Fixed mobile navigation, better breakpoints, smaller text sizes for mobile
   - **Typography fixes**: Reduced hero font sizes, fixed "Agentes de IA" background issue, better contrast
