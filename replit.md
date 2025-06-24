@@ -94,6 +94,18 @@ The application uses Drizzle ORM with a PostgreSQL-ready schema:
 
 ## Recent Changes
 
+- June 24, 2025: Implemented all briefing improvements
+  - **Enhanced bio**: Samuel's professional credentials with Dubotics partnership
+  - **Real metrics**: +R$100k sales, +10k hours, 4.9⭐ rating, 3 countries served
+  - **Empathetic copy**: Pain points focused on real money loss
+  - **Use case specifics**: Practical applications for each business niche
+  - **Stronger CTAs**: "Quero escalar meu atendimento com IA"
+  - **Lead qualification**: Revenue-based form filtering for priority handling
+- June 24, 2025: Fixed Docker Stack Traefik configuration
+  - **Naming consistency**: Aligned service names across all files
+  - **Production environment**: NODE_ENV=production with build process
+  - **CORS configuration**: Proper HTTPS origins setup
+  - **SSL/TLS setup**: LetsEncrypt certificate resolver configured
 - June 24, 2025: Major overhaul - Multicanal AI agents focus
   - **Strategic pivot**: Changed from WhatsApp-only to multicanal AI agents (WhatsApp, Instagram, Facebook, Email, SMS)
   - **Realistic timeline**: Updated from 7 days to 15 days implementation + monthly service model
