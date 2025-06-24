@@ -143,11 +143,11 @@ export default function ModernHome() {
       </div>
 
       {/* Navigation */}
-      <nav className="fixed top-0 w-full z-50 bg-slate-900/80 backdrop-blur-md border-b border-purple-500/20">
-        <div className="container mx-auto px-6 py-4">
+      <nav className="fixed top-0 w-full z-50 bg-slate-900/90 backdrop-blur-md border-b border-purple-500/20">
+        <div className="container mx-auto px-4 sm:px-6 py-3 sm:py-4">
           <div className="flex items-center justify-between">
-            <div className="text-2xl font-bold group cursor-pointer">
-              <span className="bg-gradient-to-r from-orange-400 to-orange-500 bg-clip-text text-transparent transition-all duration-300 group-hover:from-orange-300 group-hover:to-orange-400">
+            <div className="text-xl sm:text-2xl font-bold group cursor-pointer">
+              <span className="text-orange-highlight transition-all duration-300 group-hover:text-orange-300">
                 Meu
               </span>
               <span className="text-white transition-all duration-300 group-hover:text-gray-200">
@@ -155,7 +155,7 @@ export default function ModernHome() {
               </span>
             </div>
             
-            <nav className="hidden md:flex space-x-8">
+            <nav className="hidden lg:flex space-x-6">
               {[
                 { label: "Como funciona", href: "#como-funciona" },
                 { label: "Para quem é", href: "#para-quem" },
@@ -165,7 +165,7 @@ export default function ModernHome() {
                 <button
                   key={item.label}
                   onClick={() => scrollToSection(item.href.substring(1))}
-                  className="text-gray-300 hover:text-orange-400 transition-colors font-medium"
+                  className="text-gray-300 hover:text-orange-highlight transition-colors font-medium text-sm"
                 >
                   {item.label}
                 </button>
@@ -174,27 +174,28 @@ export default function ModernHome() {
 
             <WhatsAppModal
               trigger={
-                <Button className="hidden md:inline-flex bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white shadow-lg shadow-orange-500/30 hover:shadow-orange-500/50 transition-all duration-300">
-                  <MessageSquare className="mr-2 h-4 w-4" />
-                  Falar com especialista no WhatsApp
+                <Button className="hidden sm:inline-flex bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white shadow-lg shadow-orange-500/30 hover:shadow-orange-500/50 transition-all duration-300 text-sm px-4 py-2">
+                  <MessageSquare className="mr-2 h-3 w-3" />
+                  <span className="hidden md:inline">Falar com especialista</span>
+                  <span className="md:hidden">WhatsApp</span>
                 </Button>
               }
             />
 
             <button 
-              className="md:hidden text-white p-2"
+              className="lg:hidden text-white p-2"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               aria-label="Menu"
             >
-              {isMobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+              {isMobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
             </button>
           </div>
 
           {/* Mobile Navigation Menu */}
           {isMobileMenuOpen && (
-            <div className="md:hidden bg-slate-900/95 backdrop-blur-sm border-t border-purple-500/20 absolute top-full left-0 right-0 z-50">
-              <div className="container mx-auto px-6 py-4">
-                <nav className="flex flex-col space-y-4">
+            <div className="lg:hidden bg-slate-900/95 backdrop-blur-sm border-t border-purple-500/20 absolute top-full left-0 right-0 z-50">
+              <div className="container mx-auto px-4 sm:px-6 py-4">
+                <nav className="flex flex-col space-y-3">
                   {[
                     { label: "Como funciona", href: "#como-funciona" },
                     { label: "Para quem é", href: "#para-quem" },
@@ -207,19 +208,21 @@ export default function ModernHome() {
                         scrollToSection(item.href.substring(1));
                         setIsMobileMenuOpen(false);
                       }}
-                      className="text-gray-300 hover:text-orange-400 transition-colors font-medium text-left py-2"
+                      className="text-gray-300 hover:text-orange-highlight transition-colors font-medium text-left py-2 text-sm"
                     >
                       {item.label}
                     </button>
                   ))}
-                  <WhatsAppModal
-                    trigger={
-                      <Button className="w-full bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white mt-4 shadow-lg shadow-orange-500/30">
-                        <MessageSquare className="mr-2 h-4 w-4" />
-                        Falar com especialista no WhatsApp
-                      </Button>
-                    }
-                  />
+                  <div className="pt-2">
+                    <WhatsAppModal
+                      trigger={
+                        <Button className="w-full bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white shadow-lg shadow-orange-500/30 text-sm">
+                          <MessageSquare className="mr-2 h-4 w-4" />
+                          Falar com especialista no WhatsApp
+                        </Button>
+                      }
+                    />
+                  </div>
                 </nav>
               </div>
             </div>
@@ -228,7 +231,7 @@ export default function ModernHome() {
       </nav>
 
       {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center pt-20 pb-10 px-6">
+      <section className="relative min-h-screen flex items-center justify-center pt-24 pb-10 px-4 sm:px-6">
         <div className="container mx-auto text-center relative z-10">
           <div className="max-w-5xl mx-auto">
             <Badge className="mb-6 bg-orange-500/20 text-orange-200 border-orange-500/30 text-lg px-6 py-2">
@@ -236,13 +239,13 @@ export default function ModernHome() {
               Agentes de IA Multicanal
             </Badge>
             
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white-strong leading-tight mb-8">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white-strong leading-tight mb-8">
               Pare de <span className="text-pain-highlight">perder vendas</span> enquanto você dorme
               <br />
-              <span className="bg-gradient-to-r from-orange-400 to-orange-500 bg-clip-text text-transparent">Agentes de IA</span> que trabalham <span className="text-solution-purple">24h por dia</span>
+              <span className="text-orange-highlight">Agentes de IA</span> que trabalham <span className="text-solution-purple">24h por dia</span>
             </h1>
             
-            <p className="text-lg sm:text-xl md:text-2xl text-medium-contrast max-w-4xl mx-auto leading-relaxed mb-12">
+            <p className="text-base sm:text-lg md:text-xl text-medium-contrast max-w-4xl mx-auto leading-relaxed mb-12">
               <span className="text-pain-highlight font-bold">Chega de perder leads quentes por falta de resposta rápida.</span> 
               Automatize <span className="text-orange-highlight">WhatsApp, Instagram, Email e SMS</span> com IA própria. 
               <span className="text-solution-purple font-bold">Sem depender de plataformas que travam, sem programar, retorno em 30 dias</span>.
@@ -272,55 +275,69 @@ export default function ModernHome() {
               </button>
             </div>
 
-            <div className="grid grid-cols-2 md:grid-cols-5 gap-6 max-w-5xl mx-auto">
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 sm:gap-6 max-w-5xl mx-auto">
               <div className="text-center">
-                <div className="text-2xl md:text-3xl font-bold text-orange-400 mb-2">+R$100k</div>
-                <div className="text-gray-300 text-xs md:text-sm">Em vendas recuperadas</div>
+                <div className="text-xl sm:text-2xl md:text-3xl font-bold text-orange-highlight mb-2">+R$100k</div>
+                <div className="text-medium-contrast text-xs sm:text-sm">Em vendas recuperadas</div>
               </div>
               <div className="text-center">
-                <div className="text-2xl md:text-3xl font-bold text-green-400 mb-2">+10k</div>
-                <div className="text-gray-300 text-xs md:text-sm">Horas economizadas</div>
+                <div className="text-xl sm:text-2xl md:text-3xl font-bold text-solution-purple mb-2">+10k</div>
+                <div className="text-medium-contrast text-xs sm:text-sm">Horas economizadas</div>
               </div>
               <div className="text-center">
-                <div className="text-2xl md:text-3xl font-bold text-purple-400 mb-2">97%</div>
-                <div className="text-gray-300 text-xs md:text-sm">Satisfação</div>
+                <div className="text-xl sm:text-2xl md:text-3xl font-bold text-solution-purple mb-2">97%</div>
+                <div className="text-medium-contrast text-xs sm:text-sm">Satisfação</div>
               </div>
               <div className="text-center">
-                <div className="text-2xl md:text-3xl font-bold text-yellow-400 mb-2">4.9⭐</div>
-                <div className="text-gray-300 text-xs md:text-sm">Avaliação média</div>
+                <div className="text-xl sm:text-2xl md:text-3xl font-bold text-orange-highlight mb-2">4.9⭐</div>
+                <div className="text-medium-contrast text-xs sm:text-sm">Avaliação média</div>
               </div>
-              <div className="text-center">
-                <div className="text-2xl md:text-3xl font-bold text-blue-400 mb-2">3</div>
-                <div className="text-gray-300 text-xs md:text-sm">Países atendidos</div>
+              <div className="text-center col-span-2 sm:col-span-1">
+                <div className="text-xl sm:text-2xl md:text-3xl font-bold text-solution-purple mb-2">3</div>
+                <div className="text-medium-contrast text-xs sm:text-sm">Países atendidos</div>
               </div>
             </div>
 
+            {/* Bio do Especialista */}
             <div className="mt-16 flex justify-center">
-              <div className="flex flex-col items-center gap-4 text-gray-300 max-w-2xl mx-auto text-center">
-                <div className="flex items-center gap-3">
-                  <Heart className="h-5 w-5 text-red-400" />
-                  <span className="text-sm">
-                    Criado por 
-                    <a 
-                      href="https://instagram.com/eusamuelvicente" 
-                      target="_blank" 
-                      rel="noopener noreferrer"
-                      className="text-orange-400 hover:text-orange-300 font-semibold ml-1"
-                    >
-                      @eusamuelvicente
-                    </a>
-                    {" "}em parceria com{" "}
-                    <span className="text-purple-400 font-semibold">Dubotics</span>
-                  </span>
-                </div>
-                <div className="text-xs text-gray-400 leading-relaxed">
-                  <strong className="text-orange-400">Samuel Vicente Ferreira</strong> é especialista em automações com IA, desenvolvedor de software e estrategista digital. 
-                  Atua com foco em criar soluções que transformam negócios com inteligência artificial, automação de atendimento, integrações com APIs, bots de voz e ferramentas no-code.
-                  <br />
-                  Fundador do MeuSuper.app e parceiro da Dubotics, já atendeu clientes no <strong className="text-purple-400">Brasil, São Paulo e Dubai</strong>, 
-                  com foco em resultados reais, escalabilidade e independência tecnológica.
-                </div>
-              </div>
+              <Card className="glass-card neon-border max-w-4xl mx-auto">
+                <CardContent className="p-8">
+                  <div className="flex flex-col md:flex-row items-center gap-6">
+                    <div className="flex-shrink-0">
+                      <img 
+                        src="https://minio.meusuper.app/api/v1/download-shared-object/aHR0cHM6Ly9zMy5tZXVzdXBlci5hcHAvcHVibGljLzQ4Mjc3MDgzOV81MTExNTIyNDUzNjQyMDRfNTc5NDcwNTcyMDAzMDkxNjRfbiUyMCUyODElMjkuanBnP1gtQW16LUFsZ29yaXRobT1BV1M0LUhNQUMtU0hBMjU2JlgtQW16LUNyZWRlbnRpYWw9UzhPSk4yQkZXTkpTQ1E4MVNSWFAlMkYyMDI1MDYyNCUyRnVzLWVhc3QtMSUyRnMzJTJGYXdzNF9yZXF1ZXN0JlgtQW16LURhdGU9MjAyNTA2MjRUMTc1NTAwWiZYLUFtei1FeHBpcmVzPTQzMjAwJlgtQW16LVNlY3VyaXR5LVRva2VuPWV5SmhiR2NpT2lKSVV6VXhNaUlzSW5SNWNDSTZJa3BYVkNKOS5leUpoWTJObGMzTkxaWGtpT2lKVE9FOUtUakpDUmxkT1NsTkRVVGd4VTFKWVVDSXNJbVY0Y0NJNk1UYzFNRGd6TURnMU5Td2ljR0Z5Wlc1MElqb2lZV1J0YVc0aWZRLmRYdlg2T2ExaDhvS2ttMlZVbzFaOXRCYmZscnBTS0ZKMGRsY2ZzTlJ6RFBWUzRkU0QyYmxPZmdsUUlzdTIwSlh5cEJ0LU93clRDWmlDb29ZZmZuLUl3JlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCZ2ZXJzaW9uSWQ9bnVsbCZYLUFtei1TaWduYXR1cmU9OTAzZmExNmU3MDJjYmE0YzE1MDExYTg0NmVjMTg2Y2MxZDFhYjAzNjMzZDlmOGJlMzU4N2NiNTA2MjE0ZGExZg"
+                        alt="Samuel Vicente Ferreira"
+                        className="w-24 h-24 md:w-32 md:h-32 rounded-full object-cover border-4 border-orange-400 shadow-lg"
+                      />
+                    </div>
+                    <div className="text-center md:text-left">
+                      <div className="flex items-center justify-center md:justify-start gap-3 mb-4">
+                        <Heart className="h-5 w-5 text-red-400" />
+                        <span className="text-white-strong text-lg">
+                          Criado por{" "}
+                          <a 
+                            href="https://instagram.com/eusamuelvicente" 
+                            target="_blank" 
+                            rel="noopener noreferrer"
+                            className="text-orange-highlight hover:text-orange-300 font-bold"
+                          >
+                            @eusamuelvicente
+                          </a>
+                          {" "}em parceria com{" "}
+                          <span className="text-solution-purple font-bold">Dubotics</span>
+                        </span>
+                      </div>
+                      <div className="text-medium-contrast leading-relaxed">
+                        <strong className="text-orange-highlight">Samuel Vicente Ferreira</strong> é especialista em automações com IA, desenvolvedor de software e estrategista digital. 
+                        Atua com foco em criar soluções que transformam negócios com inteligência artificial, automação de atendimento, integrações com APIs, bots de voz e ferramentas no-code.
+                        <br /><br />
+                        Fundador do MeuSuper.app e parceiro da Dubotics, já atendeu clientes no <strong className="text-solution-purple">Brasil, Dubai e outros mercados internacionais</strong>, 
+                        com foco em resultados reais, escalabilidade e independência tecnológica.
+                      </div>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
             </div>
           </div>
         </div>

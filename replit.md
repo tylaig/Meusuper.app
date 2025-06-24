@@ -95,6 +95,9 @@ The application uses Drizzle ORM with a PostgreSQL-ready schema:
 ## Recent Changes
 
 - June 24, 2025: Major layout and copy improvements focused on brutal pain points
+  - **Professional bio added**: Samuel's photo and enhanced bio with Dubotics partnership, Dubai experience
+  - **Responsive header**: Fixed mobile navigation, better breakpoints, smaller text sizes for mobile
+  - **Typography fixes**: Reduced hero font sizes, fixed "Agentes de IA" background issue, better contrast
   - **Brand colors updated**: Corrected to orange/purple/white identity (text-pain-highlight, text-solution-purple)
   - **Enhanced contrast**: New CSS classes for better text readability (text-white-strong, brand-consistent colors)
   - **Pain-focused copy**: Updated hero section emphasizing "stop losing sales while you sleep"
