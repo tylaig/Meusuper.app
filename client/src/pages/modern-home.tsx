@@ -237,15 +237,15 @@ export default function ModernHome() {
             </Badge>
             
             <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white-strong leading-tight mb-8">
-              Pare de <span className="text-pain-red">perder vendas</span> enquanto você dorme
+              Pare de <span className="text-pain-highlight">perder vendas</span> enquanto você dorme
               <br />
-              <span className="bg-gradient-to-r from-orange-400 to-orange-500 bg-clip-text text-transparent">Agentes de IA</span> que trabalham <span className="text-success-green">24h por dia</span>
+              <span className="bg-gradient-to-r from-orange-400 to-orange-500 bg-clip-text text-transparent">Agentes de IA</span> que trabalham <span className="text-solution-purple">24h por dia</span>
             </h1>
             
             <p className="text-lg sm:text-xl md:text-2xl text-medium-contrast max-w-4xl mx-auto leading-relaxed mb-12">
-              <span className="text-pain-red font-bold">Chega de perder leads quentes por falta de resposta rápida.</span> 
+              <span className="text-pain-highlight font-bold">Chega de perder leads quentes por falta de resposta rápida.</span> 
               Automatize <span className="text-orange-highlight">WhatsApp, Instagram, Email e SMS</span> com IA própria. 
-              <span className="text-success-green font-bold">Sem depender de plataformas que travam, sem programar, retorno em 30 dias</span>.
+              <span className="text-solution-purple font-bold">Sem depender de plataformas que travam, sem programar, retorno em 30 dias</span>.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-16">
@@ -339,7 +339,7 @@ export default function ModernHome() {
                 Implementação em <span className="text-orange-highlight">4 passos simples</span>
               </h2>
               <p className="text-xl text-medium-contrast max-w-3xl mx-auto">
-                <span className="text-success-green font-bold">Do primeiro contato até seus agentes vendendo 24h por dia</span> - processo testado e aprovado
+                <span className="text-solution-purple font-bold">Do primeiro contato até seus agentes vendendo 24h por dia</span> - processo testado e aprovado
               </p>
             </div>
 
@@ -352,7 +352,7 @@ export default function ModernHome() {
                   <MessageSquare className="w-12 h-12 text-blue-400 mx-auto mb-4" />
                   <h3 className="text-lg font-bold text-white-strong mb-3">Análise Gratuita</h3>
                   <p className="text-medium-contrast text-sm">
-                    <span className="text-success-green font-bold">Diagnóstico completo do seu atendimento atual</span> e identificação de quanto você está perdendo sem automação
+                    <span className="text-solution-purple font-bold">Diagnóstico completo do seu atendimento atual</span> e identificação de quanto você está perdendo sem automação
                   </p>
                 </CardContent>
               </Card>
@@ -365,7 +365,7 @@ export default function ModernHome() {
                   <Building2 className="w-12 h-12 text-purple-400 mx-auto mb-4" />
                   <h3 className="text-lg font-bold text-white-strong mb-3">Configuração</h3>
                   <p className="text-medium-contrast text-sm">
-                    <span className="text-success-green font-bold">Criação e treinamento dos agentes de IA</span> específicos para seu negócio e suas dores
+                    <span className="text-solution-purple font-bold">Criação e treinamento dos agentes de IA</span> específicos para seu negócio e suas dores
                   </p>
                 </CardContent>
               </Card>
@@ -378,7 +378,7 @@ export default function ModernHome() {
                   <Users className="w-12 h-12 text-green-400 mx-auto mb-4" />
                   <h3 className="text-lg font-bold text-white-strong mb-3">Integração</h3>
                   <p className="text-medium-contrast text-sm">
-                    <span className="text-success-green font-bold">Conexão com WhatsApp, Instagram, Facebook, Email e SMS</span> em 15 dias máximo
+                    <span className="text-solution-purple font-bold">Conexão com WhatsApp, Instagram, Facebook, Email e SMS</span> em 15 dias máximo
                   </p>
                 </CardContent>
               </Card>
@@ -391,7 +391,7 @@ export default function ModernHome() {
                   <TrendingUp className="w-12 h-12 text-orange-400 mx-auto mb-4" />
                   <h3 className="text-lg font-bold text-white-strong mb-3">Otimização</h3>
                   <p className="text-medium-contrast text-sm">
-                    <span className="text-success-green font-bold">Monitoramento contínuo e melhorias mensais</span> para maximizar resultados
+                    <span className="text-solution-purple font-bold">Monitoramento contínuo e melhorias mensais</span> para maximizar resultados
                   </p>
                 </CardContent>
               </Card>
@@ -868,7 +868,7 @@ export default function ModernHome() {
               Garantia Total
             </Badge>
             <h2 className="text-3xl md:text-5xl font-bold text-white-strong mb-6">
-              Garantia de <span className="text-success-green">Satisfação</span> 100%
+              Garantia de <span className="text-solution-purple">Satisfação</span> 100%
             </h2>
             
             <div className="grid md:grid-cols-3 gap-8 mt-12">
@@ -879,7 +879,7 @@ export default function ModernHome() {
                   </div>
                   <h3 className="text-lg font-bold text-white-strong mb-3">Implementação Garantida</h3>
                   <p className="text-medium-contrast text-sm">
-                    <span className="text-success-green font-bold">Seu agente de IA funcionando em 15 dias</span> ou devolvemos 100% do investimento
+                    <span className="text-solution-purple font-bold">Seu agente de IA funcionando em 15 dias</span> ou devolvemos 100% do investimento
                   </p>
                 </CardContent>
               </Card>
@@ -891,7 +891,7 @@ export default function ModernHome() {
                   </div>
                   <h3 className="text-lg font-bold text-white-strong mb-3">Suporte Vitalício</h3>
                   <p className="text-medium-contrast text-sm">
-                    <span className="text-success-green font-bold">Equipe especializada disponível</span> durante todo o período de assinatura
+                    <span className="text-solution-purple font-bold">Equipe especializada disponível</span> durante todo o período de assinatura
                   </p>
                 </CardContent>
               </Card>
@@ -1113,10 +1113,10 @@ export default function ModernHome() {
                 Transformação Completa
               </Badge>
               <h2 className="text-3xl md:text-5xl font-bold text-white-strong mb-6">
-                Do <span className="text-pain-red">caos manual</span> para uma <span className="text-success-green">operação enxuta</span> que trabalha por você
+                Do <span className="text-pain-highlight">caos manual</span> para uma <span className="text-solution-purple">operação enxuta</span> que trabalha por você
               </h2>
               <p className="text-xl text-medium-contrast mb-8 max-w-4xl mx-auto">
-                <span className="text-success-green font-bold">Triplicar vendas automatizando atendimentos, processos e canais</span> - 
+                <span className="text-solution-purple font-bold">Triplicar vendas automatizando atendimentos, processos e canais</span> - 
                 sem depender de plataformas fechadas, sem precisar programar, com retorno em poucos meses
               </p>
             </div>
@@ -1124,60 +1124,60 @@ export default function ModernHome() {
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
               <Card className="solution-card">
                 <CardContent className="p-6">
-                  <TrendingUp className="w-10 h-10 text-success-green mb-4" />
+                  <TrendingUp className="w-10 h-10 text-solution-purple mb-4" />
                   <h3 className="text-lg font-bold text-white-strong mb-3">Vendas que funcionam sozinhas</h3>
                   <p className="text-medium-contrast text-sm">
-                    <span className="text-success-green font-bold">Triplicar vendas no WhatsApp</span> com estrutura automatizada que responde leads em segundos, mesmo enquanto você dorme
+                    <span className="text-solution-purple font-bold">Triplicar vendas no WhatsApp</span> com estrutura automatizada que responde leads em segundos, mesmo enquanto você dorme
                   </p>
                 </CardContent>
               </Card>
 
               <Card className="solution-card">
                 <CardContent className="p-6">
-                  <Shield className="w-10 h-10 text-success-green mb-4" />
+                  <Shield className="w-10 h-10 text-solution-purple mb-4" />
                   <h3 className="text-lg font-bold text-white-strong mb-3">Plataforma própria em 30 dias</h3>
                   <p className="text-medium-contrast text-sm">
-                    <span className="text-success-green font-bold">Comunicação conectando WhatsApp, Instagram, site e e-mail</span> - sem depender de ferramentas caras e limitadas
+                    <span className="text-solution-purple font-bold">Comunicação conectando WhatsApp, Instagram, site e e-mail</span> - sem depender de ferramentas caras e limitadas
                   </p>
                 </CardContent>
               </Card>
 
               <Card className="solution-card">
                 <CardContent className="p-6">
-                  <Bot className="w-10 h-10 text-success-green mb-4" />
+                  <Bot className="w-10 h-10 text-solution-purple mb-4" />
                   <h3 className="text-lg font-bold text-white-strong mb-3">Agente IA 24/7</h3>
                   <p className="text-medium-contrast text-sm">
-                    <span className="text-success-green font-bold">Inteligência artificial própria</span> capaz de responder dúvidas, agendar reuniões e recuperar vendas automaticamente
+                    <span className="text-solution-purple font-bold">Inteligência artificial própria</span> capaz de responder dúvidas, agendar reuniões e recuperar vendas automaticamente
                   </p>
                 </CardContent>
               </Card>
 
               <Card className="solution-card">
                 <CardContent className="p-6">
-                  <Users className="w-10 h-10 text-success-green mb-4" />
+                  <Users className="w-10 h-10 text-solution-purple mb-4" />
                   <h3 className="text-lg font-bold text-white-strong mb-3">Redução de 90% no suporte</h3>
                   <p className="text-medium-contrast text-sm">
-                    <span className="text-success-green font-bold">Automação que reduz mensagens repetitivas</span> com respostas personalizadas, sem precisar de equipe
+                    <span className="text-solution-purple font-bold">Automação que reduz mensagens repetitivas</span> com respostas personalizadas, sem precisar de equipe
                   </p>
                 </CardContent>
               </Card>
 
               <Card className="solution-card">
                 <CardContent className="p-6">
-                  <CheckCircle className="w-10 h-10 text-success-green mb-4" />
+                  <CheckCircle className="w-10 h-10 text-solution-purple mb-4" />
                   <h3 className="text-lg font-bold text-white-strong mb-3">Nunca mais perca leads</h3>
                   <p className="text-medium-contrast text-sm">
-                    <span className="text-success-green font-bold">Funil inteligente com mensagens automáticas</span> quando cliente está pronto para comprar
+                    <span className="text-solution-purple font-bold">Funil inteligente com mensagens automáticas</span> quando cliente está pronto para comprar
                   </p>
                 </CardContent>
               </Card>
 
               <Card className="solution-card">
                 <CardContent className="p-6">
-                  <Award className="w-10 h-10 text-success-green mb-4" />
+                  <Award className="w-10 h-10 text-solution-purple mb-4" />
                   <h3 className="text-lg font-bold text-white-strong mb-3">Custo operacional -70%</h3>
                   <p className="text-medium-contrast text-sm">
-                    <span className="text-success-green font-bold">Substituir tarefas manuais por fluxos automáticos</span> inteligentes, sem depender de agências
+                    <span className="text-solution-purple font-bold">Substituir tarefas manuais por fluxos automáticos</span> inteligentes, sem depender de agências
                   </p>
                 </CardContent>
               </Card>
@@ -1193,9 +1193,9 @@ export default function ModernHome() {
               } />
               
               <p className="text-medium-contrast mt-6 max-w-2xl mx-auto">
-                <span className="text-success-green font-bold">✅ Análise gratuita</span> • 
-                <span className="text-success-green font-bold">✅ Implementação em 15 dias</span> • 
-                <span className="text-success-green font-bold">✅ Garantia de satisfação</span>
+                <span className="text-solution-purple font-bold">✅ Análise gratuita</span> • 
+                <span className="text-solution-purple font-bold">✅ Implementação em 15 dias</span> • 
+                <span className="text-solution-purple font-bold">✅ Garantia de satisfação</span>
               </p>
             </div>
           </div>
