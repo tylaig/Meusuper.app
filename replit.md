@@ -104,6 +104,10 @@ The application uses Drizzle ORM with a PostgreSQL-ready schema:
   - Implemented new sections: Para Quem É, Benefícios, Garantia, Plano de Crescimento
   - Updated FAQ with new questions from briefing
   - Improved responsive design for all screen sizes
+  - Added Three.js particle background with mouse interaction
+  - Updated logo with orange "Meu" and white "Super.app"
+  - Replaced Samuel's image with provided URL (rounded profile style)
+  - Enhanced hover effects with dynamic colors and particle interactions
 - June 24, 2025: Initial setup and basic landing page
 
 ## User Preferences

@@ -9,6 +9,7 @@ import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { WhatsAppModal } from "@/components/WhatsAppModal";
+import { ParticleBackground } from "@/components/ParticleBackground";
 import { 
   Bot, 
   Zap, 
@@ -102,13 +103,19 @@ export default function ModernHome() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
+    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 relative">
+      <ParticleBackground />
       {/* Navigation */}
-      <nav className="fixed top-0 w-full z-50 bg-slate-900/80 backdrop-blur-md border-b border-purple-500/20">
+      <nav className="fixed top-0 w-full z-50 bg-slate-900/80 backdrop-blur-md border-b border-purple-500/20 relative">
         <div className="container mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
-            <div className="text-2xl font-bold bg-gradient-to-r from-purple-400 to-yellow-400 bg-clip-text text-transparent">
-              MeuSuper.app
+            <div className="text-2xl font-bold group cursor-pointer">
+              <span className="bg-gradient-to-r from-orange-400 to-orange-500 bg-clip-text text-transparent transition-all duration-300 group-hover:from-orange-300 group-hover:to-orange-400">
+                Meu
+              </span>
+              <span className="text-white transition-all duration-300 group-hover:text-gray-200">
+                Super.app
+              </span>
             </div>
             
             <div className="hidden md:flex space-x-8">
@@ -182,7 +189,7 @@ export default function ModernHome() {
       </nav>
 
       {/* Hero Section */}
-      <section className="pt-20 pb-32 px-6 relative overflow-hidden">
+      <section className="pt-20 pb-32 px-6 relative overflow-hidden z-10">
         <div className="absolute inset-0 bg-gradient-to-r from-purple-800/20 to-transparent"></div>
         <div className="absolute top-20 left-10 w-72 h-72 bg-purple-500/30 rounded-full blur-3xl"></div>
         <div className="absolute bottom-20 right-10 w-96 h-96 bg-yellow-500/20 rounded-full blur-3xl"></div>
@@ -249,7 +256,7 @@ export default function ModernHome() {
       </section>
 
       {/* Sobre Nós */}
-      <section id="sobre" className="py-20 px-6 bg-slate-800/50">
+      <section id="sobre" className="py-20 px-6 bg-slate-800/50 relative z-10">
         <div className="container mx-auto">
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-16">
@@ -267,6 +274,18 @@ export default function ModernHome() {
 
             <div className="grid md:grid-cols-2 gap-16 items-center">
               <div>
+                <img 
+                  src="https://minio.tratorbel.meusuper.app/api/v1/download-shared-object/aHR0cHM6Ly9zMy50cmF0b3JiZWwubWV1c3VwZXIuYXBwL3B1YmxpYy80ODI3NzA4MzlfNTExMTUyMjQ1MzY0MjA0XzU3OTQ3MDU3MjAwMzA5MTY0X24lMjAlMjgxJTI5LmpwZz9YLUFtei1BbGdvcml0aG09QVdTNC1ITUFDLVNIQTI1NiZYLUFtei1DcmVkZW50aWFsPUQ1VUdJWlMySkRJNk5SMkVFUDkxJTJGMjAyNTA2MjQlMkZ1cy1lYXN0LTElMkZzMyUyRmF3czRfcmVxdWVzdCZYLUFtei1EYXRlPTIwMjUwNjI0VDAzMjEwNVomWC1BbXotRXhwaXJlcz00MzIwMCZYLUFtei1TZWN1cml0eS1Ub2tlbj1leUpoYkdjaU9pSklVelV4TWlJc0luUjVjQ0k2SWtwWFZDSjkuZXlKaFkyTmxjM05MWlhraU9pSkVOVlZIU1ZwVE1rcEVTVFpPVWpKRlJWQTVNU0lzSW1WNGNDSTZNVGMxTURjM09ETTVOQ3dpY0dGeVpXNTBJam9pWVdSdGFXNGlmUS4taV9sbVZBYWNfenlOQ21EdlRsa2N0SHN3dF9IVzV2UEF2bmt2aE9SaTREWTU0WnpRUFJBRkNGMEFRXzRYWEc5aUhOT3BiX0xFVk1EWE1EY0RTSHlnUSZYLUFtei1TaWduZWRIZWFkZXJzPWhvc3QmdmVyc2lvbklkPW51bGwmWC1BbXotU2lnbmF0dXJlPTYxYzNhOGE5YmE5MjBjODU4YzhjOTgzMmEyOTMxZjZlYWE1Yzg5NzMxN2E5NDQ0YzEwMmU0NmMzOTI5MzNmY2U" 
+                  alt="Samuel Vicente Ferreira - Founder" 
+                  className="rounded-full shadow-2xl w-full max-w-sm mx-auto aspect-square object-cover border-4 border-transparent bg-gradient-to-r from-orange-400 to-purple-500 p-1"
+                  style={{
+                    background: 'linear-gradient(45deg, #fb923c, #a855f7)',
+                    borderRadius: '50%'
+                  }}
+                />
+              </div>
+
+              <div className="space-y-6">
                 <Card className="bg-slate-900/50 border-purple-500/20">
                   <CardHeader>
                     <CardTitle className="text-2xl text-white">Samuel Vicente Ferreira</CardTitle>
@@ -283,9 +302,7 @@ export default function ModernHome() {
                     </p>
                   </CardContent>
                 </Card>
-              </div>
 
-              <div className="space-y-6">
                 <div className="grid grid-cols-2 gap-4">
                   <Card className="bg-gradient-to-br from-purple-900/50 to-slate-900/50 border-purple-500/20">
                     <CardContent className="p-6 text-center">
@@ -326,7 +343,7 @@ export default function ModernHome() {
       </section>
 
       {/* Serviços */}
-      <section id="servicos" className="py-20 px-6">
+      <section id="servicos" className="py-20 px-6 relative z-10">
         <div className="container mx-auto">
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-16">
@@ -343,7 +360,7 @@ export default function ModernHome() {
             </div>
 
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-              <Card className="bg-slate-900/50 border-purple-500/20 hover:border-purple-400/50 transition-all duration-300 hover:transform hover:scale-105">
+              <Card className="bg-slate-900/50 border-purple-500/20 hover:border-purple-400/50 interactive-card hover-glow">
                 <CardHeader className="text-center">
                   <div className="mx-auto mb-4 w-16 h-16 bg-gradient-to-br from-purple-500 to-purple-600 rounded-2xl flex items-center justify-center">
                     <Bot className="h-8 w-8 text-white" />
@@ -416,7 +433,7 @@ export default function ModernHome() {
       </section>
 
       {/* Como funciona */}
-      <section className="py-20 px-6 bg-slate-800/50">
+      <section className="py-20 px-6 bg-slate-800/50 relative z-10">
         <div className="container mx-auto">
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-16">
@@ -475,7 +492,7 @@ export default function ModernHome() {
       </section>
 
       {/* Para quem é */}
-      <section className="py-20 px-6">
+      <section className="py-20 px-6 relative z-10">
         <div className="container mx-auto">
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-16">
@@ -492,7 +509,7 @@ export default function ModernHome() {
             </div>
 
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              <Card className="bg-slate-900/50 border-purple-500/20 hover:border-purple-400/50 transition-all duration-300">
+              <Card className="bg-slate-900/50 border-purple-500/20 hover:border-purple-400/50 interactive-card">
                 <CardContent className="p-6 text-center">
                   <div className="mx-auto mb-4 w-12 h-12 bg-gradient-to-br from-purple-500 to-purple-600 rounded-xl flex items-center justify-center">
                     <Building2 className="h-6 w-6 text-white" />
@@ -557,7 +574,7 @@ export default function ModernHome() {
       </section>
 
       {/* Benefícios */}
-      <section className="py-20 px-6 bg-slate-800/50">
+      <section className="py-20 px-6 bg-slate-800/50 relative z-10">
         <div className="container mx-auto">
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-16">
@@ -619,7 +636,7 @@ export default function ModernHome() {
       </section>
 
       {/* Resultados */}
-      <section id="resultados" className="py-20 px-6">
+      <section id="resultados" className="py-20 px-6 relative z-10">
         <div className="container mx-auto">
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-16">
@@ -687,7 +704,7 @@ export default function ModernHome() {
       </section>
 
       {/* FAQ */}
-      <section id="faq" className="py-20 px-6 bg-slate-800/50">
+      <section id="faq" className="py-20 px-6 bg-slate-800/50 relative z-10">
         <div className="container mx-auto">
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-16">
@@ -749,7 +766,7 @@ export default function ModernHome() {
       </section>
 
       {/* Contact Form */}
-      <section id="contato" className="py-20 px-6">
+      <section id="contato" className="py-20 px-6 relative z-10">
         <div className="container mx-auto">
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-16">
@@ -861,7 +878,7 @@ export default function ModernHome() {
       </section>
 
       {/* Garantia e Suporte */}
-      <section className="py-20 px-6">
+      <section className="py-20 px-6 relative z-10">
         <div className="container mx-auto">
           <div className="max-w-4xl mx-auto text-center">
             <Badge className="mb-4 bg-purple-500/20 text-purple-300 border-purple-500/30">
@@ -908,7 +925,7 @@ export default function ModernHome() {
       </section>
 
       {/* Plano de Crescimento */}
-      <section className="py-20 px-6 bg-slate-800/50">
+      <section className="py-20 px-6 bg-slate-800/50 relative z-10">
         <div className="container mx-auto">
           <div className="max-w-4xl mx-auto text-center">
             <Badge className="mb-4 bg-purple-500/20 text-purple-300 border-purple-500/30">
@@ -961,7 +978,7 @@ export default function ModernHome() {
       </section>
 
       {/* CTA Final */}
-      <section className="py-20 px-6 bg-gradient-to-r from-purple-900 to-slate-900">
+      <section className="py-20 px-6 bg-gradient-to-r from-purple-900 to-slate-900 relative z-10">
         <div className="container mx-auto text-center">
           <div className="max-w-4xl mx-auto">
             <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">
@@ -987,11 +1004,16 @@ export default function ModernHome() {
       </section>
 
       {/* Footer */}
-      <footer className="py-12 px-6 bg-slate-900 border-t border-purple-500/20">
+      <footer className="py-12 px-6 bg-slate-900 border-t border-purple-500/20 relative z-10">
         <div className="container mx-auto">
           <div className="max-w-6xl mx-auto text-center">
-            <div className="text-2xl font-bold bg-gradient-to-r from-purple-400 to-yellow-400 bg-clip-text text-transparent mb-4">
-              MeuSuper.app
+            <div className="text-2xl font-bold mb-4">
+              <span className="bg-gradient-to-r from-orange-400 to-orange-500 bg-clip-text text-transparent">
+                Meu
+              </span>
+              <span className="text-white">
+                Super.app
+              </span>
             </div>
             <p className="text-gray-400 mb-6">
               Automação com IA para escalar seu negócio
