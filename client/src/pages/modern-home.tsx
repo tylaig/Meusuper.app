@@ -61,58 +61,51 @@ export default function ModernHome() {
 
   // Calculate rocket visibility - only show in hero section
   const heroSectionHeight = typeof window !== 'undefined' ? window.innerHeight : 800;
-  const rocketOpacity = scrollY < heroSectionHeight * 0.8 ? 1 : 0;
-  const rocketScale = Math.max(0.5, 1 - scrollY / heroSectionHeight);
+  const rocketOpacity = scrollY < heroSectionHeight * 0.7 ? Math.max(0.3, 1 - scrollY / (heroSectionHeight * 0.5)) : 0;
+  const rocketScale = Math.max(0.6, 1 - scrollY / heroSectionHeight);
+  const scrollIndicatorOpacity = scrollY < 100 ? 1 : 0;
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 text-white overflow-hidden relative">
       <ParticleBackground />
       
-      {/* Giant Hero Rocket */}
+      {/* Subtle Hero Rocket */}
       <div 
-        className="fixed right-4 md:right-12 top-1/2 transform -translate-y-1/2 z-30 transition-all duration-1000 ease-out pointer-events-none"
+        className="fixed right-8 md:right-16 top-1/3 z-20 transition-all duration-700 ease-out pointer-events-none"
         style={{ 
-          opacity: rocketOpacity,
-          transform: `translateY(-50%) scale(${rocketScale}) translateX(${Math.sin(scrollY * 0.008) * 20}px) rotate(${Math.sin(scrollY * 0.003) * 10}deg)`
+          opacity: rocketOpacity * 0.6,
+          transform: `translateY(${Math.sin(scrollY * 0.005) * 15}px) scale(${rocketScale * 0.8}) rotate(${Math.sin(scrollY * 0.002) * 3}deg)`
         }}
       >
-        {/* Rocket Body */}
         <div className="relative">
-          <div className="text-8xl md:text-9xl lg:text-[12rem] animate-bounce-slow">🚀</div>
+          <div className="text-5xl md:text-6xl lg:text-7xl animate-bounce-slow opacity-80">🚀</div>
           
-          {/* Flame Trail */}
-          <div className="absolute -bottom-12 left-1/2 transform -translate-x-1/2">
-            <div className="w-6 h-24 md:w-8 md:h-32 lg:w-12 lg:h-40 bg-gradient-to-t from-orange-500 via-yellow-400 to-transparent opacity-80 animate-pulse"></div>
-          </div>
-          
-          {/* Spark Effects */}
-          <div className="absolute -bottom-8 left-1/2 transform -translate-x-1/2">
-            <div className="w-4 h-4 bg-orange-400 rounded-full animate-ping opacity-75"></div>
-          </div>
-          <div className="absolute -bottom-6 left-1/3 transform -translate-x-1/2">
-            <div className="w-2 h-2 bg-yellow-400 rounded-full animate-ping opacity-60" style={{animationDelay: '0.5s'}}></div>
-          </div>
-          <div className="absolute -bottom-10 left-2/3 transform -translate-x-1/2">
-            <div className="w-3 h-3 bg-orange-300 rounded-full animate-ping opacity-50" style={{animationDelay: '1s'}}></div>
+          {/* Subtle flame */}
+          <div className="absolute -bottom-6 left-1/2 transform -translate-x-1/2">
+            <div className="w-3 h-12 md:w-4 md:h-16 bg-gradient-to-t from-orange-400/50 via-yellow-400/30 to-transparent animate-pulse"></div>
           </div>
         </div>
+      </div>
 
-        {/* Floating Text */}
-        <div 
-          className="absolute -left-32 md:-left-40 top-1/2 transform -translate-y-1/2"
-          style={{
-            opacity: Math.max(0, rocketOpacity - 0.3),
-            transform: `translateY(-50%) translateX(${Math.sin(scrollY * 0.01) * 5}px)`
-          }}
-        >
-          <div className="bg-gradient-to-r from-purple-900/80 to-orange-900/80 backdrop-blur-sm rounded-lg p-3 md:p-4 border border-orange-400/30">
-            <p className="text-white text-sm md:text-base font-bold">
-              🚀 Decole seu negócio!
-            </p>
-            <p className="text-orange-300 text-xs md:text-sm">
-              Automação que funciona
-            </p>
+      {/* Scroll Indicator */}
+      <div 
+        className="fixed bottom-8 left-1/2 transform -translate-x-1/2 z-40 transition-opacity duration-500"
+        style={{ opacity: scrollIndicatorOpacity }}
+      >
+        <div className="flex flex-col items-center text-center animate-bounce">
+          <div className="bg-gradient-to-r from-purple-500/20 to-orange-500/20 backdrop-blur-sm rounded-full p-4 border border-orange-400/30 mb-2 animate-pulse">
+            <svg 
+              className="w-6 h-6 text-orange-400" 
+              fill="none" 
+              stroke="currentColor" 
+              viewBox="0 0 24 24"
+            >
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+            </svg>
           </div>
+          <p className="text-orange-300 text-xs font-medium">
+            Role para descobrir seus problemas
+          </p>
         </div>
       </div>
       {/* Navigation */}
