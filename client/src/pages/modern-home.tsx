@@ -202,12 +202,12 @@ export default function ModernHome() {
             </Badge>
             
             <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-white mb-6 md:mb-8 leading-tight">
-              Automação com <span className="bg-gradient-to-r from-purple-400 to-yellow-400 bg-clip-text text-transparent">IA</span> sob medida para escalar seu negócio
+              Transforme seu atendimento com <span className="bg-gradient-to-r from-orange-400 to-yellow-400 bg-clip-text text-transparent">IA</span> e aumente suas vendas todos os dias
             </h1>
             
-            <p className="text-lg sm:text-xl md:text-2xl text-gray-300 mb-8 md:mb-12 max-w-3xl mx-auto leading-relaxed">
-              Atenda, venda e prospecte no WhatsApp com bots inteligentes e integrações que realmente funcionam. 
-              <span className="text-purple-400 font-semibold"> Aumente suas vendas em até 300%</span>
+            <p className="text-lg sm:text-xl md:text-2xl text-gray-200 mb-8 md:mb-12 max-w-3xl mx-auto leading-relaxed">
+              Bots inteligentes, integrações personalizadas e automações que trabalham por você 
+              <span className="text-orange-400 font-semibold"> 24/7 — sem precisar programar nada</span>
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 md:gap-6 justify-center mb-16">
@@ -292,14 +292,26 @@ export default function ModernHome() {
                     <CardDescription className="text-purple-300">Founder & Lead Developer</CardDescription>
                   </CardHeader>
                   <CardContent className="space-y-4">
-                    <p className="text-gray-300 leading-relaxed">
-                      O <span className="text-purple-400 font-semibold">MeuSuper.app</span> nasceu da mente de Samuel Vicente Ferreira, 
-                      desenvolvedor e estrategista que une IA, automações e visão de negócio para construir soluções inteligentes.
+                    <p className="text-gray-200 leading-relaxed">
+                      Criado por <span className="text-orange-400 font-semibold">Samuel Vicente Ferreira</span> — desenvolvedor, estrategista e especialista em IA — 
+                      o <span className="text-purple-400 font-semibold">MeuSuper.app</span> entrega soluções inteligentes que eliminam tarefas repetitivas e aumentam o faturamento com tecnologia de ponta.
                     </p>
-                    <p className="text-gray-300 leading-relaxed">
-                      Com anos de experiência em desenvolvimento de software e estratégias de crescimento, 
-                      criamos soluções personalizadas que geram resultados mensuráveis e escaláveis.
+                    <p className="text-gray-200 leading-relaxed">
+                      <span className="text-orange-400 font-semibold">Aqui, IA não é promessa, é entrega.</span> Criamos automações que realmente funcionam e geram resultados mensuráveis para seu negócio.
                     </p>
+                    <div className="flex items-center gap-3 mt-4">
+                      <a 
+                        href="https://instagram.com/eusamuelvicente" 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-2 text-purple-300 hover:text-orange-400 transition-colors duration-300"
+                      >
+                        <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                          <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                        </svg>
+                        @eusamuelvicente
+                      </a>
+                    </div>
                   </CardContent>
                 </Card>
 
@@ -352,9 +364,9 @@ export default function ModernHome() {
                 Nossos serviços
               </Badge>
               <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-6">
-                Soluções que <span className="text-purple-400">transformam</span> negócios
+                Soluções que <span className="text-orange-400">transformam</span> negócios
               </h2>
-              <p className="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto">
+              <p className="text-lg md:text-xl text-gray-200 max-w-3xl mx-auto">
                 Automatize processos, aumente vendas e melhore o atendimento com nossas soluções personalizadas
               </p>
             </div>
@@ -365,11 +377,11 @@ export default function ModernHome() {
                   <div className="mx-auto mb-4 w-16 h-16 bg-gradient-to-br from-purple-500 to-purple-600 rounded-2xl flex items-center justify-center">
                     <Bot className="h-8 w-8 text-white" />
                   </div>
-                  <CardTitle className="text-xl text-white">Bots com IA para WhatsApp</CardTitle>
+                  <CardTitle className="text-xl text-white">Atenda em segundos, converta o dia todo</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-gray-300 text-center mb-4">
-                    Agentes inteligentes que respondem em tempo real, com voz, áudio, leitura de PDFs e acesso a banco de dados.
+                  <p className="text-gray-200 text-center mb-4">
+                    Bots que entendem, falam e resolvem — do áudio ao PDF. Agentes inteligentes que trabalham 24/7 por você.
                   </p>
                   <Badge className="w-full justify-center bg-purple-500/20 text-purple-300">
                     Conversational AI
@@ -382,11 +394,11 @@ export default function ModernHome() {
                   <div className="mx-auto mb-4 w-16 h-16 bg-gradient-to-br from-yellow-500 to-yellow-600 rounded-2xl flex items-center justify-center">
                     <Zap className="h-8 w-8 text-white" />
                   </div>
-                  <CardTitle className="text-xl text-white">Integrações via API</CardTitle>
+                  <CardTitle className="text-xl text-white">Tudo conectado, nada manual</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-gray-300 text-center mb-4">
-                    Conectamos CRM, e-commerce, planilhas, ERP ou qualquer sistema com automações sob medida.
+                  <p className="text-gray-200 text-center mb-4">
+                    Do seu CRM ao WhatsApp, com automações que não falham. Conectamos qualquer sistema em tempo recorde.
                   </p>
                   <Badge className="w-full justify-center bg-yellow-500/20 text-yellow-300">
                     System Integration
@@ -399,11 +411,11 @@ export default function ModernHome() {
                   <div className="mx-auto mb-4 w-16 h-16 bg-gradient-to-br from-green-500 to-green-600 rounded-2xl flex items-center justify-center">
                     <Building2 className="h-8 w-8 text-white" />
                   </div>
-                  <CardTitle className="text-xl text-white">Plataformas sob demanda</CardTitle>
+                  <CardTitle className="text-xl text-white">Você sonha. A gente desenvolve</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-gray-300 text-center mb-4">
-                    Sistemas SaaS, painéis, sites e aplicativos completos com foco em automação e escalabilidade.
+                  <p className="text-gray-200 text-center mb-4">
+                    Criação de sistemas SaaS, apps e dashboards 100% funcionais. Da ideia ao produto final.
                   </p>
                   <Badge className="w-full justify-center bg-green-500/20 text-green-300">
                     Custom Development
@@ -416,11 +428,11 @@ export default function ModernHome() {
                   <div className="mx-auto mb-4 w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl flex items-center justify-center">
                     <BookOpen className="h-8 w-8 text-white" />
                   </div>
-                  <CardTitle className="text-xl text-white">Consultorias e Mentorias</CardTitle>
+                  <CardTitle className="text-xl text-white">Você no controle da sua IA</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-gray-300 text-center mb-4">
-                    Treinamentos para dominar ferramentas no-code e implementar automações reais, sem depender de devs.
+                  <p className="text-gray-200 text-center mb-4">
+                    Aprenda a automatizar sem depender de desenvolvedor. Domine as ferramentas e seja independente.
                   </p>
                   <Badge className="w-full justify-center bg-blue-500/20 text-blue-300">
                     Training & Consulting
@@ -451,9 +463,9 @@ export default function ModernHome() {
                 <div className="mx-auto mb-6 w-16 h-16 md:w-20 md:h-20 bg-gradient-to-br from-purple-500 to-purple-600 rounded-full flex items-center justify-center text-xl md:text-2xl font-bold text-white">
                   1
                 </div>
-                <h3 className="text-lg md:text-xl font-bold text-white mb-3">Você preenche o formulário</h3>
-                <p className="text-gray-300 text-sm md:text-base">
-                  Ou fala com nosso especialista pelo WhatsApp
+                <h3 className="text-lg md:text-xl font-bold text-white mb-3">Entre em contato</h3>
+                <p className="text-gray-200 text-sm md:text-base">
+                  <span className="text-orange-400 font-semibold">Sem compromisso e sem enrolação.</span> Fale pelo WhatsApp ou formulário.
                 </p>
               </div>
 
@@ -462,8 +474,8 @@ export default function ModernHome() {
                   2
                 </div>
                 <h3 className="text-lg md:text-xl font-bold text-white mb-3">Diagnóstico gratuito</h3>
-                <p className="text-gray-300 text-sm md:text-base">
-                  Analisamos seu atendimento atual sem custo
+                <p className="text-gray-200 text-sm md:text-base">
+                  <span className="text-orange-400 font-semibold">Você entende onde perde vendas</span> e como mudar isso.
                 </p>
               </div>
 
@@ -472,8 +484,8 @@ export default function ModernHome() {
                   3
                 </div>
                 <h3 className="text-lg md:text-xl font-bold text-white mb-3">Proposta personalizada</h3>
-                <p className="text-gray-300 text-sm md:text-base">
-                  Automação sob medida para seu negócio
+                <p className="text-gray-200 text-sm md:text-base">
+                  <span className="text-orange-400 font-semibold">Alinhada ao seu orçamento</span> e sua operação.
                 </p>
               </div>
 
@@ -482,8 +494,8 @@ export default function ModernHome() {
                   4
                 </div>
                 <h3 className="text-lg md:text-xl font-bold text-white mb-3">Implementação rápida</h3>
-                <p className="text-gray-300 text-sm md:text-base">
-                  Entrega e acompanhamento contínuo
+                <p className="text-gray-200 text-sm md:text-base">
+                  <span className="text-orange-400 font-semibold">Seu bot no ar em dias,</span> com suporte completo.
                 </p>
               </div>
             </div>
@@ -583,10 +595,10 @@ export default function ModernHome() {
                 Benefícios
               </Badge>
               <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">
-                O que você <span className="text-purple-400">ganha</span> com IA
+                O que você <span className="text-orange-400">ganha</span> com IA
               </h2>
-              <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-                Resultados reais que transformam seu negócio
+              <p className="text-xl text-gray-200 max-w-3xl mx-auto">
+                Promessas que se transformam em resultados reais
               </p>
             </div>
 
@@ -597,7 +609,7 @@ export default function ModernHome() {
                     <Clock className="h-8 w-8 text-white" />
                   </div>
                   <h3 className="text-2xl font-bold text-white mb-2">40h/mês</h3>
-                  <p className="text-gray-300 text-sm">Economizadas com atendimento automatizado</p>
+                  <p className="text-gray-200 text-sm"><span className="text-orange-400 font-semibold">Ganhe</span> automatizando o que você faz manualmente hoje</p>
                 </CardContent>
               </Card>
 
@@ -607,7 +619,7 @@ export default function ModernHome() {
                     <TrendingUp className="h-8 w-8 text-white" />
                   </div>
                   <h3 className="text-2xl font-bold text-white mb-2">2.5x</h3>
-                  <p className="text-gray-300 text-sm">Aumento nas conversões em média</p>
+                  <p className="text-gray-200 text-sm"><span className="text-orange-400 font-semibold">Tenha um funil ativo</span> no WhatsApp vendendo mais</p>
                 </CardContent>
               </Card>
 
@@ -617,7 +629,7 @@ export default function ModernHome() {
                     <Bot className="h-8 w-8 text-white" />
                   </div>
                   <h3 className="text-2xl font-bold text-white mb-2">24/7</h3>
-                  <p className="text-gray-300 text-sm">Bot ativo todos os dias da semana</p>
+                  <p className="text-gray-200 text-sm"><span className="text-orange-400 font-semibold">Um bot que nunca dorme:</span> atendimento 24/7</p>
                 </CardContent>
               </Card>
 
@@ -627,7 +639,7 @@ export default function ModernHome() {
                     <Target className="h-8 w-8 text-white" />
                   </div>
                   <h3 className="text-2xl font-bold text-white mb-2">-60%</h3>
-                  <p className="text-gray-300 text-sm">Redução de custos operacionais</p>
+                  <p className="text-gray-200 text-sm"><span className="text-orange-400 font-semibold">Reduza seus custos</span> operacionais sem perder qualidade</p>
                 </CardContent>
               </Card>
             </div>
@@ -664,7 +676,7 @@ export default function ModernHome() {
                       <p className="text-purple-300 text-sm">CEO - E-commerce de Moda</p>
                     </div>
                   </div>
-                  <p className="text-gray-300 italic mb-4 leading-relaxed">
+                  <p className="text-gray-200 italic mb-4 leading-relaxed">
                     "Dobrei minhas vendas em 3 meses com o bot do Samuel. Ele entende de tech e de negócio. 
                     O atendimento automatizado no WhatsApp foi um divisor de águas para minha empresa."
                   </p>
@@ -687,7 +699,7 @@ export default function ModernHome() {
                       <p className="text-purple-300 text-sm">Diretor - Agência Digital</p>
                     </div>
                   </div>
-                  <p className="text-gray-300 italic mb-4 leading-relaxed">
+                  <p className="text-gray-200 italic mb-4 leading-relaxed">
                     "Economizamos mais de R$ 15 mil por mês com automações. Atendimento 24/7, sem contratar mais ninguém. 
                     A equipe do MeuSuper.app entrega mais do que promete."
                   </p>
@@ -886,13 +898,13 @@ export default function ModernHome() {
               Garantia
             </Badge>
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
-              E depois da <span className="text-purple-400">entrega</span>?
+              E depois da <span className="text-orange-400">entrega</span>?
             </h2>
             <Card className="bg-slate-900/50 border-purple-500/20">
               <CardContent className="p-8">
-                <p className="text-lg text-gray-300 leading-relaxed mb-6">
+                <p className="text-lg text-gray-200 leading-relaxed mb-6">
                   Você não está sozinho. Após a entrega, seguimos com você por 
-                  <span className="text-purple-400 font-semibold"> 60 dias</span> com suporte técnico e melhorias contínuas. 
+                  <span className="text-orange-400 font-semibold"> 60 dias</span> com suporte técnico e melhorias contínuas. 
                   E sim: <span className="text-yellow-400 font-semibold">atualizações inclusas</span>.
                 </p>
                 <div className="grid sm:grid-cols-3 gap-6 mt-8">
@@ -933,11 +945,11 @@ export default function ModernHome() {
               Crescimento
             </Badge>
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
-              Nosso plano de <span className="text-purple-400">crescimento</span> com você
+              Nosso plano de <span className="text-orange-400">crescimento</span> com você
             </h2>
             <Card className="bg-slate-900/50 border-purple-500/20">
               <CardContent className="p-8">
-                <p className="text-lg text-gray-300 leading-relaxed mb-8">
+                <p className="text-lg text-gray-200 leading-relaxed mb-8">
                   Começamos com o básico: um bot que atende, responde e converte. 
                   Mas o céu é o limite — agende rotinas, colete leads, conecte com IA de voz, CRM e muito mais.
                 </p>
@@ -991,10 +1003,10 @@ export default function ModernHome() {
               trigger={
                 <Button 
                   size="lg" 
-                  className="bg-gradient-to-r from-yellow-500 to-yellow-600 hover:from-yellow-600 hover:to-yellow-700 text-black font-bold px-8 md:px-12 py-4 text-lg"
+                  className="bg-gradient-to-r from-orange-500 to-yellow-500 hover:from-orange-600 hover:to-yellow-600 text-black font-bold px-8 md:px-12 py-4 text-lg"
                 >
                   <MessageSquare className="mr-2 h-5 w-5" />
-                  Começar agora pelo WhatsApp
+                  Me mostre como escalar com IA
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </Button>
               }

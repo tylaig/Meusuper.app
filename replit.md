@@ -108,6 +108,10 @@ The application uses Drizzle ORM with a PostgreSQL-ready schema:
   - Updated logo with orange "Meu" and white "Super.app"
   - Replaced Samuel's image with provided URL (rounded profile style)
   - Enhanced hover effects with dynamic colors and particle interactions
+  - Added Samuel's Instagram (@eusamuelvicente) to About section
+  - Improved color contrast throughout the site (gray-300 → gray-200)
+  - Updated copy with more persuasive and commercial language
+  - Changed primary accent color from purple to orange for better visibility
 - June 24, 2025: Initial setup and basic landing page
 
 ## User Preferences
