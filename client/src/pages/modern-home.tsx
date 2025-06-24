@@ -164,10 +164,10 @@ export default function ModernHome() {
             
             <nav className="hidden lg:flex space-x-6">
               {[
-                { label: "Como funciona", href: "#como-funciona" },
+                { label: "Problemas", href: "#problemas" },
                 { label: "Para quem é", href: "#para-quem" },
-                { label: "Resultados", href: "#resultados" },
-                { label: "FAQ", href: "#faq" }
+                { label: "Como funciona", href: "#como-funciona-solucao" },
+                { label: "Resultados", href: "#resultados" }
               ].map((item) => (
                 <button
                   key={item.label}
@@ -205,10 +205,10 @@ export default function ModernHome() {
               <div className="container mx-auto px-4 sm:px-6 py-4">
                 <nav className="flex flex-col space-y-3">
                   {[
-                    { label: "Como funciona", href: "#como-funciona" },
+                    { label: "Problemas", href: "#problemas" },
                     { label: "Para quem é", href: "#para-quem" },
-                    { label: "Resultados", href: "#resultados" },
-                    { label: "FAQ", href: "#faq" }
+                    { label: "Como funciona", href: "#como-funciona-solucao" },
+                    { label: "Resultados", href: "#resultados" }
                   ].map((item) => (
                     <button
                       key={item.label}
@@ -263,13 +263,11 @@ export default function ModernHome() {
 
             <div className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-16">
               <button 
-                onClick={() => {
-                  document.getElementById('formulario-contato')?.scrollIntoView({ behavior: 'smooth' });
-                }}
+                onClick={() => scrollToSection('problemas')}
                 className="bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white font-bold px-8 py-4 text-lg shadow-lg shadow-orange-500/30 hover:shadow-orange-500/50 transition-all duration-300 rounded-lg flex items-center"
               >
-                <MessageSquare className="mr-2 h-5 w-5" />
-                Parar de perder vendas agora
+                <Target className="mr-2 h-5 w-5" />
+                Ver se meu negócio se encaixa
                 <ArrowRight className="ml-2 h-5 w-5" />
               </button>
               
@@ -277,8 +275,8 @@ export default function ModernHome() {
                 onClick={() => scrollToSection('calculadora')}
                 className="text-orange-highlight hover:text-orange-300 font-semibold flex items-center gap-2 transition-all duration-300 hover:scale-105"
               >
-                <Target className="h-5 w-5" />
-                Descobrir quanto estou perdendo agora
+                <MessageSquare className="h-5 w-5" />
+                Descobrir quanto estou perdendo
                 <ArrowRight className="h-4 w-4" />
               </button>
             </div>
@@ -347,83 +345,113 @@ export default function ModernHome() {
                 </CardContent>
               </Card>
             </div>
+
+            <div className="text-center mt-12">
+              <button 
+                onClick={() => scrollToSection('calculadora')}
+                className="bg-gradient-to-r from-red-500 to-orange-500 hover:from-red-600 hover:to-orange-600 text-white font-bold px-8 py-4 text-lg shadow-lg shadow-red-500/30 hover:shadow-red-500/50 transition-all duration-300 rounded-lg flex items-center mx-auto"
+              >
+                <Target className="mr-2 h-5 w-5" />
+                Descobrir quanto estou perdendo por mês
+                <ArrowRight className="ml-2 h-5 w-5" />
+              </button>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Como Funciona */}
-      <section id="como-funciona" className="py-20 px-6 bg-slate-800/30 relative z-10">
+      {/* Calculadora de Perdas - Movida para cá */}
+      <section id="calculadora" className="py-20 px-6 bg-gradient-to-br from-red-900/20 to-orange-900/20 relative z-10">
         <div className="container mx-auto">
-          <div className="max-w-6xl mx-auto">
+          <div className="max-w-4xl mx-auto">
             <div className="text-center mb-16">
-              <Badge className="mb-4 bg-purple-500/20 text-purple-200 border-purple-500/30">
-                <Zap className="mr-2 h-3 w-3" />
-                Como Funciona
+              <Badge className="mb-4 bg-red-500/20 text-red-200 border-red-500/30">
+                <Target className="mr-2 h-3 w-3" />
+                Calculadora de Perdas
               </Badge>
-              <h2 className="text-3xl md:text-5xl font-bold text-white-strong mb-6">
-                Implementação em <span className="text-orange-highlight">4 passos simples</span>
+              <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">
+                Quanto você está <span className="text-red-400">perdendo</span> por mês?
               </h2>
-              <p className="text-xl text-medium-contrast max-w-3xl mx-auto">
-                <span className="text-solution-purple font-bold">Do primeiro contato até seus agentes vendendo 24h por dia</span> - processo testado e aprovado
+              <p className="text-xl text-gray-200 max-w-3xl mx-auto">
+                Descubra o impacto financeiro da demora no atendimento multicanal
               </p>
             </div>
 
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-              <Card className="bg-slate-900/50 border-blue-500/20 relative text-center">
-                <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
-                  <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full flex items-center justify-center text-white font-bold text-sm">1</div>
+            <Card className="bg-slate-900/50 border-red-500/20">
+              <CardContent className="p-8">
+                <div className="grid md:grid-cols-2 gap-8 mb-8">
+                  <div>
+                    <label className="block text-sm font-medium text-gray-300 mb-3">
+                      Quantos leads você recebe por mês?
+                    </label>
+                    <Input
+                      type="number"
+                      placeholder="Ex: 100"
+                      className="bg-slate-800 border-orange-500/30 text-white text-center text-lg"
+                      onChange={(e) => {
+                        const leads = parseFloat(e.target.value) || 0;
+                        const valorVenda = parseFloat((document.querySelector('input[placeholder="Ex: 500"]') as HTMLInputElement)?.value || '0') || 0;
+                        const perdas = leads * valorVenda * 0.3;
+                        const resultado = document.getElementById('resultado-perdas');
+                        if (resultado && perdas > 0) {
+                          resultado.textContent = 'R$ ' + Math.round(perdas).toLocaleString('pt-BR');
+                        } else if (resultado) {
+                          resultado.textContent = 'R$ 0';
+                        }
+                      }}
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-300 mb-3">
+                      Qual o valor médio da sua venda?
+                    </label>
+                    <Input
+                      type="number"
+                      placeholder="Ex: 500"
+                      className="bg-slate-800 border-orange-500/30 text-white text-center text-lg"
+                      onChange={(e) => {
+                        const valorVenda = parseFloat(e.target.value) || 0;
+                        const leads = parseFloat((document.querySelector('input[placeholder="Ex: 100"]') as HTMLInputElement)?.value || '0') || 0;
+                        const perdas = leads * valorVenda * 0.3;
+                        const resultado = document.getElementById('resultado-perdas');
+                        if (resultado && perdas > 0) {
+                          resultado.textContent = 'R$ ' + Math.round(perdas).toLocaleString('pt-BR');
+                        } else if (resultado) {
+                          resultado.textContent = 'R$ 0';
+                        }
+                      }}
+                    />
+                  </div>
                 </div>
-                <CardContent className="p-6 pt-8">
-                  <MessageSquare className="w-12 h-12 text-blue-400 mx-auto mb-4" />
-                  <h3 className="text-lg font-bold text-white-strong mb-3">Análise Gratuita</h3>
-                  <p className="text-medium-contrast text-sm">
-                    <span className="text-solution-purple font-bold">Diagnóstico completo do seu atendimento atual</span> e identificação de quanto você está perdendo sem automação
-                  </p>
-                </CardContent>
-              </Card>
 
-              <Card className="bg-slate-900/50 border-purple-500/20 relative text-center">
-                <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
-                  <div className="w-8 h-8 bg-gradient-to-br from-purple-500 to-purple-600 rounded-full flex items-center justify-center text-white font-bold text-sm">2</div>
-                </div>
-                <CardContent className="p-6 pt-8">
-                  <Building2 className="w-12 h-12 text-purple-400 mx-auto mb-4" />
-                  <h3 className="text-lg font-bold text-white-strong mb-3">Configuração</h3>
-                  <p className="text-medium-contrast text-sm">
-                    <span className="text-solution-purple font-bold">Criação e treinamento dos agentes de IA</span> específicos para seu negócio e suas dores
+                <div className="mt-8 p-6 bg-gradient-to-r from-red-900/50 to-orange-900/50 rounded-lg border border-red-500/30">
+                  <h3 className="text-xl font-bold text-white mb-4">Suas perdas mensais estimadas:</h3>
+                  <div className="text-3xl font-bold text-red-400 mb-2" id="resultado-perdas">R$ 0</div>
+                  <p className="text-gray-200 text-sm">
+                    Baseado em 30% de leads perdidos por demora no atendimento
                   </p>
-                </CardContent>
-              </Card>
+                  <p className="text-gray-300 text-xs mt-2">
+                    💡 Digite os valores acima para calcular suas perdas reais
+                  </p>
+                </div>
 
-              <Card className="bg-slate-900/50 border-green-500/20 relative text-center">
-                <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
-                  <div className="w-8 h-8 bg-gradient-to-br from-green-500 to-green-600 rounded-full flex items-center justify-center text-white font-bold text-sm">3</div>
+                <div className="mt-8">
+                  <button 
+                    onClick={() => scrollToSection('para-quem')}
+                    className="w-full bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white font-bold py-4 shadow-lg shadow-orange-500/30 hover:shadow-orange-500/50 transition-all duration-300 hover:scale-105 rounded-lg flex items-center justify-center"
+                  >
+                    <UserCheck className="mr-2 h-5 w-5" />
+                    Ver se a solução se aplica ao meu negócio
+                    <ArrowRight className="ml-2 h-5 w-5" />
+                  </button>
                 </div>
-                <CardContent className="p-6 pt-8">
-                  <Users className="w-12 h-12 text-green-400 mx-auto mb-4" />
-                  <h3 className="text-lg font-bold text-white-strong mb-3">Integração</h3>
-                  <p className="text-medium-contrast text-sm">
-                    <span className="text-solution-purple font-bold">Conexão com WhatsApp, Instagram, Facebook, Email e SMS</span> em 15 dias máximo
-                  </p>
-                </CardContent>
-              </Card>
-
-              <Card className="bg-slate-900/50 border-orange-500/20 relative text-center">
-                <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
-                  <div className="w-8 h-8 bg-gradient-to-br from-orange-500 to-orange-600 rounded-full flex items-center justify-center text-white font-bold text-sm">4</div>
-                </div>
-                <CardContent className="p-6 pt-8">
-                  <TrendingUp className="w-12 h-12 text-orange-400 mx-auto mb-4" />
-                  <h3 className="text-lg font-bold text-white-strong mb-3">Otimização</h3>
-                  <p className="text-medium-contrast text-sm">
-                    <span className="text-solution-purple font-bold">Monitoramento contínuo e melhorias mensais</span> para maximizar resultados
-                  </p>
-                </CardContent>
-              </Card>
-            </div>
+              </CardContent>
+            </Card>
           </div>
         </div>
       </section>
+
+
 
       {/* Para Quem É */}
       <section id="para-quem" className="py-20 px-6 relative z-10">
@@ -525,100 +553,105 @@ export default function ModernHome() {
         </div>
       </section>
 
-      {/* Calculadora de Perdas */}
-      <section id="calculadora" className="py-20 px-6 bg-gradient-to-br from-red-900/20 to-orange-900/20 relative z-10">
+
+
+      {/* Como Funciona - Movido para depois dos casos de uso */}
+      <section id="como-funciona-solucao" className="py-20 px-6 bg-slate-800/30 relative z-10">
         <div className="container mx-auto">
-          <div className="max-w-4xl mx-auto">
+          <div className="max-w-6xl mx-auto">
             <div className="text-center mb-16">
-              <Badge className="mb-4 bg-red-500/20 text-red-200 border-red-500/30">
-                <Target className="mr-2 h-3 w-3" />
-                Calculadora de Perdas
+              <Badge className="mb-4 bg-purple-500/20 text-purple-200 border-purple-500/30">
+                <Zap className="mr-2 h-3 w-3" />
+                Como Funciona
               </Badge>
-              <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">
-                Quanto você está <span className="text-red-400">perdendo</span> por mês?
+              <h2 className="text-3xl md:text-5xl font-bold text-white-strong mb-6">
+                Implementação em <span className="text-orange-highlight">4 passos simples</span>
               </h2>
-              <p className="text-xl text-gray-200 max-w-3xl mx-auto">
-                Descubra o impacto financeiro da demora no atendimento multicanal
+              <p className="text-xl text-medium-contrast max-w-3xl mx-auto">
+                <span className="text-solution-purple font-bold">Do primeiro contato até seus agentes vendendo 24h por dia</span> - processo testado e aprovado
               </p>
             </div>
 
-            <Card className="bg-slate-900/50 border-red-500/20">
-              <CardContent className="p-8">
-                <div className="grid md:grid-cols-2 gap-8 mb-8">
-                  <div>
-                    <label className="block text-sm font-medium text-gray-300 mb-3">
-                      Quantos leads você recebe por mês?
-                    </label>
-                    <Input
-                      type="number"
-                      placeholder="Ex: 100"
-                      className="bg-slate-800 border-orange-500/30 text-white text-center text-lg"
-                      onChange={(e) => {
-                        const leads = parseFloat(e.target.value) || 0;
-                        const valorVenda = parseFloat((document.querySelector('input[placeholder="Ex: 500"]') as HTMLInputElement)?.value || '0') || 0;
-                        const perdas = leads * valorVenda * 0.3;
-                        const resultado = document.getElementById('resultado-perdas');
-                        if (resultado && perdas > 0) {
-                          resultado.textContent = 'R$ ' + Math.round(perdas).toLocaleString('pt-BR');
-                        } else if (resultado) {
-                          resultado.textContent = 'R$ 0';
-                        }
-                      }}
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium text-gray-300 mb-3">
-                      Qual o valor médio da sua venda?
-                    </label>
-                    <Input
-                      type="number"
-                      placeholder="Ex: 500"
-                      className="bg-slate-800 border-orange-500/30 text-white text-center text-lg"
-                      onChange={(e) => {
-                        const valorVenda = parseFloat(e.target.value) || 0;
-                        const leads = parseFloat((document.querySelector('input[placeholder="Ex: 100"]') as HTMLInputElement)?.value || '0') || 0;
-                        const perdas = leads * valorVenda * 0.3;
-                        const resultado = document.getElementById('resultado-perdas');
-                        if (resultado && perdas > 0) {
-                          resultado.textContent = 'R$ ' + Math.round(perdas).toLocaleString('pt-BR');
-                        } else if (resultado) {
-                          resultado.textContent = 'R$ 0';
-                        }
-                      }}
-                    />
-                  </div>
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+              <Card className="bg-slate-900/50 border-blue-500/20 relative text-center">
+                <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
+                  <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full flex items-center justify-center text-white font-bold text-sm">1</div>
                 </div>
-
-                <div className="mt-8 p-6 bg-gradient-to-r from-red-900/50 to-orange-900/50 rounded-lg border border-red-500/30">
-                  <h3 className="text-xl font-bold text-white mb-4">Suas perdas mensais estimadas:</h3>
-                  <div className="text-3xl font-bold text-red-400 mb-2" id="resultado-perdas">R$ 0</div>
-                  <p className="text-gray-200 text-sm">
-                    Baseado em 30% de leads perdidos por demora no atendimento
+                <CardContent className="p-6 pt-8">
+                  <MessageSquare className="w-12 h-12 text-blue-400 mx-auto mb-4" />
+                  <h3 className="text-lg font-bold text-white-strong mb-3">Análise Gratuita</h3>
+                  <p className="text-medium-contrast text-sm">
+                    <span className="text-solution-purple font-bold">Diagnóstico completo do seu atendimento atual</span> e identificação de quanto você está perdendo sem automação
                   </p>
-                  <p className="text-gray-300 text-xs mt-2">
-                    💡 Digite os valores acima para calcular suas perdas reais
-                  </p>
-                </div>
+                </CardContent>
+              </Card>
 
-                <div className="mt-8">
-                  <button 
-                    onClick={() => {
-                      document.getElementById('formulario-contato')?.scrollIntoView({ behavior: 'smooth' });
-                    }}
-                    className="w-full bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white font-bold py-4 shadow-lg shadow-orange-500/30 hover:shadow-orange-500/50 transition-all duration-300 hover:scale-105 rounded-lg flex items-center justify-center"
-                  >
-                    <MessageSquare className="mr-2 h-5 w-5" />
-                    Quero escalar meu atendimento com IA
-                    <ArrowRight className="ml-2 h-5 w-5" />
-                  </button>
+              <Card className="bg-slate-900/50 border-purple-500/20 relative text-center">
+                <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
+                  <div className="w-8 h-8 bg-gradient-to-br from-purple-500 to-purple-600 rounded-full flex items-center justify-center text-white font-bold text-sm">2</div>
                 </div>
-              </CardContent>
-            </Card>
+                <CardContent className="p-6 pt-8">
+                  <Building2 className="w-12 h-12 text-purple-400 mx-auto mb-4" />
+                  <h3 className="text-lg font-bold text-white-strong mb-3">Configuração</h3>
+                  <p className="text-medium-contrast text-sm">
+                    <span className="text-solution-purple font-bold">Criação e treinamento dos agentes de IA</span> específicos para seu negócio e suas dores
+                  </p>
+                </CardContent>
+              </Card>
+
+              <Card className="bg-slate-900/50 border-green-500/20 relative text-center">
+                <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
+                  <div className="w-8 h-8 bg-gradient-to-br from-green-500 to-green-600 rounded-full flex items-center justify-center text-white font-bold text-sm">3</div>
+                </div>
+                <CardContent className="p-6 pt-8">
+                  <Users className="w-12 h-12 text-green-400 mx-auto mb-4" />
+                  <h3 className="text-lg font-bold text-white-strong mb-3">Integração</h3>
+                  <p className="text-medium-contrast text-sm">
+                    <span className="text-solution-purple font-bold">Conexão com WhatsApp, Instagram, Facebook, Email e SMS</span> em 15 dias máximo
+                  </p>
+                </CardContent>
+              </Card>
+
+              <Card className="bg-slate-900/50 border-orange-500/20 relative text-center">
+                <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
+                  <div className="w-8 h-8 bg-gradient-to-br from-orange-500 to-orange-600 rounded-full flex items-center justify-center text-white font-bold text-sm">4</div>
+                </div>
+                <CardContent className="p-6 pt-8">
+                  <TrendingUp className="w-12 h-12 text-orange-400 mx-auto mb-4" />
+                  <h3 className="text-lg font-bold text-white-strong mb-3">Otimização</h3>
+                  <p className="text-medium-contrast text-sm">
+                    <span className="text-solution-purple font-bold">Monitoramento contínuo e melhorias mensais</span> para maximizar resultados
+                  </p>
+                </CardContent>
+              </Card>
+            </div>
+
+            <div className="text-center mt-12">
+              <button 
+                onClick={() => scrollToSection('resultados')}
+                className="bg-gradient-to-r from-purple-500 to-blue-500 hover:from-purple-600 hover:to-blue-600 text-white font-bold px-8 py-4 text-lg shadow-lg shadow-purple-500/30 hover:shadow-purple-500/50 transition-all duration-300 rounded-lg flex items-center mx-auto"
+              >
+                <Target className="mr-2 h-5 w-5" />
+                Ver casos de sucesso reais
+                <ArrowRight className="ml-2 h-5 w-5" />
+              </button>
+            </div>
+
+            <div className="text-center mt-12">
+              <button 
+                onClick={() => scrollToSection('formulario-contato')}
+                className="bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white font-bold px-8 py-4 text-lg shadow-lg shadow-orange-500/30 hover:shadow-orange-500/50 transition-all duration-300 rounded-lg flex items-center mx-auto"
+              >
+                <MessageSquare className="mr-2 h-5 w-5" />
+                Quero começar agora minha análise gratuita
+                <ArrowRight className="ml-2 h-5 w-5" />
+              </button>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Formulário de Contato */}
+      {/* Formulário de Contato - Movido para logo após o processo */}
       <section id="formulario-contato" className="py-20 px-4 sm:px-6 bg-gradient-to-br from-purple-900/30 to-orange-900/30 relative z-10">
         <div className="container mx-auto">
           <div className="max-w-4xl mx-auto">
@@ -748,6 +781,17 @@ export default function ModernHome() {
                   <p className="text-center text-medium-contrast text-sm">
                     ✅ Sem compromisso • ✅ Análise em 24h • ✅ 100% gratuito
                   </p>
+
+                  <div className="mt-6 text-center">
+                    <button 
+                      onClick={() => scrollToSection('resultados')}
+                      className="text-orange-highlight hover:text-orange-300 font-medium flex items-center gap-2 transition-all duration-300 mx-auto"
+                    >
+                      <Target className="h-4 w-4" />
+                      Ou ver casos de sucesso primeiro
+                      <ArrowRight className="h-4 w-4" />
+                    </button>
+                  </div>
                 </form>
 
                 {showSuccess && (
@@ -767,19 +811,19 @@ export default function ModernHome() {
       </section>
 
       {/* Problemas */}
-      <section className="py-20 px-6 bg-slate-800/50 relative z-10">
+      <section id="problemas" className="py-20 px-6 bg-slate-800/50 relative z-10">
         <div className="container mx-auto">
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-16">
-              <Badge className="mb-4 bg-purple-500/20 text-purple-200 border-purple-500/30">
+              <Badge className="mb-4 bg-red-500/20 text-red-200 border-red-500/30">
                 <Award className="mr-2 h-3 w-3" />
-                Benefícios
+                Problemas Reais
               </Badge>
               <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">
-                Pare de <span className="text-red-400">sofrer</span> com estes problemas
+                Você está <span className="text-red-400">perdendo dinheiro</span> com estes problemas?
               </h2>
               <p className="text-xl text-gray-200 max-w-3xl mx-auto">
-                Dores reais que fazem você <span className="text-orange-400 font-semibold">perder dinheiro todos os dias</span> - e que nossos agentes resolvem automaticamente
+                Dores reais que fazem você <span className="text-orange-400 font-semibold">perder dinheiro todos os dias</span> - identifique quantas se aplicam ao seu negócio
               </p>
             </div>
 
