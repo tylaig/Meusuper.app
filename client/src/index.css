@@ -427,6 +427,20 @@ html {
   animation: scroll-hint 2s ease-in-out infinite;
 }
 
+/* Rocket glow effect */
+@keyframes rocket-glow {
+  0%, 100% {
+    filter: drop-shadow(0 0 5px rgba(251, 146, 60, 0.5));
+  }
+  50% {
+    filter: drop-shadow(0 0 20px rgba(251, 146, 60, 0.8)) drop-shadow(0 0 30px rgba(251, 146, 60, 0.4));
+  }
+}
+
+.rocket-glow {
+  animation: rocket-glow 2s ease-in-out infinite;
+}
+
 .interactive-card:hover {
   transform: translateY(-5px) scale(1.02);
   box-shadow: 0 20px 40px rgba(251, 146, 60, 0.3);

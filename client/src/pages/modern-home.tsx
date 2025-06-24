@@ -107,22 +107,27 @@ export default function ModernHome() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Calculate rocket flight effect
-  const heroSectionHeight = typeof window !== 'undefined' ? window.innerHeight : 800;
+  // Calculate scroll effects
   const scrollIndicatorOpacity = scrollY < 100 ? 1 : 0;
   
-  // Rocket appears when scrolling starts and flies away
-  const rocketOpacity = scrollY > 50 && scrollY < 300 ? 1 : 0;
-  const rocketFlyAway = scrollY > 200;
+  // Dynamic rocket that appears mid-page and flies away
+  const midPageStart = 800; // When rocket starts appearing
+  const midPageEnd = 1200; // When rocket starts flying away
+  const flyDistance = 400; // How far it flies
+  
+  const rocketOpacity = scrollY > midPageStart && scrollY < midPageEnd + flyDistance ? 
+    Math.min(1, Math.max(0, (scrollY - midPageStart) / 200)) : 0;
+  
+  const rocketFlyAway = scrollY > midPageEnd;
   const rocketPosition = rocketFlyAway ? {
-    x: scrollY * 2 - 400, // Flies to the right
-    y: -(scrollY - 200) * 1.5, // Flies up
-    rotation: 45 + (scrollY - 200) * 0.5, // Rotates as it flies
-    scale: Math.max(0.2, 1 - (scrollY - 200) / 200)
+    x: (scrollY - midPageEnd) * 3, // Flies to the right faster
+    y: -(scrollY - midPageEnd) * 2, // Flies up faster
+    rotation: 45 + (scrollY - midPageEnd) * 0.8, // More dramatic rotation
+    scale: Math.max(0.1, 1.2 - (scrollY - midPageEnd) / 300) // Starts bigger, shrinks faster
   } : {
-    x: 0,
-    y: Math.sin(scrollY * 0.01) * 10,
-    rotation: Math.sin(scrollY * 0.005) * 5,
+    x: Math.sin(scrollY * 0.008) * 20, // Gentle floating
+    y: Math.sin(scrollY * 0.01) * 15,
+    rotation: Math.sin(scrollY * 0.005) * 8,
     scale: 1
   };
 
@@ -130,29 +135,58 @@ export default function ModernHome() {
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 text-white overflow-hidden relative">
       <ParticleBackground />
       
-      {/* Flying Rocket Effect */}
+      {/* Dynamic Rocket Effect */}
       <div 
-        className="fixed right-8 md:right-16 top-1/3 z-20 transition-all duration-500 ease-out pointer-events-none"
+        className="fixed right-8 md:right-12 lg:right-16 top-1/2 z-30 transition-all duration-700 ease-out pointer-events-none"
         style={{ 
           opacity: rocketOpacity,
           transform: `translateX(${rocketPosition.x}px) translateY(${rocketPosition.y}px) scale(${rocketPosition.scale}) rotate(${rocketPosition.rotation}deg)`
         }}
       >
         <div className="relative">
-          <div className="text-4xl md:text-5xl lg:text-6xl">🚀</div>
+          {/* Main rocket */}
+          <div className="text-6xl md:text-7xl lg:text-8xl filter drop-shadow-lg">🚀</div>
           
           {/* Flame trail */}
-          <div className="absolute -bottom-4 left-1/2 transform -translate-x-1/2">
-            <div className="w-2 h-8 md:w-3 md:h-12 bg-gradient-to-t from-orange-400/60 via-yellow-400/40 to-transparent animate-pulse"></div>
+          <div className="absolute -bottom-6 left-1/2 transform -translate-x-1/2">
+            <div className="w-4 h-16 md:w-5 md:h-20 bg-gradient-to-t from-orange-500/80 via-yellow-500/60 to-transparent animate-pulse rounded-full"></div>
+          </div>
+          
+          {/* Particle effects */}
+          <div className="absolute -bottom-4 left-1/3 transform -translate-x-1/2">
+            <div className="w-3 h-3 bg-orange-400/70 rounded-full animate-ping"></div>
+          </div>
+          <div className="absolute -bottom-8 left-2/3 transform -translate-x-1/2">
+            <div className="w-2 h-2 bg-yellow-400/60 rounded-full animate-ping" style={{animationDelay: '0.3s'}}></div>
           </div>
           
           {/* Speed lines when flying */}
           {rocketFlyAway && (
             <div className="absolute top-1/2 left-0 transform -translate-y-1/2 -translate-x-full">
-              <div className="flex space-x-1">
-                <div className="w-6 h-1 bg-orange-400/60 animate-pulse"></div>
-                <div className="w-4 h-1 bg-yellow-400/40 animate-pulse" style={{animationDelay: '0.1s'}}></div>
-                <div className="w-3 h-1 bg-orange-300/30 animate-pulse" style={{animationDelay: '0.2s'}}></div>
+              <div className="flex space-x-2">
+                <div className="w-8 h-1 bg-orange-400/80 animate-pulse rounded-full"></div>
+                <div className="w-6 h-1 bg-yellow-400/60 animate-pulse rounded-full" style={{animationDelay: '0.1s'}}></div>
+                <div className="w-4 h-1 bg-orange-300/40 animate-pulse rounded-full" style={{animationDelay: '0.2s'}}></div>
+              </div>
+            </div>
+          )}
+          
+          {/* Floating success message */}
+          {!rocketFlyAway && rocketOpacity > 0.5 && (
+            <div 
+              className="absolute -left-40 top-1/2 transform -translate-y-1/2"
+              style={{
+                opacity: Math.max(0, rocketOpacity - 0.3),
+                transform: `translateY(-50%) translateX(${Math.sin(scrollY * 0.01) * 8}px)`
+              }}
+            >
+              <div className="bg-gradient-to-r from-purple-900/90 to-orange-900/90 backdrop-blur-sm rounded-xl p-4 border border-orange-400/40 shadow-xl">
+                <p className="text-white text-sm font-bold mb-1">
+                  🚀 Acelere agora!
+                </p>
+                <p className="text-orange-300 text-xs">
+                  Automação que funciona
+                </p>
               </div>
             </div>
           )}
@@ -1252,7 +1286,7 @@ export default function ModernHome() {
             <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">
               Junte-se a mais de <span className="text-yellow-400">200.000</span> empreendedores
             </h2>
-            <p className="text-xl text-gray-300 mb-8">
+            <p className="text-xl text-gray-100 mb-8">
               Que já estão automatizando seus negócios e aumentando suas vendas
             </p>
             <div className="space-y-6">
@@ -1262,8 +1296,8 @@ export default function ModernHome() {
                     size="lg" 
                     className="bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white font-bold px-8 md:px-12 py-4 text-lg"
                   >
-                    <Target className="mr-2 h-5 w-5" />
-                    Parar de perder R$ 10mil/mês agora
+                    <MessageSquare className="mr-2 h-5 w-5" />
+                    Quero escalar meu atendimento com IA
                     <ArrowRight className="ml-2 h-5 w-5" />
                   </Button>
                 }
@@ -1278,7 +1312,7 @@ export default function ModernHome() {
                       className="border-orange-400 text-orange-400 hover:bg-orange-400 hover:text-white font-bold px-6 py-3"
                     >
                       <Clock className="mr-2 h-4 w-4" />
-                      Equipe sobrecarregada
+                      Me mostre como automatizar agora
                     </Button>
                   }
                 />
@@ -1288,16 +1322,16 @@ export default function ModernHome() {
                     <Button 
                       size="lg" 
                       variant="outline"
-                      className="border-red-400 text-red-400 hover:bg-red-400 hover:text-white font-bold px-6 py-3"
+                      className="border-green-400 text-green-400 hover:bg-green-400 hover:text-white font-bold px-6 py-3"
                     >
-                      <TrendingUp className="mr-2 h-4 w-4" />
-                      Perdendo para concorrência
+                      <MessageSquare className="mr-2 h-4 w-4" />
+                      Falar com especialista no WhatsApp
                     </Button>
                   }
                 />
               </div>
               
-              <p className="text-gray-300 text-sm max-w-md mx-auto">
+              <p className="text-gray-200 text-sm max-w-md mx-auto">
                 ⚡ Diagnóstico gratuito em 15 minutos<br/>
                 🎯 Descubra exatamente quanto você está perdendo<br/>
                 💰 Veja como recuperar tudo isso em 30 dias
