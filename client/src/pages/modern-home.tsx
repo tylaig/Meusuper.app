@@ -143,10 +143,10 @@ export default function ModernHome() {
       </div>
 
       {/* Navigation */}
-      <nav className="fixed top-0 w-full z-50 bg-black/80 backdrop-blur-xl border-b border-purple-500/30 shadow-lg shadow-purple-500/10">
-        <div className="container mx-auto px-4 sm:px-6 py-4">
-          <div className="flex items-center justify-between min-w-0">
-            <div className="text-xl sm:text-2xl font-bold group cursor-pointer flex-shrink-0">
+      <nav className="fixed top-0 w-full z-50 bg-slate-900/80 backdrop-blur-md border-b border-purple-500/20">
+        <div className="container mx-auto px-6 py-4">
+          <div className="flex items-center justify-between">
+            <div className="text-2xl font-bold group cursor-pointer">
               <span className="bg-gradient-to-r from-orange-400 to-orange-500 bg-clip-text text-transparent transition-all duration-300 group-hover:from-orange-300 group-hover:to-orange-400">
                 Meu
               </span>
@@ -155,7 +155,7 @@ export default function ModernHome() {
               </span>
             </div>
             
-            <nav className="hidden lg:flex space-x-6 xl:space-x-8">
+            <nav className="hidden md:flex space-x-8">
               {[
                 { label: "Como funciona", href: "#como-funciona" },
                 { label: "Para quem é", href: "#para-quem" },
@@ -165,7 +165,7 @@ export default function ModernHome() {
                 <button
                   key={item.label}
                   onClick={() => scrollToSection(item.href.substring(1))}
-                  className="text-gray-300 hover:text-orange-400 transition-colors font-medium text-sm xl:text-base whitespace-nowrap"
+                  className="text-gray-300 hover:text-orange-400 transition-colors font-medium"
                 >
                   {item.label}
                 </button>
@@ -174,16 +174,15 @@ export default function ModernHome() {
 
             <WhatsAppModal
               trigger={
-                <Button className="hidden lg:inline-flex bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white text-sm xl:text-base px-4 xl:px-6">
+                <Button className="hidden md:inline-flex bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white shadow-lg shadow-orange-500/30 hover:shadow-orange-500/50 transition-all duration-300">
                   <MessageSquare className="mr-2 h-4 w-4" />
-                  <span className="hidden xl:inline">Falar com especialista</span>
-                  <span className="xl:hidden">Especialista</span>
+                  Falar com especialista no WhatsApp
                 </Button>
               }
             />
 
             <button 
-              className="lg:hidden text-white p-2 hover:bg-purple-500/20 rounded-lg transition-colors"
+              className="md:hidden text-white p-2"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               aria-label="Menu"
             >
@@ -191,11 +190,11 @@ export default function ModernHome() {
             </button>
           </div>
 
-          {/* Mobile/Tablet Navigation Menu */}
+          {/* Mobile Navigation Menu */}
           {isMobileMenuOpen && (
-            <div className="lg:hidden bg-black/95 backdrop-blur-xl border-t border-purple-500/30 absolute top-full left-0 right-0 z-50 shadow-xl shadow-purple-500/10">
-              <div className="container mx-auto px-6 py-6">
-                <nav className="flex flex-col space-y-6">
+            <div className="md:hidden bg-slate-900/95 backdrop-blur-sm border-t border-purple-500/20 absolute top-full left-0 right-0 z-50">
+              <div className="container mx-auto px-6 py-4">
+                <nav className="flex flex-col space-y-4">
                   {[
                     { label: "Como funciona", href: "#como-funciona" },
                     { label: "Para quem é", href: "#para-quem" },
@@ -208,21 +207,19 @@ export default function ModernHome() {
                         scrollToSection(item.href.substring(1));
                         setIsMobileMenuOpen(false);
                       }}
-                      className="text-high-contrast hover:text-orange-400 transition-colors font-medium text-left py-3 px-4 rounded-lg hover:bg-purple-500/20 border border-transparent hover:border-purple-500/30"
+                      className="text-gray-300 hover:text-orange-400 transition-colors font-medium text-left py-2"
                     >
                       {item.label}
                     </button>
                   ))}
-                  <div className="pt-4 border-t border-purple-500/20">
-                    <WhatsAppModal
-                      trigger={
-                        <Button className="w-full bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white py-4 text-lg font-semibold">
-                          <MessageSquare className="mr-2 h-5 w-5" />
-                          Falar com especialista
-                        </Button>
-                      }
-                    />
-                  </div>
+                  <WhatsAppModal
+                    trigger={
+                      <Button className="w-full bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white mt-4 shadow-lg shadow-orange-500/30">
+                        <MessageSquare className="mr-2 h-4 w-4" />
+                        Falar com especialista no WhatsApp
+                      </Button>
+                    }
+                  />
                 </nav>
               </div>
             </div>
@@ -252,7 +249,7 @@ export default function ModernHome() {
                 trigger={
                   <Button 
                     size="lg" 
-                    className="bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white font-bold px-8 py-4 text-lg"
+                    className="bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white font-bold px-8 py-4 text-lg shadow-lg shadow-green-500/30 hover:shadow-green-500/50 transition-all duration-300"
                   >
                     <MessageSquare className="mr-2 h-5 w-5" />
                     Quero escalar meu atendimento com IA
@@ -263,49 +260,62 @@ export default function ModernHome() {
               
               <button 
                 onClick={() => scrollToSection('calculadora')}
-                className="text-orange-400 hover:text-orange-300 font-semibold flex items-center gap-2 transition-colors"
+                className="text-orange-400 hover:text-orange-300 font-semibold flex items-center gap-2 transition-all duration-300 hover:scale-105"
               >
                 <Target className="h-5 w-5" />
-                Calcular quanto estou perdendo
+                Me mostre como automatizar agora
                 <ArrowRight className="h-4 w-4" />
               </button>
             </div>
 
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto">
+            <div className="grid grid-cols-2 md:grid-cols-5 gap-6 max-w-5xl mx-auto">
               <div className="text-center">
-                <div className="text-3xl font-bold text-orange-400 mb-2">5+</div>
-                <div className="text-gray-300 text-sm">Anos de experiência</div>
+                <div className="text-2xl md:text-3xl font-bold text-orange-400 mb-2">+R$100k</div>
+                <div className="text-gray-300 text-xs md:text-sm">Em vendas recuperadas</div>
               </div>
               <div className="text-center">
-                <div className="text-3xl font-bold text-purple-400 mb-2">97%</div>
-                <div className="text-gray-300 text-sm">Satisfação</div>
+                <div className="text-2xl md:text-3xl font-bold text-green-400 mb-2">+10k</div>
+                <div className="text-gray-300 text-xs md:text-sm">Horas economizadas</div>
               </div>
               <div className="text-center">
-                <div className="text-3xl font-bold text-green-400 mb-2">10k+</div>
-                <div className="text-gray-300 text-sm">Horas economizadas</div>
+                <div className="text-2xl md:text-3xl font-bold text-purple-400 mb-2">97%</div>
+                <div className="text-gray-300 text-xs md:text-sm">Satisfação</div>
               </div>
               <div className="text-center">
-                <div className="text-3xl font-bold text-yellow-400 mb-2">R$100k+</div>
-                <div className="text-gray-300 text-sm">Em vendas recuperadas</div>
+                <div className="text-2xl md:text-3xl font-bold text-yellow-400 mb-2">4.9⭐</div>
+                <div className="text-gray-300 text-xs md:text-sm">Avaliação média</div>
+              </div>
+              <div className="text-center">
+                <div className="text-2xl md:text-3xl font-bold text-blue-400 mb-2">3</div>
+                <div className="text-gray-300 text-xs md:text-sm">Países atendidos</div>
               </div>
             </div>
 
             <div className="mt-16 flex justify-center">
-              <div className="flex items-center gap-3 text-gray-300">
-                <Heart className="h-5 w-5 text-red-400" />
-                <span className="text-sm">
-                  Criado por 
-                  <a 
-                    href="https://instagram.com/eusamuelvicente" 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="text-orange-400 hover:text-orange-300 font-semibold ml-1"
-                  >
-                    @eusamuelvicente
-                  </a>
-                  {" "}em parceria com{" "}
-                  <span className="text-purple-400 font-semibold">Dubotics</span>
-                </span>
+              <div className="flex flex-col items-center gap-4 text-gray-300 max-w-2xl mx-auto text-center">
+                <div className="flex items-center gap-3">
+                  <Heart className="h-5 w-5 text-red-400" />
+                  <span className="text-sm">
+                    Criado por 
+                    <a 
+                      href="https://instagram.com/eusamuelvicente" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="text-orange-400 hover:text-orange-300 font-semibold ml-1"
+                    >
+                      @eusamuelvicente
+                    </a>
+                    {" "}em parceria com{" "}
+                    <span className="text-purple-400 font-semibold">Dubotics</span>
+                  </span>
+                </div>
+                <div className="text-xs text-gray-400 leading-relaxed">
+                  <strong className="text-orange-400">Samuel Vicente Ferreira</strong> é especialista em automações com IA, desenvolvedor de software e estrategista digital. 
+                  Atua com foco em criar soluções que transformam negócios com inteligência artificial, automação de atendimento, integrações com APIs, bots de voz e ferramentas no-code.
+                  <br />
+                  Fundador do MeuSuper.app e parceiro da Dubotics, já atendeu clientes no <strong className="text-purple-400">Brasil, São Paulo e Dubai</strong>, 
+                  com foco em resultados reais, escalabilidade e independência tecnológica.
+                </div>
               </div>
             </div>
           </div>
@@ -330,53 +340,53 @@ export default function ModernHome() {
             </div>
 
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-              <Card className="glass-card neon-border relative text-center group">
+              <Card className="bg-slate-900/50 border-blue-500/20 relative text-center">
                 <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
-                  <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full flex items-center justify-center text-white font-bold text-sm shadow-lg shadow-blue-500/50">1</div>
+                  <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full flex items-center justify-center text-white font-bold text-sm">1</div>
                 </div>
                 <CardContent className="p-6 pt-8">
-                  <MessageSquare className="w-12 h-12 text-blue-400 mx-auto mb-4 icon-glow group-hover:scale-110 transition-transform duration-300" />
-                  <h3 className="text-lg font-bold text-high-contrast mb-3">Análise Gratuita</h3>
-                  <p className="text-medium-contrast text-sm">
+                  <MessageSquare className="w-12 h-12 text-blue-400 mx-auto mb-4" />
+                  <h3 className="text-lg font-bold text-white mb-3">Análise Gratuita</h3>
+                  <p className="text-gray-200 text-sm">
                     Diagnóstico completo do seu atendimento atual e identificação de oportunidades
                   </p>
                 </CardContent>
               </Card>
 
-              <Card className="glass-card neon-border relative text-center group">
+              <Card className="bg-slate-900/50 border-purple-500/20 relative text-center">
                 <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
-                  <div className="w-8 h-8 bg-gradient-to-br from-purple-500 to-purple-600 rounded-full flex items-center justify-center text-white font-bold text-sm shadow-lg shadow-purple-500/50">2</div>
+                  <div className="w-8 h-8 bg-gradient-to-br from-purple-500 to-purple-600 rounded-full flex items-center justify-center text-white font-bold text-sm">2</div>
                 </div>
                 <CardContent className="p-6 pt-8">
-                  <Building2 className="w-12 h-12 text-purple-400 mx-auto mb-4 icon-glow group-hover:scale-110 transition-transform duration-300" />
-                  <h3 className="text-lg font-bold text-high-contrast mb-3">Configuração</h3>
-                  <p className="text-medium-contrast text-sm">
+                  <Building2 className="w-12 h-12 text-purple-400 mx-auto mb-4" />
+                  <h3 className="text-lg font-bold text-white mb-3">Configuração</h3>
+                  <p className="text-gray-200 text-sm">
                     Criação e treinamento dos agentes de IA específicos para seu negócio
                   </p>
                 </CardContent>
               </Card>
 
-              <Card className="glass-card neon-border relative text-center group">
+              <Card className="bg-slate-900/50 border-green-500/20 relative text-center">
                 <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
-                  <div className="w-8 h-8 bg-gradient-to-br from-green-500 to-green-600 rounded-full flex items-center justify-center text-white font-bold text-sm shadow-lg shadow-green-500/50">3</div>
+                  <div className="w-8 h-8 bg-gradient-to-br from-green-500 to-green-600 rounded-full flex items-center justify-center text-white font-bold text-sm">3</div>
                 </div>
                 <CardContent className="p-6 pt-8">
-                  <Users className="w-12 h-12 text-green-400 mx-auto mb-4 icon-glow group-hover:scale-110 transition-transform duration-300" />
-                  <h3 className="text-lg font-bold text-high-contrast mb-3">Integração</h3>
-                  <p className="text-medium-contrast text-sm">
+                  <Users className="w-12 h-12 text-green-400 mx-auto mb-4" />
+                  <h3 className="text-lg font-bold text-white mb-3">Integração</h3>
+                  <p className="text-gray-200 text-sm">
                     Conexão com WhatsApp, Instagram, Facebook, Email e SMS em 15 dias
                   </p>
                 </CardContent>
               </Card>
 
-              <Card className="glass-card neon-border relative text-center group">
+              <Card className="bg-slate-900/50 border-orange-500/20 relative text-center">
                 <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
-                  <div className="w-8 h-8 bg-gradient-to-br from-orange-500 to-orange-600 rounded-full flex items-center justify-center text-white font-bold text-sm shadow-lg shadow-orange-500/50">4</div>
+                  <div className="w-8 h-8 bg-gradient-to-br from-orange-500 to-orange-600 rounded-full flex items-center justify-center text-white font-bold text-sm">4</div>
                 </div>
                 <CardContent className="p-6 pt-8">
-                  <TrendingUp className="w-12 h-12 text-orange-400 mx-auto mb-4 icon-glow group-hover:scale-110 transition-transform duration-300" />
-                  <h3 className="text-lg font-bold text-high-contrast mb-3">Otimização</h3>
-                  <p className="text-medium-contrast text-sm">
+                  <TrendingUp className="w-12 h-12 text-orange-400 mx-auto mb-4" />
+                  <h3 className="text-lg font-bold text-white mb-3">Otimização</h3>
+                  <p className="text-gray-200 text-sm">
                     Monitoramento contínuo e melhorias mensais nos agentes
                   </p>
                 </CardContent>
@@ -393,11 +403,14 @@ export default function ModernHome() {
             <div className="text-center mb-16">
               <Badge className="mb-4 bg-orange-500/20 text-orange-200 border-orange-500/30">
                 <UserCheck className="mr-2 h-3 w-3" />
-                Para Quem É
+                Casos de Uso Reais
               </Badge>
               <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">
-                Ideal para negócios que querem <span className="text-orange-400">escalar vendas</span>
+                Soluções práticas para <span className="text-orange-400">cada tipo de negócio</span>
               </h2>
+              <p className="text-xl text-gray-200 max-w-3xl mx-auto">
+                Veja como nossos agentes de IA transformam operações específicas do seu nicho
+              </p>
             </div>
 
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -406,9 +419,9 @@ export default function ModernHome() {
                   <GraduationCap className="w-12 h-12 text-blue-400 mb-4 icon-glow group-hover:scale-110 transition-transform duration-300" />
                   <h3 className="text-xl font-bold text-high-contrast mb-3">Cursos Online</h3>
                   <p className="text-medium-contrast text-sm mb-4">
-                    Automatize suporte, recuperação de carrinho abandonado e nutrição de leads em múltiplos canais
+                    <span className="text-orange-highlight font-semibold">Recuperação de carrinho</span> e <span className="text-orange-highlight font-semibold">envio de certificado automatizado</span> via WhatsApp e Instagram
                   </p>
-                  <div className="text-blue-300 text-xs font-semibold">
+                  <div className="text-blue-300 text-xs font-semibold bg-blue-900/30 p-2 rounded border border-blue-500/30">
                     ✓ Suporte 24h ✓ Vendas automáticas ✓ Redução de refund
                   </div>
                 </CardContent>
@@ -419,9 +432,9 @@ export default function ModernHome() {
                   <ShoppingCart className="w-12 h-12 text-green-400 mb-4 icon-glow group-hover:scale-110 transition-transform duration-300" />
                   <h3 className="text-xl font-bold text-high-contrast mb-3">E-commerce</h3>
                   <p className="text-medium-contrast text-sm mb-4">
-                    Conecte Instagram, WhatsApp e email para capturar leads de todos os pontos de contato
+                    <span className="text-orange-highlight font-semibold">Integração com estoque</span>, <span className="text-orange-highlight font-semibold">atendimento automático</span> e <span className="text-orange-highlight font-semibold">rastreio de pedidos</span>
                   </p>
-                  <div className="text-green-300 text-xs font-semibold">
+                  <div className="text-green-300 text-xs font-semibold bg-green-900/30 p-2 rounded border border-green-500/30">
                     ✓ Catálogo automático ✓ Checkout simplificado ✓ Pós-venda
                   </div>
                 </CardContent>
@@ -430,11 +443,11 @@ export default function ModernHome() {
               <Card className="glass-card neon-border group">
                 <CardContent className="p-6">
                   <Briefcase className="w-12 h-12 text-purple-400 mb-4 icon-glow group-hover:scale-110 transition-transform duration-300" />
-                  <h3 className="text-xl font-bold text-high-contrast mb-3">Consultoria</h3>
+                  <h3 className="text-xl font-bold text-high-contrast mb-3">Mentores/Consultores</h3>
                   <p className="text-medium-contrast text-sm mb-4">
-                    Qualificação inteligente de prospects e agendamento automático em todos os canais
+                    <span className="text-orange-highlight font-semibold">Agendamento com IA</span>, <span className="text-orange-highlight font-semibold">follow-up de sessões</span> e <span className="text-orange-highlight font-semibold">suporte com voz</span>
                   </p>
-                  <div className="text-purple-300 text-xs font-semibold">
+                  <div className="text-purple-300 text-xs font-semibold bg-purple-900/30 p-2 rounded border border-purple-500/30">
                     ✓ Agenda lotada ✓ Leads qualificados ✓ Follow-up automático
                   </div>
                 </CardContent>
@@ -447,7 +460,7 @@ export default function ModernHome() {
                   <p className="text-medium-contrast text-sm mb-4">
                     Onboarding automatizado, suporte técnico e redução de churn via multicanal
                   </p>
-                  <div className="text-orange-300 text-xs font-semibold">
+                  <div className="text-orange-300 text-xs font-semibold bg-orange-900/30 p-2 rounded border border-orange-500/30">
                     ✓ Ativação de usuários ✓ Suporte tier 1 ✓ Retenção
                   </div>
                 </CardContent>
@@ -456,11 +469,11 @@ export default function ModernHome() {
               <Card className="glass-card neon-border group">
                 <CardContent className="p-6">
                   <Star className="w-12 h-12 text-yellow-400 mb-4 icon-glow group-hover:scale-110 transition-transform duration-300" />
-                  <h3 className="text-xl font-bold text-high-contrast mb-3">Infoprodutos</h3>
+                  <h3 className="text-xl font-bold text-high-contrast mb-3">Infoprodutores</h3>
                   <p className="text-medium-contrast text-sm mb-4">
-                    Integração com Hotmart, Monetizze e entrega automatizada multicanal
+                    <span className="text-orange-highlight font-semibold">Integração com Hotmart</span>, <span className="text-orange-highlight font-semibold">liberação de acesso</span> e <span className="text-orange-highlight font-semibold">suporte inteligente</span>
                   </p>
-                  <div className="text-yellow-300 text-xs font-semibold">
+                  <div className="text-yellow-300 text-xs font-semibold bg-yellow-900/30 p-2 rounded border border-yellow-500/30">
                     ✓ Entrega automática ✓ Suporte integrado ✓ Upsell
                   </div>
                 </CardContent>
@@ -469,11 +482,11 @@ export default function ModernHome() {
               <Card className="glass-card neon-border group">
                 <CardContent className="p-6">
                   <Heart className="w-12 h-12 text-red-400 mb-4 icon-glow group-hover:scale-110 transition-transform duration-300" />
-                  <h3 className="text-xl font-bold text-high-contrast mb-3">Produtos Físicos</h3>
+                  <h3 className="text-xl font-bold text-high-contrast mb-3">Produtos Encapsulados</h3>
                   <p className="text-medium-contrast text-sm mb-4">
-                    Nutrição multicanal para recompra e fidelização de clientes
+                    <span className="text-orange-highlight font-semibold">Sequência automatizada de nutrição</span>, <span className="text-orange-highlight font-semibold">upsell</span> e <span className="text-orange-highlight font-semibold">recompra</span>
                   </p>
-                  <div className="text-red-300 text-xs font-semibold">
+                  <div className="text-red-300 text-xs font-semibold bg-red-900/30 p-2 rounded border border-red-500/30">
                     ✓ Recompra automática ✓ Fidelização ✓ Cross-sell
                   </div>
                 </CardContent>
@@ -500,17 +513,17 @@ export default function ModernHome() {
               </p>
             </div>
 
-            <Card className="glass-card neon-border">
+            <Card className="bg-slate-900/50 border-red-500/20">
               <CardContent className="p-8">
                 <div className="grid md:grid-cols-2 gap-8 mb-8">
                   <div>
-                    <label className="block text-sm font-medium text-high-contrast mb-3">
+                    <label className="block text-sm font-medium text-gray-300 mb-3">
                       Quantos leads você recebe por mês?
                     </label>
                     <Input
                       type="number"
                       placeholder="Ex: 100"
-                      className="bg-black/60 border-purple-500/50 text-white text-center text-lg backdrop-blur-md focus:border-purple-400 focus:ring-purple-400/20 transition-all duration-300"
+                      className="bg-slate-800 border-orange-500/30 text-white text-center text-lg"
                       onChange={(e) => {
                         const leads = parseFloat(e.target.value) || 0;
                         const valorVenda = parseFloat((document.querySelector('input[placeholder="Ex: 500"]') as HTMLInputElement)?.value || '0') || 0;
@@ -525,13 +538,13 @@ export default function ModernHome() {
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-high-contrast mb-3">
+                    <label className="block text-sm font-medium text-gray-300 mb-3">
                       Qual o valor médio da sua venda?
                     </label>
                     <Input
                       type="number"
                       placeholder="Ex: 500"
-                      className="bg-black/60 border-purple-500/50 text-white text-center text-lg backdrop-blur-md focus:border-purple-400 focus:ring-purple-400/20 transition-all duration-300"
+                      className="bg-slate-800 border-orange-500/30 text-white text-center text-lg"
                       onChange={(e) => {
                         const valorVenda = parseFloat(e.target.value) || 0;
                         const leads = parseFloat((document.querySelector('input[placeholder="Ex: 100"]') as HTMLInputElement)?.value || '0') || 0;
@@ -547,18 +560,15 @@ export default function ModernHome() {
                   </div>
                 </div>
 
-                <div className="mt-8 p-6 bg-black/80 backdrop-blur-xl rounded-xl border border-red-500/40 relative overflow-hidden">
-                  <div className="absolute inset-0 bg-gradient-to-r from-red-500/10 to-orange-500/10"></div>
-                  <div className="relative z-10">
-                    <h3 className="text-xl font-bold text-high-contrast mb-4">Suas perdas mensais estimadas:</h3>
-                    <div className="text-3xl font-bold text-red-400 mb-2 drop-shadow-lg" id="resultado-perdas">R$ 0</div>
-                    <p className="text-medium-contrast text-sm">
-                      Baseado em 30% de leads perdidos por demora no atendimento
-                    </p>
-                    <p className="text-subtle-contrast text-xs mt-2">
-                      💡 Digite os valores acima para calcular suas perdas reais
-                    </p>
-                  </div>
+                <div className="mt-8 p-6 bg-gradient-to-r from-red-900/50 to-orange-900/50 rounded-lg border border-red-500/30">
+                  <h3 className="text-xl font-bold text-white mb-4">Suas perdas mensais estimadas:</h3>
+                  <div className="text-3xl font-bold text-red-400 mb-2" id="resultado-perdas">R$ 0</div>
+                  <p className="text-gray-200 text-sm">
+                    Baseado em 30% de leads perdidos por demora no atendimento
+                  </p>
+                  <p className="text-gray-300 text-xs mt-2">
+                    💡 Digite os valores acima para calcular suas perdas reais
+                  </p>
                 </div>
 
                 <div className="mt-8">
@@ -566,10 +576,10 @@ export default function ModernHome() {
                     trigger={
                       <Button 
                         size="lg" 
-                        className="w-full bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white font-bold py-4"
+                        className="w-full bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white font-bold py-4 shadow-lg shadow-green-500/30 hover:shadow-green-500/50 transition-all duration-300 hover:scale-105"
                       >
                         <MessageSquare className="mr-2 h-5 w-5" />
-                        Parar de perder dinheiro agora
+                        Quero escalar meu atendimento com IA
                         <ArrowRight className="ml-2 h-5 w-5" />
                       </Button>
                     }
@@ -591,10 +601,10 @@ export default function ModernHome() {
                 Benefícios
               </Badge>
               <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">
-                Pare de sofrer com <span className="text-red-400">estes problemas</span>
+                Pare de <span className="text-red-400">sofrer</span> com estes problemas
               </h2>
               <p className="text-xl text-gray-200 max-w-3xl mx-auto">
-                Problemas reais que nossos agentes de IA resolvem definitivamente em todos os canais
+                Dores reais que fazem você <span className="text-orange-400 font-semibold">perder dinheiro todos os dias</span> - e que nossos agentes resolvem automaticamente
               </p>
             </div>
 
@@ -604,7 +614,7 @@ export default function ModernHome() {
                   <div className="mx-auto mb-4 w-16 h-16 bg-gradient-to-br from-red-500 to-red-600 rounded-2xl flex items-center justify-center shadow-lg shadow-red-500/30">
                     <Clock className="h-8 w-8 text-white icon-glow group-hover:scale-110 transition-transform duration-300" />
                   </div>
-                  <h3 className="text-xl font-bold text-high-contrast mb-3">Respostas lentas em todos os canais</h3>
+                  <h3 className="text-xl font-bold text-high-contrast mb-3">Respostas <span className="text-orange-highlight">lentas que fazem você perder vendas</span></h3>
                   <p className="text-medium-contrast text-sm">Clientes esperando horas no WhatsApp, Instagram, Facebook enquanto concorrentes respondem em segundos</p>
                 </CardContent>
               </Card>
@@ -614,7 +624,7 @@ export default function ModernHome() {
                   <div className="mx-auto mb-4 w-16 h-16 bg-gradient-to-br from-orange-500 to-orange-600 rounded-2xl flex items-center justify-center shadow-lg shadow-orange-500/30">
                     <Users className="h-8 w-8 text-white icon-glow group-hover:scale-110 transition-transform duration-300" />
                   </div>
-                  <h3 className="text-xl font-bold text-high-contrast mb-3">Atendimento limitado ao horário comercial</h3>
+                  <h3 className="text-xl font-bold text-high-contrast mb-3">Falta de equipe para responder <span className="text-orange-highlight">fora do horário comercial</span></h3>
                   <p className="text-medium-contrast text-sm">Leads chegando 24h por todos os canais mas você só atende 8h por dia</p>
                 </CardContent>
               </Card>
@@ -624,7 +634,7 @@ export default function ModernHome() {
                   <div className="mx-auto mb-4 w-16 h-16 bg-gradient-to-br from-purple-500 to-purple-600 rounded-2xl flex items-center justify-center shadow-lg shadow-purple-500/30">
                     <MessageSquare className="h-8 w-8 text-white icon-glow group-hover:scale-110 transition-transform duration-300" />
                   </div>
-                  <h3 className="text-xl font-bold text-high-contrast mb-3">Leads se perdendo em múltiplos canais</h3>
+                  <h3 className="text-xl font-bold text-high-contrast mb-3">Perda de leads por <span className="text-orange-highlight">falta de follow-up</span></h3>
                   <p className="text-medium-contrast text-sm">WhatsApp, Instagram, Facebook, Email - impossível acompanhar e nutrir todos manualmente</p>
                 </CardContent>
               </Card>
@@ -634,7 +644,7 @@ export default function ModernHome() {
                   <div className="mx-auto mb-4 w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl flex items-center justify-center shadow-lg shadow-blue-500/30">
                     <Zap className="h-8 w-8 text-white icon-glow group-hover:scale-110 transition-transform duration-300" />
                   </div>
-                  <h3 className="text-xl font-bold text-high-contrast mb-3">Informações espalhadas em vários canais</h3>
+                  <h3 className="text-xl font-bold text-high-contrast mb-3">Dificuldade de <span className="text-orange-highlight">integrar ferramentas e CRMs</span></h3>
                   <p className="text-medium-contrast text-sm">Dados de clientes perdidos entre WhatsApp, Instagram, Email e outros canais sem integração</p>
                 </CardContent>
               </Card>
@@ -644,7 +654,7 @@ export default function ModernHome() {
                   <div className="mx-auto mb-4 w-16 h-16 bg-gradient-to-br from-green-500 to-green-600 rounded-2xl flex items-center justify-center shadow-lg shadow-green-500/30">
                     <Target className="h-8 w-8 text-white icon-glow group-hover:scale-110 transition-transform duration-300" />
                   </div>
-                  <h3 className="text-xl font-bold text-high-contrast mb-3">Impossível escalar atendimento multicanal</h3>
+                  <h3 className="text-xl font-bold text-high-contrast mb-3">Atendimento manual <span className="text-orange-highlight">que não escala</span></h3>
                   <p className="text-medium-contrast text-sm">Cada novo canal = mais funcionários = custos que explodem sem controle</p>
                 </CardContent>
               </Card>
@@ -654,7 +664,7 @@ export default function ModernHome() {
                   <div className="mx-auto mb-4 w-16 h-16 bg-gradient-to-br from-yellow-500 to-yellow-600 rounded-2xl flex items-center justify-center shadow-lg shadow-yellow-500/30">
                     <TrendingUp className="h-8 w-8 text-white icon-glow group-hover:scale-110 transition-transform duration-300" />
                   </div>
-                  <h3 className="text-xl font-bold text-high-contrast mb-3">Operações que dependem de você estar online 24h</h3>
+                  <h3 className="text-xl font-bold text-high-contrast mb-3">Operações que dependem de você estar <span className="text-orange-highlight">online 24h</span></h3>
                   <p className="text-medium-contrast text-sm">Você é prisioneiro do próprio negócio</p>
                 </CardContent>
               </Card>
@@ -681,45 +691,45 @@ export default function ModernHome() {
             </div>
 
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-              <Card className="glass-card neon-border group">
+              <Card className="bg-slate-900/50 border-purple-500/20">
                 <CardContent className="p-6">
                   <div className="flex items-center mb-4">
                     <div className="flex text-yellow-400">{"★".repeat(5)}</div>
-                    <span className="ml-2 text-sm text-subtle-contrast">Curso Online</span>
+                    <span className="ml-2 text-sm text-gray-400">Curso Online</span>
                   </div>
-                  <p className="text-medium-contrast mb-4 italic">
+                  <p className="text-gray-100 mb-4 italic">
                     "Automatizamos recuperação de carrinho no WhatsApp e Instagram. Recuperamos R$ 45.000 em vendas perdidas no primeiro mês."
                   </p>
-                  <div className="bg-green-500/20 backdrop-blur-sm p-3 rounded-lg mb-4 border border-green-500/30">
+                  <div className="bg-green-900/30 p-3 rounded mb-4">
                     <p className="text-green-300 text-sm font-semibold">+300% vendas recuperadas</p>
                   </div>
                   <div className="flex items-center">
-                    <div className="w-10 h-10 bg-gradient-to-br from-purple-500 to-purple-600 rounded-full flex items-center justify-center text-white font-bold shadow-lg shadow-purple-500/30">M</div>
+                    <div className="w-10 h-10 bg-gradient-to-br from-purple-500 to-purple-600 rounded-full flex items-center justify-center text-white font-bold">M</div>
                     <div className="ml-3">
-                      <p className="text-high-contrast font-semibold">Marina Silva</p>
-                      <p className="text-subtle-contrast text-sm">CEO, EduTech Pro</p>
+                      <p className="text-white font-semibold">Marina Silva</p>
+                      <p className="text-gray-400 text-sm">CEO, EduTech Pro</p>
                     </div>
                   </div>
                 </CardContent>
               </Card>
 
-              <Card className="glass-card neon-border group">
+              <Card className="bg-slate-900/50 border-purple-500/20">
                 <CardContent className="p-6">
                   <div className="flex items-center mb-4">
                     <div className="flex text-yellow-400">{"★".repeat(5)}</div>
-                    <span className="ml-2 text-sm text-orange-highlight">E-commerce</span>
+                    <span className="ml-2 text-sm text-gray-400">E-commerce</span>
                   </div>
-                  <p className="text-medium-contrast mb-4 italic">
-                    "Agentes conectados em todos os canais. Diminuímos tempo de resposta de 4h para 30 segundos. <span className="text-orange-highlight">Vendas cresceram 400%</span>."
+                  <p className="text-gray-100 mb-4 italic">
+                    "Agentes conectados em todos os canais. Diminuímos tempo de resposta de 4h para 30 segundos. Vendas cresceram 400%."
                   </p>
-                  <div className="bg-blue-900/50 backdrop-blur-sm p-3 rounded border border-blue-500/30 mb-4">
+                  <div className="bg-blue-900/30 p-3 rounded mb-4">
                     <p className="text-blue-300 text-sm font-semibold">ROI 400% em 30 dias</p>
                   </div>
                   <div className="flex items-center">
-                    <div className="w-10 h-10 bg-gradient-to-br from-green-500 to-green-600 rounded-full flex items-center justify-center text-white font-bold shadow-lg shadow-green-500/50">R</div>
+                    <div className="w-10 h-10 bg-gradient-to-br from-green-500 to-green-600 rounded-full flex items-center justify-center text-white font-bold">R</div>
                     <div className="ml-3">
-                      <p className="text-high-contrast font-semibold">Roberto Santos</p>
-                      <p className="text-subtle-contrast text-sm">Fundador, EcoStore</p>
+                      <p className="text-white font-semibold">Roberto Santos</p>
+                      <p className="text-gray-400 text-sm">Fundador, EcoStore</p>
                     </div>
                   </div>
                 </CardContent>

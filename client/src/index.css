@@ -358,17 +358,6 @@ html {
   transform: translateY(-8px) scale(1.02);
 }
 
-/* Enhanced navigation styles */
-.nav-container {
-  min-width: 320px;
-}
-
-@media (max-width: 1024px) {
-  .nav-container {
-    min-width: 768px;
-  }
-}
-
 /* Glow effect */
 .glow-purple {
   box-shadow: 0 0 20px rgba(139, 92, 246, 0.3);

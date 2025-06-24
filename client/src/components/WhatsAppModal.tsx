@@ -4,7 +4,8 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import { MessageSquare, Send, X } from "lucide-react";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { MessageSquare, Send, X, DollarSign } from "lucide-react";
 
 interface WhatsAppModalProps {
   trigger: React.ReactNode;
@@ -16,6 +17,7 @@ export function WhatsAppModal({ trigger }: WhatsAppModalProps) {
     nome: "",
     telefone: "",
     empresa: "",
+    faturamento: "",
     mensagem: ""
   });
 
@@ -29,6 +31,10 @@ export function WhatsAppModal({ trigger }: WhatsAppModalProps) {
         message += ` da empresa ${formData.empresa}`;
       }
       message += " e quero automatizar meu negócio com o MeuSuper.app";
+      
+      if (formData.faturamento) {
+        message += `. Faturamento mensal: ${formData.faturamento}`;
+      }
       
       if (formData.mensagem) {
         message += `. ${formData.mensagem}`;
@@ -65,7 +71,7 @@ export function WhatsAppModal({ trigger }: WhatsAppModalProps) {
             Falar com Especialista
           </DialogTitle>
           <DialogDescription className="text-gray-300">
-            Preencha os dados abaixo para uma conversa mais personalizada ou clique em "Falar Agora" para ir direto ao WhatsApp.
+            Para garantir que conseguimos te atender no momento certo, preencha os dados abaixo.
           </DialogDescription>
         </DialogHeader>
         
@@ -105,13 +111,33 @@ export function WhatsAppModal({ trigger }: WhatsAppModalProps) {
           </div>
           
           <div>
+            <Label className="text-gray-300 flex items-center gap-2">
+              <DollarSign className="h-4 w-4 text-orange-400" />
+              Faturamento mensal estimado
+            </Label>
+            <Select value={formData.faturamento} onValueChange={(value) => setFormData({ ...formData, faturamento: value })}>
+              <SelectTrigger className="bg-slate-800 border-purple-500/30 text-white">
+                <SelectValue placeholder="Selecione sua faixa de faturamento" />
+              </SelectTrigger>
+              <SelectContent className="bg-slate-800 border-purple-500/30">
+                <SelectItem value="abaixo-10k" className="text-white hover:bg-purple-500/20">Abaixo de R$10 mil</SelectItem>
+                <SelectItem value="10k-30k" className="text-white hover:bg-purple-500/20">Entre R$10 mil e R$30 mil</SelectItem>
+                <SelectItem value="acima-30k" className="text-white hover:bg-purple-500/20">Acima de R$30 mil</SelectItem>
+              </SelectContent>
+            </Select>
+            <p className="text-xs text-gray-400 mt-1">
+              Isso nos ajuda a priorizar seu atendimento e oferecer a melhor solução
+            </p>
+          </div>
+          
+          <div>
             <Label htmlFor="mensagem" className="text-gray-300">Mensagem (opcional)</Label>
             <Textarea
               id="mensagem"
               value={formData.mensagem}
               onChange={(e) => setFormData({ ...formData, mensagem: e.target.value })}
               className="bg-slate-800 border-purple-500/30 text-white min-h-[80px]"
-              placeholder="Conte um pouco sobre seu negócio..."
+              placeholder="Conte um pouco sobre seu negócio e principais desafios..."
             />
           </div>
           
