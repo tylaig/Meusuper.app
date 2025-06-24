@@ -59,31 +59,55 @@ export default function ModernHome() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Calculate rocket visibility - only show in hero section
+  // Calculate rocket flight effect
   const heroSectionHeight = typeof window !== 'undefined' ? window.innerHeight : 800;
-  const rocketOpacity = scrollY < heroSectionHeight * 0.7 ? Math.max(0.3, 1 - scrollY / (heroSectionHeight * 0.5)) : 0;
-  const rocketScale = Math.max(0.6, 1 - scrollY / heroSectionHeight);
   const scrollIndicatorOpacity = scrollY < 100 ? 1 : 0;
+  
+  // Rocket appears when scrolling starts and flies away
+  const rocketOpacity = scrollY > 50 && scrollY < 300 ? 1 : 0;
+  const rocketFlyAway = scrollY > 200;
+  const rocketPosition = rocketFlyAway ? {
+    x: scrollY * 2 - 400, // Flies to the right
+    y: -(scrollY - 200) * 1.5, // Flies up
+    rotation: 45 + (scrollY - 200) * 0.5, // Rotates as it flies
+    scale: Math.max(0.2, 1 - (scrollY - 200) / 200)
+  } : {
+    x: 0,
+    y: Math.sin(scrollY * 0.01) * 10,
+    rotation: Math.sin(scrollY * 0.005) * 5,
+    scale: 1
+  };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 text-white overflow-hidden relative">
       <ParticleBackground />
       
-      {/* Subtle Hero Rocket */}
+      {/* Flying Rocket Effect */}
       <div 
-        className="fixed right-8 md:right-16 top-1/3 z-20 transition-all duration-700 ease-out pointer-events-none"
+        className="fixed right-8 md:right-16 top-1/3 z-20 transition-all duration-500 ease-out pointer-events-none"
         style={{ 
-          opacity: rocketOpacity * 0.6,
-          transform: `translateY(${Math.sin(scrollY * 0.005) * 15}px) scale(${rocketScale * 0.8}) rotate(${Math.sin(scrollY * 0.002) * 3}deg)`
+          opacity: rocketOpacity,
+          transform: `translateX(${rocketPosition.x}px) translateY(${rocketPosition.y}px) scale(${rocketPosition.scale}) rotate(${rocketPosition.rotation}deg)`
         }}
       >
         <div className="relative">
-          <div className="text-5xl md:text-6xl lg:text-7xl animate-bounce-slow opacity-80">🚀</div>
+          <div className="text-4xl md:text-5xl lg:text-6xl">🚀</div>
           
-          {/* Subtle flame */}
-          <div className="absolute -bottom-6 left-1/2 transform -translate-x-1/2">
-            <div className="w-3 h-12 md:w-4 md:h-16 bg-gradient-to-t from-orange-400/50 via-yellow-400/30 to-transparent animate-pulse"></div>
+          {/* Flame trail */}
+          <div className="absolute -bottom-4 left-1/2 transform -translate-x-1/2">
+            <div className="w-2 h-8 md:w-3 md:h-12 bg-gradient-to-t from-orange-400/60 via-yellow-400/40 to-transparent animate-pulse"></div>
           </div>
+          
+          {/* Speed lines when flying */}
+          {rocketFlyAway && (
+            <div className="absolute top-1/2 left-0 transform -translate-y-1/2 -translate-x-full">
+              <div className="flex space-x-1">
+                <div className="w-6 h-1 bg-orange-400/60 animate-pulse"></div>
+                <div className="w-4 h-1 bg-yellow-400/40 animate-pulse" style={{animationDelay: '0.1s'}}></div>
+                <div className="w-3 h-1 bg-orange-300/30 animate-pulse" style={{animationDelay: '0.2s'}}></div>
+              </div>
+            </div>
+          )}
         </div>
       </div>
 
@@ -266,7 +290,7 @@ export default function ModernHome() {
         <div className="container mx-auto">
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-16">
-              <Badge className="mb-4 bg-red-500/20 text-red-300 border-red-500/30">
+              <Badge className="mb-4 bg-red-500/20 text-red-200 border-red-500/30">
                 <Target className="mr-2 h-3 w-3" />
                 Situação Atual
               </Badge>
@@ -328,7 +352,7 @@ export default function ModernHome() {
                   <h3 className="text-2xl font-bold text-white mb-4">
                     Se você se identificou com 2 ou mais problemas acima...
                   </h3>
-                  <p className="text-gray-200 mb-6">
+                  <p className="text-gray-100 mb-6">
                     Sua empresa está perdendo <span className="text-orange-400 font-bold">no mínimo R$ 10.000/mês</span> em vendas perdidas, 
                     tempo desperdiçado e oportunidades que vão para a concorrência.
                   </p>
@@ -356,7 +380,7 @@ export default function ModernHome() {
         <div className="container mx-auto">
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-16">
-              <Badge className="mb-4 bg-orange-500/20 text-orange-300 border-orange-500/30">
+              <Badge className="mb-4 bg-orange-500/20 text-orange-200 border-orange-500/30">
                 <TrendingUp className="mr-2 h-3 w-3" />
                 Consequências
               </Badge>
@@ -370,7 +394,7 @@ export default function ModernHome() {
                 <CardContent className="p-8">
                   <div className="text-4xl mb-4">📉</div>
                   <h3 className="text-xl font-bold text-white mb-4">Em 30 dias</h3>
-                  <p className="text-gray-200">
+                  <p className="text-gray-100">
                     <span className="text-red-400 font-bold">R$ 30.000+</span> em vendas perdidas para concorrentes que respondem mais rápido
                   </p>
                 </CardContent>
@@ -380,7 +404,7 @@ export default function ModernHome() {
                 <CardContent className="p-8">
                   <div className="text-4xl mb-4">😰</div>
                   <h3 className="text-xl font-bold text-white mb-4">Em 6 meses</h3>
-                  <p className="text-gray-200">
+                  <p className="text-gray-100">
                     Sua equipe <span className="text-orange-400 font-bold">esgotada</span> e você trabalhando fins de semana para "dar conta"
                   </p>
                 </CardContent>
@@ -390,7 +414,7 @@ export default function ModernHome() {
                 <CardContent className="p-8">
                   <div className="text-4xl mb-4">🏆</div>
                   <h3 className="text-xl font-bold text-white mb-4">Em 1 ano</h3>
-                  <p className="text-gray-200">
+                  <p className="text-gray-100">
                     Concorrentes dominando o mercado enquanto você ainda <span className="text-yellow-400 font-bold">responde WhatsApp manualmente</span>
                   </p>
                 </CardContent>
