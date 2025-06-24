@@ -6,7 +6,7 @@ import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import { Separator } from "@/components/ui/separator";
 import { ParticleBackground } from "@/components/ParticleBackground";
-import { WhatsAppModal } from "@/components/WhatsAppModal";
+// import { WhatsAppModal } from "@/components/WhatsAppModal";
 import { useToast } from "@/hooks/use-toast";
 import {
   Clock,
@@ -46,6 +46,9 @@ export default function ModernHome() {
   const [expandedFaq, setExpandedFaq] = useState<number | null>(null);
   const [scrollY, setScrollY] = useState(0);
   const [scrollIndicatorOpacity, setScrollIndicatorOpacity] = useState(1);
+  const [leadsPerDay, setLeadsPerDay] = useState(30);
+  const [averageTicket, setAverageTicket] = useState(2500);
+  const [conversionRate, setConversionRate] = useState(15);
   const [formData, setFormData] = useState<ContactForm>({
     nome: "",
     telefone: "",
@@ -61,24 +64,28 @@ export default function ModernHome() {
     mutationFn: async (data: ContactForm) => {
       const response = await fetch("/api/webhook", {
         method: "POST",
-        body: data,
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
       });
       return response;
     },
     onSuccess: () => {
       setShowSuccess(true);
+      setFormData({ nome: "", telefone: "", empresa: "", dor: "" });
       toast({
         title: "Mensagem enviada!",
-        description: "Em breve nossa equipe entrará em contato com você.",
+        description: "Nossa equipe entrará em contato em até 24 horas.",
       });
       
-      // Redirect to WhatsApp after 3 seconds
+      // Redirect to WhatsApp after 2 seconds
       setTimeout(() => {
         const message = encodeURIComponent(
-          `Olá! Acabei de preencher o formulário no site do MeuSuper.app. Faturamento: ${formData.faturamento}. Empresa: ${formData.empresa || 'não informado'}. Principal dor: ${formData.dor}`
+          `Olá! Acabei de preencher o formulário no site do MeuSuper.app e gostaria de saber mais sobre os agentes de IA.`
         );
         window.open(`https://wa.me/5511999999999?text=${message}`, '_blank');
-      }, 3000);
+      }, 2000);
     },
     onError: (error) => {
       toast({
@@ -172,15 +179,16 @@ export default function ModernHome() {
               ))}
             </nav>
 
-            <WhatsAppModal
-              trigger={
-                <Button className="hidden sm:inline-flex bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white shadow-lg shadow-orange-500/30 hover:shadow-orange-500/50 transition-all duration-300 text-sm px-4 py-2">
-                  <MessageSquare className="mr-2 h-3 w-3" />
-                  <span className="hidden md:inline">Falar com especialista</span>
-                  <span className="md:hidden">WhatsApp</span>
-                </Button>
-              }
-            />
+            <button 
+              onClick={() => {
+                document.getElementById('formulario-contato')?.scrollIntoView({ behavior: 'smooth' });
+              }}
+              className="hidden sm:inline-flex bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white shadow-lg shadow-orange-500/30 hover:shadow-orange-500/50 transition-all duration-300 text-sm px-4 py-2 rounded-lg items-center"
+            >
+              <MessageSquare className="mr-2 h-3 w-3" />
+              <span className="hidden md:inline">Falar com especialista</span>
+              <span className="md:hidden">Contato</span>
+            </button>
 
             <button 
               className="lg:hidden text-white p-2"
@@ -214,14 +222,16 @@ export default function ModernHome() {
                     </button>
                   ))}
                   <div className="pt-2">
-                    <WhatsAppModal
-                      trigger={
-                        <Button className="w-full bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white shadow-lg shadow-orange-500/30 text-sm">
-                          <MessageSquare className="mr-2 h-4 w-4" />
-                          Falar com especialista no WhatsApp
-                        </Button>
-                      }
-                    />
+                    <button 
+                      onClick={() => {
+                        document.getElementById('formulario-contato')?.scrollIntoView({ behavior: 'smooth' });
+                        setIsMobileMenuOpen(false);
+                      }}
+                      className="w-full bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white shadow-lg shadow-orange-500/30 text-sm px-4 py-3 rounded-lg flex items-center justify-center"
+                    >
+                      <MessageSquare className="mr-2 h-4 w-4" />
+                      Falar com especialista
+                    </button>
                   </div>
                 </nav>
               </div>
@@ -252,18 +262,16 @@ export default function ModernHome() {
             </p>
 
             <div className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-16">
-              <WhatsAppModal
-                trigger={
-                  <Button 
-                    size="lg" 
-                    className="bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white font-bold px-8 py-4 text-lg shadow-lg shadow-green-500/30 hover:shadow-green-500/50 transition-all duration-300"
-                  >
-                    <MessageSquare className="mr-2 h-5 w-5" />
-                    Parar de perder vendas agora
-                    <ArrowRight className="ml-2 h-5 w-5" />
-                  </Button>
-                }
-              />
+              <button 
+                onClick={() => {
+                  document.getElementById('formulario-contato')?.scrollIntoView({ behavior: 'smooth' });
+                }}
+                className="bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white font-bold px-8 py-4 text-lg shadow-lg shadow-orange-500/30 hover:shadow-orange-500/50 transition-all duration-300 rounded-lg flex items-center"
+              >
+                <MessageSquare className="mr-2 h-5 w-5" />
+                Parar de perder vendas agora
+                <ArrowRight className="ml-2 h-5 w-5" />
+              </button>
               
               <button 
                 onClick={() => scrollToSection('calculadora')}
@@ -593,19 +601,165 @@ export default function ModernHome() {
                 </div>
 
                 <div className="mt-8">
-                  <WhatsAppModal
-                    trigger={
-                      <Button 
-                        size="lg" 
-                        className="w-full bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white font-bold py-4 shadow-lg shadow-green-500/30 hover:shadow-green-500/50 transition-all duration-300 hover:scale-105"
-                      >
-                        <MessageSquare className="mr-2 h-5 w-5" />
-                        Quero escalar meu atendimento com IA
-                        <ArrowRight className="ml-2 h-5 w-5" />
-                      </Button>
-                    }
-                  />
+                  <button 
+                    onClick={() => {
+                      document.getElementById('formulario-contato')?.scrollIntoView({ behavior: 'smooth' });
+                    }}
+                    className="w-full bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white font-bold py-4 shadow-lg shadow-orange-500/30 hover:shadow-orange-500/50 transition-all duration-300 hover:scale-105 rounded-lg flex items-center justify-center"
+                  >
+                    <MessageSquare className="mr-2 h-5 w-5" />
+                    Quero escalar meu atendimento com IA
+                    <ArrowRight className="ml-2 h-5 w-5" />
+                  </button>
                 </div>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </section>
+
+      {/* Formulário de Contato */}
+      <section id="formulario-contato" className="py-20 px-4 sm:px-6 bg-gradient-to-br from-purple-900/30 to-orange-900/30 relative z-10">
+        <div className="container mx-auto">
+          <div className="max-w-4xl mx-auto">
+            <div className="text-center mb-12">
+              <Badge className="mb-4 bg-orange-500/20 text-orange-200 border-orange-500/30">
+                <MessageSquare className="mr-2 h-3 w-3" />
+                Análise Gratuita
+              </Badge>
+              <h2 className="text-3xl md:text-5xl font-bold text-white-strong mb-6">
+                Receba uma <span className="text-orange-highlight">análise personalizada</span> do seu negócio
+              </h2>
+              <p className="text-xl text-medium-contrast max-w-3xl mx-auto">
+                Em menos de 2 minutos, nossa equipe analisará seu atendimento atual e mostrará <span className="text-solution-purple font-bold">como automatizar suas vendas</span>
+              </p>
+            </div>
+
+            <Card className="glass-card neon-border">
+              <CardContent className="p-8">
+                <form onSubmit={handleSubmit} className="space-y-6">
+                  <div className="grid md:grid-cols-2 gap-6">
+                    <div>
+                      <label className="block text-white-strong font-medium mb-2">
+                        Seu nome *
+                      </label>
+                      <input
+                        type="text"
+                        value={formData.nome}
+                        onChange={(e) => setFormData({ ...formData, nome: e.target.value })}
+                        className="w-full px-4 py-3 bg-slate-800 border border-purple-500/30 rounded-lg text-white focus:border-orange-400 focus:outline-none transition-colors"
+                        placeholder="Como podemos te chamar?"
+                        required
+                      />
+                    </div>
+                    
+                    <div>
+                      <label className="block text-white-strong font-medium mb-2">
+                        WhatsApp *
+                      </label>
+                      <input
+                        type="tel"
+                        value={formData.telefone}
+                        onChange={(e) => setFormData({ ...formData, telefone: e.target.value })}
+                        className="w-full px-4 py-3 bg-slate-800 border border-purple-500/30 rounded-lg text-white focus:border-orange-400 focus:outline-none transition-colors"
+                        placeholder="(11) 99999-9999"
+                        required
+                      />
+                    </div>
+                  </div>
+
+                  <div>
+                    <label className="block text-white-strong font-medium mb-2">
+                      Nome da sua empresa *
+                    </label>
+                    <input
+                      type="text"
+                      value={formData.empresa}
+                      onChange={(e) => setFormData({ ...formData, empresa: e.target.value })}
+                      className="w-full px-4 py-3 bg-slate-800 border border-purple-500/30 rounded-lg text-white focus:border-orange-400 focus:outline-none transition-colors"
+                      placeholder="Qual o nome do seu negócio?"
+                      required
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-white-strong font-medium mb-2">
+                      Maior dificuldade no atendimento *
+                    </label>
+                    <select
+                      value={formData.dor}
+                      onChange={(e) => setFormData({ ...formData, dor: e.target.value })}
+                      className="w-full px-4 py-3 bg-slate-800 border border-purple-500/30 rounded-lg text-white focus:border-orange-400 focus:outline-none transition-colors"
+                      required
+                    >
+                      <option value="">Selecione sua maior dificuldade</option>
+                      <option value="leads-perdidos">Leads que não respondem ou desistem</option>
+                      <option value="demora-resposta">Demoro muito para responder no WhatsApp</option>
+                      <option value="sem-equipe">Não tenho equipe para atender 24h</option>
+                      <option value="muitos-canais">Difícil gerenciar WhatsApp + Instagram + Email</option>
+                      <option value="sem-follow-up">Perco vendas por falta de follow-up</option>
+                      <option value="processo-manual">Tudo muito manual, não escala</option>
+                    </select>
+                  </div>
+
+                  <div className="bg-gradient-to-r from-orange-900/20 to-purple-900/20 p-6 rounded-lg border border-orange-500/20">
+                    <h4 className="text-lg font-bold text-white-strong mb-3">
+                      🎁 O que você vai receber GRÁTIS:
+                    </h4>
+                    <div className="grid md:grid-cols-2 gap-3 text-sm">
+                      <div className="flex items-center">
+                        <CheckCircle className="h-4 w-4 text-solution-purple mr-2" />
+                        <span className="text-medium-contrast">Análise do seu atendimento atual</span>
+                      </div>
+                      <div className="flex items-center">
+                        <CheckCircle className="h-4 w-4 text-solution-purple mr-2" />
+                        <span className="text-medium-contrast">Cálculo de vendas perdidas</span>
+                      </div>
+                      <div className="flex items-center">
+                        <CheckCircle className="h-4 w-4 text-solution-purple mr-2" />
+                        <span className="text-medium-contrast">Plano personalizado de automação</span>
+                      </div>
+                      <div className="flex items-center">
+                        <CheckCircle className="h-4 w-4 text-solution-purple mr-2" />
+                        <span className="text-medium-contrast">Demonstração do agente IA</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <button
+                    type="submit"
+                    disabled={contactMutation.isPending}
+                    className="w-full bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white font-bold py-4 px-8 rounded-lg text-lg transition-all duration-300 hover:scale-105 shadow-lg shadow-orange-500/30 hover:shadow-orange-500/50 disabled:opacity-50 disabled:cursor-not-allowed"
+                  >
+                    {contactMutation.isPending ? (
+                      <div className="flex items-center justify-center">
+                        <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white mr-2"></div>
+                        Enviando...
+                      </div>
+                    ) : (
+                      <div className="flex items-center justify-center">
+                        <MessageSquare className="mr-2 h-5 w-5" />
+                        Quero minha análise gratuita agora
+                        <ArrowRight className="ml-2 h-5 w-5" />
+                      </div>
+                    )}
+                  </button>
+
+                  <p className="text-center text-medium-contrast text-sm">
+                    ✅ Sem compromisso • ✅ Análise em 24h • ✅ 100% gratuito
+                  </p>
+                </form>
+
+                {showSuccess && (
+                  <div className="mt-6 p-4 bg-green-900/20 border border-green-500/30 rounded-lg">
+                    <div className="flex items-center">
+                      <CheckCircle className="h-5 w-5 text-green-400 mr-2" />
+                      <span className="text-green-200 font-medium">
+                        Obrigado! Nossa equipe entrará em contato em até 24 horas.
+                      </span>
+                    </div>
+                  </div>
+                )}
               </CardContent>
             </Card>
           </div>
@@ -1017,18 +1171,16 @@ export default function ModernHome() {
                     Cada estágio é cuidadosamente planejado para maximizar seus resultados. 
                     Nossos agentes de IA evoluem junto com seu negócio, sempre um passo à frente.
                   </p>
-                  <WhatsAppModal
-                    trigger={
-                      <Button 
-                        size="lg" 
-                        className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white"
-                      >
-                        <TrendingUp className="mr-2 h-5 w-5" />
-                        Quero ver meu plano de crescimento
-                        <ArrowRight className="ml-2 h-5 w-5" />
-                      </Button>
-                    }
-                  />
+                  <button 
+                    onClick={() => {
+                      document.getElementById('formulario-contato')?.scrollIntoView({ behavior: 'smooth' });
+                    }}
+                    className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white px-6 py-3 rounded-lg font-medium flex items-center justify-center"
+                  >
+                    <TrendingUp className="mr-2 h-5 w-5" />
+                    Quero ver meu plano de crescimento
+                    <ArrowRight className="ml-2 h-5 w-5" />
+                  </button>
                 </CardContent>
               </Card>
             </div>
@@ -1177,13 +1329,16 @@ export default function ModernHome() {
             </div>
 
             <div className="text-center">
-              <WhatsAppModal trigger={
-                <Button size="lg" className="bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white-strong px-12 py-6 text-xl font-bold shadow-lg shadow-green-500/30 hover:shadow-green-500/50 transition-all duration-300 transform hover:scale-105">
-                  <MessageSquare className="mr-3 h-6 w-6" />
-                  Quero essa transformação agora
-                  <ArrowRight className="ml-3 h-6 w-6" />
-                </Button>
-              } />
+              <button 
+                onClick={() => {
+                  document.getElementById('formulario-contato')?.scrollIntoView({ behavior: 'smooth' });
+                }}
+                className="bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white px-12 py-6 text-xl font-bold shadow-lg shadow-orange-500/30 hover:shadow-orange-500/50 transition-all duration-300 transform hover:scale-105 rounded-lg flex items-center justify-center mx-auto"
+              >
+                <MessageSquare className="mr-3 h-6 w-6" />
+                Quero essa transformação agora
+                <ArrowRight className="ml-3 h-6 w-6" />
+              </button>
               
               <p className="text-medium-contrast mt-6 max-w-2xl mx-auto">
                 <span className="text-solution-purple font-bold">✅ Análise gratuita</span> • 

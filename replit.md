@@ -95,6 +95,9 @@ The application uses Drizzle ORM with a PostgreSQL-ready schema:
 ## Recent Changes
 
 - June 24, 2025: Major layout and copy improvements focused on brutal pain points
+  - **Direct contact form**: Removed popup modal, added main contact form on page with lead qualification
+  - **Multiple CTAs**: All buttons now scroll to contact form instead of opening modal
+  - **Cleaner layout**: Removed WhatsApp modal dependency, streamlined user flow
   - **SPIN selling implementation**: Reorganized page flow - Situation, Problem, Implication, Need-payoff
   - **Enhanced calculator**: Better inputs for lead volume, ticket size, response time, time investment
   - **Removed "Nossa Promessa"**: Eliminated unrealistic guarantee section as requested
