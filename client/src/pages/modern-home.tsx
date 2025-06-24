@@ -784,11 +784,11 @@ export default function ModernHome() {
 
                   <div className="mt-6 text-center">
                     <button 
-                      onClick={() => scrollToSection('resultados')}
+                      onClick={() => scrollToSection('garantia')}
                       className="text-orange-highlight hover:text-orange-300 font-medium flex items-center gap-2 transition-all duration-300 mx-auto"
                     >
-                      <Target className="h-4 w-4" />
-                      Ou ver casos de sucesso primeiro
+                      <Shield className="h-4 w-4" />
+                      Ver garantias e compromissos
                       <ArrowRight className="h-4 w-4" />
                     </button>
                   </div>
@@ -892,7 +892,171 @@ export default function ModernHome() {
         </div>
       </section>
 
-      {/* Depoimentos Expandidos */}
+      {/* Garantia */}
+      <section id="garantia" className="py-20 px-6 bg-gradient-to-br from-green-900/30 to-blue-900/30 relative z-10">
+        <div className="container mx-auto">
+          <div className="max-w-4xl mx-auto text-center">
+            <Badge className="mb-4 bg-purple-500/20 text-purple-200 border-purple-500/30">
+              <Shield className="mr-2 h-3 w-3" />
+              Compromisso com Resultados
+            </Badge>
+            <h2 className="text-3xl md:text-5xl font-bold text-white-strong mb-6">
+              Compromisso com <span className="text-solution-purple">Seus Resultados</span>
+            </h2>
+            
+            <div className="grid md:grid-cols-3 gap-8 mt-12">
+              <Card className="bg-slate-900/50 border-purple-500/20">
+                <CardContent className="p-6 text-center">
+                  <div className="w-16 h-16 bg-gradient-to-br from-purple-500 to-purple-600 rounded-full mx-auto mb-4 flex items-center justify-center">
+                    <CheckCircle className="h-8 w-8 text-white" />
+                  </div>
+                  <h3 className="text-lg font-bold text-white-strong mb-3">Implementação Garantida</h3>
+                  <p className="text-medium-contrast text-sm">
+                    <span className="text-solution-purple font-bold">Seu agente de IA funcionando perfeitamente em 15 dias</span> com todos os canais integrados
+                  </p>
+                </CardContent>
+              </Card>
+
+              <Card className="bg-slate-900/50 border-orange-500/20">
+                <CardContent className="p-6 text-center">
+                  <div className="w-16 h-16 bg-gradient-to-br from-orange-500 to-orange-600 rounded-full mx-auto mb-4 flex items-center justify-center">
+                    <Users className="h-8 w-8 text-white" />
+                  </div>
+                  <h3 className="text-lg font-bold text-white-strong mb-3">Parceria até o Sucesso</h3>
+                  <p className="text-medium-contrast text-sm">
+                    <span className="text-pain-highlight font-bold">Ficamos com você até alcançar os resultados esperados</span> - suporte contínuo e otimizações
+                  </p>
+                </CardContent>
+              </Card>
+
+              <Card className="bg-slate-900/50 border-purple-500/20">
+                <CardContent className="p-6 text-center">
+                  <div className="w-16 h-16 bg-gradient-to-br from-purple-500 to-purple-600 rounded-full mx-auto mb-4 flex items-center justify-center">
+                    <TrendingUp className="h-8 w-8 text-white" />
+                  </div>
+                  <h3 className="text-lg font-bold text-white-strong mb-3">Compromisso de Performance</h3>
+                  <p className="text-medium-contrast text-sm">
+                    <span className="text-solution-purple font-bold">Monitoramento mensal e ajustes contínuos</span> até atingir o crescimento desejado
+                  </p>
+                </CardContent>
+              </Card>
+            </div>
+
+            <div className="text-center mt-12">
+              <button 
+                onClick={() => scrollToSection('transformacao')}
+                className="bg-gradient-to-r from-green-500 to-blue-500 hover:from-green-600 hover:to-blue-600 text-white font-bold px-8 py-4 text-lg shadow-lg shadow-green-500/30 hover:shadow-green-500/50 transition-all duration-300 rounded-lg flex items-center mx-auto"
+              >
+                <TrendingUp className="mr-2 h-5 w-5" />
+                Ver todos os benefícios da transformação
+                <ArrowRight className="ml-2 h-5 w-5" />
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Promessas da Transformação */}
+      <section id="transformacao" className="py-20 px-6 bg-gradient-to-br from-purple-900/50 to-orange-900/50 relative z-10">
+        <div className="container mx-auto">
+          <div className="max-w-6xl mx-auto">
+            <div className="text-center mb-16">
+              <Badge className="mb-4 bg-orange-500/20 text-orange-200 border-orange-500/30">
+                <Target className="mr-2 h-3 w-3" />
+                Transformação Completa
+              </Badge>
+              <h2 className="text-3xl md:text-5xl font-bold text-white-strong mb-6">
+                Do <span className="text-pain-highlight">caos manual</span> para uma <span className="text-solution-purple">operação enxuta</span> que trabalha por você
+              </h2>
+              <p className="text-xl text-medium-contrast mb-8 max-w-4xl mx-auto">
+                <span className="text-solution-purple font-bold">Triplicar vendas automatizando atendimentos, processos e canais</span> - 
+                sem depender de plataformas fechadas, sem precisar programar, com retorno em poucos meses
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
+              <Card className="solution-card">
+                <CardContent className="p-6">
+                  <TrendingUp className="w-10 h-10 text-solution-purple mb-4" />
+                  <h3 className="text-lg font-bold text-white-strong mb-3">Vendas que funcionam sozinhas</h3>
+                  <p className="text-medium-contrast text-sm">
+                    <span className="text-solution-purple font-bold">Triplicar vendas no WhatsApp</span> com estrutura automatizada que responde leads em segundos, mesmo enquanto você dorme
+                  </p>
+                </CardContent>
+              </Card>
+
+              <Card className="solution-card">
+                <CardContent className="p-6">
+                  <Shield className="w-10 h-10 text-solution-purple mb-4" />
+                  <h3 className="text-lg font-bold text-white-strong mb-3">Plataforma própria em 30 dias</h3>
+                  <p className="text-medium-contrast text-sm">
+                    <span className="text-solution-purple font-bold">Comunicação conectando WhatsApp, Instagram, site e e-mail</span> - sem depender de ferramentas caras e limitadas
+                  </p>
+                </CardContent>
+              </Card>
+
+              <Card className="solution-card">
+                <CardContent className="p-6">
+                  <Bot className="w-10 h-10 text-solution-purple mb-4" />
+                  <h3 className="text-lg font-bold text-white-strong mb-3">Agente IA 24/7</h3>
+                  <p className="text-medium-contrast text-sm">
+                    <span className="text-solution-purple font-bold">Inteligência artificial própria</span> capaz de responder dúvidas, agendar reuniões e fechar vendas automaticamente
+                  </p>
+                </CardContent>
+              </Card>
+
+              <Card className="solution-card">
+                <CardContent className="p-6">
+                  <Users className="w-10 h-10 text-solution-purple mb-4" />
+                  <h3 className="text-lg font-bold text-white-strong mb-3">Redução de 90% no suporte</h3>
+                  <p className="text-medium-contrast text-sm">
+                    <span className="text-solution-purple font-bold">Automação que reduz mensagens repetitivas</span> com respostas personalizadas, sem precisar de equipe
+                  </p>
+                </CardContent>
+              </Card>
+
+              <Card className="solution-card">
+                <CardContent className="p-6">
+                  <CheckCircle className="w-10 h-10 text-solution-purple mb-4" />
+                  <h3 className="text-lg font-bold text-white-strong mb-3">Nunca mais perca leads</h3>
+                  <p className="text-medium-contrast text-sm">
+                    <span className="text-solution-purple font-bold">Funil inteligente com mensagens automáticas</span> quando cliente está pronto para comprar
+                  </p>
+                </CardContent>
+              </Card>
+
+              <Card className="solution-card">
+                <CardContent className="p-6">
+                  <Award className="w-10 h-10 text-solution-purple mb-4" />
+                  <h3 className="text-lg font-bold text-white-strong mb-3">Custo operacional -70%</h3>
+                  <p className="text-medium-contrast text-sm">
+                    <span className="text-solution-purple font-bold">Substituir tarefas manuais por fluxos automáticos</span> inteligentes, sem depender de agências
+                  </p>
+                </CardContent>
+              </Card>
+            </div>
+
+            <div className="text-center">
+              <button 
+                onClick={() => scrollToSection('resultados')}
+                className="bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white px-12 py-6 text-xl font-bold shadow-lg shadow-orange-500/30 hover:shadow-orange-500/50 transition-all duration-300 transform hover:scale-105 rounded-lg flex items-center justify-center mx-auto"
+              >
+                <Target className="mr-3 h-6 w-6" />
+                Ver casos de sucesso reais
+                <ArrowRight className="ml-3 h-6 w-6" />
+              </button>
+              
+              <p className="text-medium-contrast mt-6 max-w-2xl mx-auto">
+                <span className="text-solution-purple font-bold">✅ Análise gratuita</span> • 
+                <span className="text-solution-purple font-bold">✅ Implementação em 15 dias</span> • 
+                <span className="text-solution-purple font-bold">✅ Garantia de satisfação</span>
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Depoimentos Expandidos - Movido para cá */}
       <section id="resultados" className="py-20 px-6 relative z-10">
         <div className="container mx-auto">
           <div className="max-w-6xl mx-auto">
@@ -1074,165 +1238,9 @@ export default function ModernHome() {
         </div>
       </section>
 
-      {/* Garantia */}
-      <section className="py-20 px-6 bg-gradient-to-br from-green-900/30 to-blue-900/30 relative z-10">
-        <div className="container mx-auto">
-          <div className="max-w-4xl mx-auto text-center">
-            <Badge className="mb-4 bg-purple-500/20 text-purple-200 border-purple-500/30">
-              <Shield className="mr-2 h-3 w-3" />
-              Compromisso com Resultados
-            </Badge>
-            <h2 className="text-3xl md:text-5xl font-bold text-white-strong mb-6">
-              Compromisso com <span className="text-solution-purple">Seus Resultados</span>
-            </h2>
-            
-            <div className="grid md:grid-cols-3 gap-8 mt-12">
-              <Card className="bg-slate-900/50 border-purple-500/20">
-                <CardContent className="p-6 text-center">
-                  <div className="w-16 h-16 bg-gradient-to-br from-purple-500 to-purple-600 rounded-full mx-auto mb-4 flex items-center justify-center">
-                    <CheckCircle className="h-8 w-8 text-white" />
-                  </div>
-                  <h3 className="text-lg font-bold text-white-strong mb-3">Implementação Garantida</h3>
-                  <p className="text-medium-contrast text-sm">
-                    <span className="text-solution-purple font-bold">Seu agente de IA funcionando perfeitamente em 15 dias</span> com todos os canais integrados
-                  </p>
-                </CardContent>
-              </Card>
-
-              <Card className="bg-slate-900/50 border-orange-500/20">
-                <CardContent className="p-6 text-center">
-                  <div className="w-16 h-16 bg-gradient-to-br from-orange-500 to-orange-600 rounded-full mx-auto mb-4 flex items-center justify-center">
-                    <Users className="h-8 w-8 text-white" />
-                  </div>
-                  <h3 className="text-lg font-bold text-white-strong mb-3">Parceria até o Sucesso</h3>
-                  <p className="text-medium-contrast text-sm">
-                    <span className="text-pain-highlight font-bold">Ficamos com você até alcançar os resultados esperados</span> - suporte contínuo e otimizações
-                  </p>
-                </CardContent>
-              </Card>
-
-              <Card className="bg-slate-900/50 border-purple-500/20">
-                <CardContent className="p-6 text-center">
-                  <div className="w-16 h-16 bg-gradient-to-br from-purple-500 to-purple-600 rounded-full mx-auto mb-4 flex items-center justify-center">
-                    <TrendingUp className="h-8 w-8 text-white" />
-                  </div>
-                  <h3 className="text-lg font-bold text-white-strong mb-3">Compromisso de Performance</h3>
-                  <p className="text-medium-contrast text-sm">
-                    <span className="text-solution-purple font-bold">Monitoramento mensal e ajustes contínuos</span> até atingir o crescimento desejado
-                  </p>
-                </CardContent>
-              </Card>
-            </div>
 
 
-          </div>
-        </div>
-      </section>
-
-      {/* Plano de Crescimento */}
-      <section className="py-20 px-6 bg-gradient-to-br from-blue-900/30 to-purple-900/30 relative z-10">
-        <div className="container mx-auto">
-          <div className="max-w-6xl mx-auto">
-            <div className="text-center mb-16">
-              <Badge className="mb-4 bg-blue-500/20 text-blue-200 border-blue-500/30">
-                <TrendingUp className="mr-2 h-3 w-3" />
-                Plano de Crescimento
-              </Badge>
-              <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">
-                Seu negócio em <span className="text-blue-400">3 estágios</span> de evolução
-              </h2>
-              <p className="text-xl text-gray-200 max-w-3xl mx-auto">
-                Como nossos agentes de IA crescem junto com seu negócio
-              </p>
-            </div>
-
-            <div className="grid md:grid-cols-3 gap-8">
-              <Card className="bg-slate-900/50 border-blue-500/20 relative">
-                <div className="absolute -top-4 left-6">
-                  <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full flex items-center justify-center text-white font-bold text-sm">1</div>
-                </div>
-                <CardContent className="p-6 pt-8">
-                  <h3 className="text-xl font-bold text-white mb-4">Estágio Inicial (0-30 dias)</h3>
-                  <ul className="text-gray-200 space-y-2 text-sm">
-                    <li>• Implementação dos agentes de IA</li>
-                    <li>• Conexão com 2-3 canais principais</li>
-                    <li>• Automação de respostas básicas</li>
-                    <li>• Qualificação simples de leads</li>
-                    <li>• Integração com seu CRM</li>
-                  </ul>
-                  <div className="mt-4 p-3 bg-blue-900/30 rounded">
-                    <p className="text-blue-300 text-sm font-semibold">Meta: +50% velocidade de resposta</p>
-                  </div>
-                </CardContent>
-              </Card>
-
-              <Card className="bg-slate-900/50 border-purple-500/20 relative">
-                <div className="absolute -top-4 left-6">
-                  <div className="w-8 h-8 bg-gradient-to-br from-purple-500 to-purple-600 rounded-full flex items-center justify-center text-white font-bold text-sm">2</div>
-                </div>
-                <CardContent className="p-6 pt-8">
-                  <h3 className="text-xl font-bold text-white mb-4">Estágio Crescimento (30-90 dias)</h3>
-                  <ul className="text-gray-200 space-y-2 text-sm">
-                    <li>• Expansão para todos os canais</li>
-                    <li>• Sequências de nutrição avançadas</li>
-                    <li>• Agendamento automático de reuniões</li>
-                    <li>• Upsell e cross-sell inteligente</li>
-                    <li>• Relatórios de performance detalhados</li>
-                  </ul>
-                  <div className="mt-4 p-3 bg-purple-900/30 rounded">
-                    <p className="text-purple-300 text-sm font-semibold">Meta: +200% conversão de leads</p>
-                  </div>
-                </CardContent>
-              </Card>
-
-              <Card className="bg-slate-900/50 border-orange-500/20 relative">
-                <div className="absolute -top-4 left-6">
-                  <div className="w-8 h-8 bg-gradient-to-br from-orange-500 to-orange-600 rounded-full flex items-center justify-center text-white font-bold text-sm">3</div>
-                </div>
-                <CardContent className="p-6 pt-8">
-                  <h3 className="text-xl font-bold text-white mb-4">Estágio Escala (90+ dias)</h3>
-                  <ul className="text-gray-200 space-y-2 text-sm">
-                    <li>• IA preditiva para comportamentos</li>
-                    <li>• Personalização total por cliente</li>
-                    <li>• Automação completa do funil</li>
-                    <li>• Integração com ferramentas avançadas</li>
-                    <li>• Otimização contínua com machine learning</li>
-                  </ul>
-                  <div className="mt-4 p-3 bg-orange-900/30 rounded">
-                    <p className="text-orange-300 text-sm font-semibold">Meta: Negócio 100% escalável</p>
-                  </div>
-                </CardContent>
-              </Card>
-            </div>
-
-            <div className="text-center mt-12">
-              <Card className="bg-gradient-to-r from-blue-900/50 to-purple-900/50 border-blue-500/20 max-w-2xl mx-auto">
-                <CardContent className="p-8">
-                  <h3 className="text-2xl font-bold text-white mb-4">
-                    🚀 Evolução Garantida
-                  </h3>
-                  <p className="text-gray-100 mb-6">
-                    Cada estágio é cuidadosamente planejado para maximizar seus resultados. 
-                    Nossos agentes de IA evoluem junto com seu negócio, sempre um passo à frente.
-                  </p>
-                  <button 
-                    onClick={() => {
-                      document.getElementById('formulario-contato')?.scrollIntoView({ behavior: 'smooth' });
-                    }}
-                    className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white px-6 py-3 rounded-lg font-medium flex items-center justify-center"
-                  >
-                    <TrendingUp className="mr-2 h-5 w-5" />
-                    Quero ver meu plano de crescimento
-                    <ArrowRight className="ml-2 h-5 w-5" />
-                  </button>
-                </CardContent>
-              </Card>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* FAQ */}
+      {/* FAQ - Movido para antes do footer */}
       <section id="faq" className="py-20 px-6 bg-slate-800/30 relative z-10">
         <div className="container mx-auto">
           <div className="max-w-4xl mx-auto">
@@ -1243,6 +1251,9 @@ export default function ModernHome() {
               <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
                 Perguntas frequentes
               </h2>
+              <p className="text-xl text-gray-200 max-w-3xl mx-auto">
+                Tire suas últimas dúvidas antes de começar sua transformação digital
+              </p>
             </div>
 
             <div className="space-y-4">
@@ -1288,107 +1299,19 @@ export default function ModernHome() {
                 </Card>
               ))}
             </div>
-          </div>
-        </div>
-      </section>
 
-      {/* Promessas da Transformação */}
-      <section className="py-20 px-6 bg-gradient-to-br from-purple-900/50 to-orange-900/50 relative z-10">
-        <div className="container mx-auto">
-          <div className="max-w-6xl mx-auto">
-            <div className="text-center mb-16">
-              <Badge className="mb-4 bg-orange-500/20 text-orange-200 border-orange-500/30">
-                <Target className="mr-2 h-3 w-3" />
-                Transformação Completa
-              </Badge>
-              <h2 className="text-3xl md:text-5xl font-bold text-white-strong mb-6">
-                Do <span className="text-pain-highlight">caos manual</span> para uma <span className="text-solution-purple">operação enxuta</span> que trabalha por você
-              </h2>
-              <p className="text-xl text-medium-contrast mb-8 max-w-4xl mx-auto">
-                <span className="text-solution-purple font-bold">Triplicar vendas automatizando atendimentos, processos e canais</span> - 
-                sem depender de plataformas fechadas, sem precisar programar, com retorno em poucos meses
+            <div className="text-center mt-12">
+              <p className="text-gray-300 mb-6">
+                Ainda tem dúvidas? Nossa equipe está pronta para ajudar.
               </p>
-            </div>
-
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
-              <Card className="solution-card">
-                <CardContent className="p-6">
-                  <TrendingUp className="w-10 h-10 text-solution-purple mb-4" />
-                  <h3 className="text-lg font-bold text-white-strong mb-3">Vendas que funcionam sozinhas</h3>
-                  <p className="text-medium-contrast text-sm">
-                    <span className="text-solution-purple font-bold">Triplicar vendas no WhatsApp</span> com estrutura automatizada que responde leads em segundos, mesmo enquanto você dorme
-                  </p>
-                </CardContent>
-              </Card>
-
-              <Card className="solution-card">
-                <CardContent className="p-6">
-                  <Shield className="w-10 h-10 text-solution-purple mb-4" />
-                  <h3 className="text-lg font-bold text-white-strong mb-3">Plataforma própria em 30 dias</h3>
-                  <p className="text-medium-contrast text-sm">
-                    <span className="text-solution-purple font-bold">Comunicação conectando WhatsApp, Instagram, site e e-mail</span> - sem depender de ferramentas caras e limitadas
-                  </p>
-                </CardContent>
-              </Card>
-
-              <Card className="solution-card">
-                <CardContent className="p-6">
-                  <Bot className="w-10 h-10 text-solution-purple mb-4" />
-                  <h3 className="text-lg font-bold text-white-strong mb-3">Agente IA 24/7</h3>
-                  <p className="text-medium-contrast text-sm">
-                    <span className="text-solution-purple font-bold">Inteligência artificial própria</span> capaz de responder dúvidas, agendar reuniões e recuperar vendas automaticamente
-                  </p>
-                </CardContent>
-              </Card>
-
-              <Card className="solution-card">
-                <CardContent className="p-6">
-                  <Users className="w-10 h-10 text-solution-purple mb-4" />
-                  <h3 className="text-lg font-bold text-white-strong mb-3">Redução de 90% no suporte</h3>
-                  <p className="text-medium-contrast text-sm">
-                    <span className="text-solution-purple font-bold">Automação que reduz mensagens repetitivas</span> com respostas personalizadas, sem precisar de equipe
-                  </p>
-                </CardContent>
-              </Card>
-
-              <Card className="solution-card">
-                <CardContent className="p-6">
-                  <CheckCircle className="w-10 h-10 text-solution-purple mb-4" />
-                  <h3 className="text-lg font-bold text-white-strong mb-3">Nunca mais perca leads</h3>
-                  <p className="text-medium-contrast text-sm">
-                    <span className="text-solution-purple font-bold">Funil inteligente com mensagens automáticas</span> quando cliente está pronto para comprar
-                  </p>
-                </CardContent>
-              </Card>
-
-              <Card className="solution-card">
-                <CardContent className="p-6">
-                  <Award className="w-10 h-10 text-solution-purple mb-4" />
-                  <h3 className="text-lg font-bold text-white-strong mb-3">Custo operacional -70%</h3>
-                  <p className="text-medium-contrast text-sm">
-                    <span className="text-solution-purple font-bold">Substituir tarefas manuais por fluxos automáticos</span> inteligentes, sem depender de agências
-                  </p>
-                </CardContent>
-              </Card>
-            </div>
-
-            <div className="text-center">
               <button 
-                onClick={() => {
-                  document.getElementById('formulario-contato')?.scrollIntoView({ behavior: 'smooth' });
-                }}
-                className="bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white px-12 py-6 text-xl font-bold shadow-lg shadow-orange-500/30 hover:shadow-orange-500/50 transition-all duration-300 transform hover:scale-105 rounded-lg flex items-center justify-center mx-auto"
+                onClick={() => scrollToSection('formulario-contato')}
+                className="bg-gradient-to-r from-purple-500 to-orange-500 hover:from-purple-600 hover:to-orange-600 text-white font-bold px-8 py-4 text-lg shadow-lg shadow-purple-500/30 hover:shadow-purple-500/50 transition-all duration-300 rounded-lg flex items-center mx-auto"
               >
-                <MessageSquare className="mr-3 h-6 w-6" />
-                Quero essa transformação agora
-                <ArrowRight className="ml-3 h-6 w-6" />
+                <MessageSquare className="mr-2 h-5 w-5" />
+                Falar com especialista agora
+                <ArrowRight className="ml-2 h-5 w-5" />
               </button>
-              
-              <p className="text-medium-contrast mt-6 max-w-2xl mx-auto">
-                <span className="text-solution-purple font-bold">✅ Análise gratuita</span> • 
-                <span className="text-solution-purple font-bold">✅ Implementação em 15 dias</span> • 
-                <span className="text-solution-purple font-bold">✅ Garantia de satisfação</span>
-              </p>
             </div>
           </div>
         </div>
