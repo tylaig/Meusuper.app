@@ -202,54 +202,189 @@ export default function ModernHome() {
             </Badge>
             
             <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-white mb-6 md:mb-8 leading-tight">
-              Transforme seu atendimento com <span className="bg-gradient-to-r from-orange-400 to-yellow-400 bg-clip-text text-transparent">IA</span> e aumente suas vendas todos os dias
+              Você está perdendo <span className="bg-gradient-to-r from-red-400 to-orange-400 bg-clip-text text-transparent">clientes</span> enquanto dorme?
             </h1>
             
             <p className="text-lg sm:text-xl md:text-2xl text-gray-200 mb-8 md:mb-12 max-w-3xl mx-auto leading-relaxed">
-              Bots inteligentes, integrações personalizadas e automações que trabalham por você 
-              <span className="text-orange-400 font-semibold"> 24/7 — sem precisar programar nada</span>
+              Se seu negócio para quando você para, você está deixando <span className="text-orange-400 font-semibold">milhares de reais</span> na mesa. 
+              Descubra como empresários inteligentes estão automatizando vendas e atendimento para lucrar 24/7.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 md:gap-6 justify-center mb-16">
               <Button 
                 size="lg" 
-                className="bg-gradient-to-r from-purple-600 to-purple-700 hover:from-purple-700 hover:to-purple-800 text-white px-6 md:px-8 py-4 text-base md:text-lg"
+                className="bg-gradient-to-r from-orange-600 to-red-600 hover:from-orange-700 hover:to-red-700 text-white px-6 md:px-8 py-4 text-base md:text-lg"
                 onClick={() => scrollToSection('contato')}
               >
                 <Bot className="mr-2 h-4 md:h-5 w-4 md:w-5" />
-                Quero automatizar agora
+                Descobrir quanto estou perdendo
                 <ArrowRight className="ml-2 h-4 md:h-5 w-4 md:w-5" />
               </Button>
               
               <Button 
                 size="lg" 
                 variant="outline" 
-                className="border-purple-400 text-purple-400 hover:bg-purple-400 hover:text-white px-6 md:px-8 py-4 text-base md:text-lg"
-                onClick={() => scrollToSection('servicos')}
+                className="border-orange-400 text-orange-400 hover:bg-orange-400 hover:text-white px-6 md:px-8 py-4 text-base md:text-lg"
+                onClick={() => scrollToSection('problemas')}
               >
                 <Globe className="mr-2 h-4 md:h-5 w-4 md:w-5" />
-                Conhecer serviços
+                Ver se é meu caso
               </Button>
             </div>
 
             {/* Stats */}
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-8 max-w-4xl mx-auto">
               <div className="text-center">
-                <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-2">100+</div>
-                <div className="text-gray-400 text-sm md:text-base">Projetos Entregues</div>
+                <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-2">🌎</div>
+                <div className="text-gray-200 text-sm md:text-base font-semibold">Brasil e Dubai</div>
               </div>
               <div className="text-center">
-                <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-2">50+</div>
-                <div className="text-gray-400 text-sm md:text-base">Clientes Satisfeitos</div>
+                <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-orange-400 mb-2">97%</div>
+                <div className="text-gray-200 text-sm md:text-base">Taxa de Satisfação</div>
               </div>
               <div className="text-center">
-                <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-2">24/7</div>
-                <div className="text-gray-400 text-sm md:text-base">Suporte Automatizado</div>
+                <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-yellow-400 mb-2">4.9⭐</div>
+                <div className="text-gray-200 text-sm md:text-base">Avaliação Média</div>
               </div>
               <div className="text-center">
-                <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-purple-400 mb-2">300%</div>
-                <div className="text-gray-400 text-sm md:text-base">Aumento em Vendas</div>
+                <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-purple-400 mb-2">24/7</div>
+                <div className="text-gray-200 text-sm md:text-base">Suporte Automatizado</div>
               </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Problemas (SPIN - Situation & Problem) */}
+      <section id="problemas" className="py-20 px-6 bg-red-900/20 relative z-10">
+        <div className="container mx-auto">
+          <div className="max-w-6xl mx-auto">
+            <div className="text-center mb-16">
+              <Badge className="mb-4 bg-red-500/20 text-red-300 border-red-500/30">
+                <Target className="mr-2 h-3 w-3" />
+                Situação Atual
+              </Badge>
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-6">
+                Estes problemas estão <span className="text-red-400">matando</span> seu negócio?
+              </h2>
+              <p className="text-lg md:text-xl text-gray-200 max-w-3xl mx-auto">
+                Identifique quantos desses cenários acontecem no seu negócio diariamente
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-2 gap-8">
+              {[
+                {
+                  icon: Clock,
+                  title: "Clientes esperando horas para serem atendidos",
+                  description: "Enquanto você dorme, almoça ou está ocupado, leads quentes esfriam e vão para a concorrência.",
+                  impact: "💸 Cada hora perdida = R$ 500-2.000 em vendas"
+                },
+                {
+                  icon: Users,
+                  title: "Equipe sobrecarregada respondendo sempre as mesmas coisas",
+                  description: "Seus funcionários gastam 70% do tempo com perguntas repetitivas em vez de vender.",
+                  impact: "⏰ 40h/semana perdidas por funcionário"
+                },
+                {
+                  icon: TrendingUp,
+                  title: "Leads não qualificados ocupando todo seu tempo",
+                  description: "Você atende curiosos e perde tempo que deveria usar com clientes prontos para comprar.",
+                  impact: "🎯 80% do seu tempo com quem não vai comprar"
+                },
+                {
+                  icon: MessageSquare,
+                  title: "Informações importantes se perdendo no WhatsApp",
+                  description: "Conversas importantes se perdem no meio de centenas de mensagens sem organização.",
+                  impact: "📊 Dados valiosos jogados fora todos os dias"
+                }
+              ].map((problema, index) => (
+                <Card key={index} className="bg-slate-900/70 border-red-500/30 hover:border-red-400/50 transition-all duration-300">
+                  <CardContent className="p-6">
+                    <div className="flex items-start space-x-4">
+                      <div className="w-12 h-12 bg-gradient-to-br from-red-500 to-red-600 rounded-xl flex items-center justify-center flex-shrink-0">
+                        <problema.icon className="h-6 w-6 text-white" />
+                      </div>
+                      <div className="flex-1">
+                        <h3 className="text-lg font-bold text-white mb-3">{problema.title}</h3>
+                        <p className="text-gray-200 mb-3 leading-relaxed">{problema.description}</p>
+                        <div className="text-orange-400 font-semibold text-sm">{problema.impact}</div>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+
+            <div className="text-center mt-12">
+              <Card className="bg-gradient-to-r from-red-900/50 to-orange-900/50 border-red-500/30 max-w-2xl mx-auto">
+                <CardContent className="p-8">
+                  <h3 className="text-2xl font-bold text-white mb-4">
+                    Se você se identificou com 2 ou mais problemas acima...
+                  </h3>
+                  <p className="text-gray-200 mb-6">
+                    Sua empresa está perdendo <span className="text-orange-400 font-bold">no mínimo R$ 10.000/mês</span> em vendas perdidas, 
+                    tempo desperdiçado e oportunidades que vão para a concorrência.
+                  </p>
+                  <Button 
+                    size="lg" 
+                    className="bg-gradient-to-r from-orange-600 to-red-600 hover:from-orange-700 hover:to-red-700 text-white"
+                    onClick={() => scrollToSection('solucao')}
+                  >
+                    <ArrowRight className="mr-2 h-5 w-5" />
+                    Quero ver a solução agora
+                  </Button>
+                </CardContent>
+              </Card>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Implicações (SPIN - Implication) */}
+      <section className="py-20 px-6 bg-slate-800/50 relative z-10">
+        <div className="container mx-auto">
+          <div className="max-w-6xl mx-auto">
+            <div className="text-center mb-16">
+              <Badge className="mb-4 bg-orange-500/20 text-orange-300 border-orange-500/30">
+                <TrendingUp className="mr-2 h-3 w-3" />
+                Consequências
+              </Badge>
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-6">
+                O que acontece se você <span className="text-orange-400">não resolver</span> isso agora?
+              </h2>
+            </div>
+
+            <div className="grid md:grid-cols-3 gap-8">
+              <Card className="bg-gradient-to-br from-red-900/50 to-slate-900/50 border-red-500/20 text-center">
+                <CardContent className="p-8">
+                  <div className="text-4xl mb-4">📉</div>
+                  <h3 className="text-xl font-bold text-white mb-4">Em 30 dias</h3>
+                  <p className="text-gray-200">
+                    <span className="text-red-400 font-bold">R$ 30.000+</span> em vendas perdidas para concorrentes que respondem mais rápido
+                  </p>
+                </CardContent>
+              </Card>
+
+              <Card className="bg-gradient-to-br from-orange-900/50 to-slate-900/50 border-orange-500/20 text-center">
+                <CardContent className="p-8">
+                  <div className="text-4xl mb-4">😰</div>
+                  <h3 className="text-xl font-bold text-white mb-4">Em 6 meses</h3>
+                  <p className="text-gray-200">
+                    Sua equipe <span className="text-orange-400 font-bold">esgotada</span> e você trabalhando fins de semana para "dar conta"
+                  </p>
+                </CardContent>
+              </Card>
+
+              <Card className="bg-gradient-to-br from-yellow-900/50 to-slate-900/50 border-yellow-500/20 text-center">
+                <CardContent className="p-8">
+                  <div className="text-4xl mb-4">🏆</div>
+                  <h3 className="text-xl font-bold text-white mb-4">Em 1 ano</h3>
+                  <p className="text-gray-200">
+                    Concorrentes dominando o mercado enquanto você ainda <span className="text-yellow-400 font-bold">responde WhatsApp manualmente</span>
+                  </p>
+                </CardContent>
+              </Card>
             </div>
           </div>
         </div>
@@ -297,7 +432,8 @@ export default function ModernHome() {
                       o <span className="text-purple-400 font-semibold">MeuSuper.app</span> entrega soluções inteligentes que eliminam tarefas repetitivas e aumentam o faturamento com tecnologia de ponta.
                     </p>
                     <p className="text-gray-200 leading-relaxed">
-                      <span className="text-orange-400 font-semibold">Aqui, IA não é promessa, é entrega.</span> Criamos automações que realmente funcionam e geram resultados mensuráveis para seu negócio.
+                      <span className="text-orange-400 font-semibold">Aqui, IA não é promessa, é entrega.</span> Trabalhamos em parceria com a <span className="text-purple-400 font-semibold">Dubotics</span>, 
+                      empresa de robótica e inovação, para levar automações ainda mais avançadas a negócios no Brasil e no exterior.
                     </p>
                     <div className="flex items-center gap-3 mt-4">
                       <a 
@@ -354,20 +490,20 @@ export default function ModernHome() {
         </div>
       </section>
 
-      {/* Serviços */}
-      <section id="servicos" className="py-20 px-6 relative z-10">
+      {/* Solução (SPIN - Need-payoff) */}
+      <section id="solucao" className="py-20 px-6 relative z-10">
         <div className="container mx-auto">
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-16">
-              <Badge className="mb-4 bg-purple-500/20 text-purple-300 border-purple-500/30">
-                <Zap className="mr-2 h-3 w-3" />
-                Nossos serviços
+              <Badge className="mb-4 bg-green-500/20 text-green-300 border-green-500/30">
+                <CheckCircle className="mr-2 h-3 w-3" />
+                A Solução
               </Badge>
               <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-6">
-                Soluções que <span className="text-orange-400">transformam</span> negócios
+                E se você pudesse <span className="text-green-400">resolver tudo isso</span> em 7 dias?
               </h2>
               <p className="text-lg md:text-xl text-gray-200 max-w-3xl mx-auto">
-                Automatize processos, aumente vendas e melhore o atendimento com nossas soluções personalizadas
+                Imagine sua empresa vendendo 24/7, sem você precisar responder um WhatsApp sequer
               </p>
             </div>
 
@@ -608,8 +744,8 @@ export default function ModernHome() {
                   <div className="mx-auto mb-4 w-16 h-16 bg-gradient-to-br from-purple-500 to-purple-600 rounded-2xl flex items-center justify-center">
                     <Clock className="h-8 w-8 text-white" />
                   </div>
-                  <h3 className="text-2xl font-bold text-white mb-2">40h/mês</h3>
-                  <p className="text-gray-200 text-sm"><span className="text-orange-400 font-semibold">Ganhe</span> automatizando o que você faz manualmente hoje</p>
+                  <h3 className="text-2xl font-bold text-white mb-2">10.000h</h3>
+                  <p className="text-gray-200 text-sm"><span className="text-orange-400 font-semibold">Economize</span> com atendimento automatizado que nunca para</p>
                 </CardContent>
               </Card>
 
@@ -618,8 +754,8 @@ export default function ModernHome() {
                   <div className="mx-auto mb-4 w-16 h-16 bg-gradient-to-br from-yellow-500 to-yellow-600 rounded-2xl flex items-center justify-center">
                     <TrendingUp className="h-8 w-8 text-white" />
                   </div>
-                  <h3 className="text-2xl font-bold text-white mb-2">2.5x</h3>
-                  <p className="text-gray-200 text-sm"><span className="text-orange-400 font-semibold">Tenha um funil ativo</span> no WhatsApp vendendo mais</p>
+                  <h3 className="text-2xl font-bold text-white mb-2">R$ 100k+</h3>
+                  <p className="text-gray-200 text-sm"><span className="text-orange-400 font-semibold">Recupere</span> em vendas perdidas que voltam automaticamente</p>
                 </CardContent>
               </Card>
 
@@ -852,31 +988,31 @@ export default function ModernHome() {
                     
                     <div>
                       <label className="block text-sm font-medium text-gray-300 mb-2">
-                        Qual sua maior dor hoje?
+                        Quantos clientes você perde por não responder rápido? *
                       </label>
                       <Textarea
                         value={formData.dor}
                         onChange={(e) => setFormData({ ...formData, dor: e.target.value })}
                         className="bg-slate-800 border-purple-500/30 text-white min-h-[120px]"
-                        placeholder="Conte-nos sobre os principais desafios do seu negócio..."
+                        placeholder="Ex: Perco cerca de 10 clientes por semana que vão para a concorrência porque demoro para responder no WhatsApp..."
                       />
                     </div>
                     
                     <Button
                       type="submit"
                       size="lg"
-                      className="w-full bg-gradient-to-r from-purple-600 to-purple-700 hover:from-purple-700 hover:to-purple-800 text-white"
+                      className="w-full bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white"
                       disabled={contactMutation.isPending}
                     >
                       {contactMutation.isPending ? (
                         <>
                           <Clock className="mr-2 h-5 w-5 animate-spin" />
-                          Enviando...
+                          Calculando...
                         </>
                       ) : (
                         <>
-                          <MessageSquare className="mr-2 h-5 w-5" />
-                          Quero automatizar agora
+                          <Target className="mr-2 h-5 w-5" />
+                          Calcular quanto estou perdendo
                           <ArrowRight className="ml-2 h-5 w-5" />
                         </>
                       )}
@@ -999,18 +1135,25 @@ export default function ModernHome() {
             <p className="text-xl text-gray-300 mb-8">
               Que já estão automatizando seus negócios e aumentando suas vendas
             </p>
-            <WhatsAppModal
-              trigger={
-                <Button 
-                  size="lg" 
-                  className="bg-gradient-to-r from-orange-500 to-yellow-500 hover:from-orange-600 hover:to-yellow-600 text-black font-bold px-8 md:px-12 py-4 text-lg"
-                >
-                  <MessageSquare className="mr-2 h-5 w-5" />
-                  Me mostre como escalar com IA
-                  <ArrowRight className="ml-2 h-5 w-5" />
-                </Button>
-              }
-            />
+            <div className="space-y-6">
+              <WhatsAppModal
+                trigger={
+                  <Button 
+                    size="lg" 
+                    className="bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white font-bold px-8 md:px-12 py-4 text-lg"
+                  >
+                    <MessageSquare className="mr-2 h-5 w-5" />
+                    Quero parar de perder dinheiro hoje
+                    <ArrowRight className="ml-2 h-5 w-5" />
+                  </Button>
+                }
+              />
+              <p className="text-gray-300 text-sm max-w-md mx-auto">
+                ⚡ Diagnóstico gratuito em 15 minutos<br/>
+                🎯 Descubra exatamente quanto você está perdendo<br/>
+                💰 Veja como recuperar tudo isso em 30 dias
+              </p>
+            </div>
           </div>
         </div>
       </section>

@@ -112,6 +112,14 @@ The application uses Drizzle ORM with a PostgreSQL-ready schema:
   - Improved color contrast throughout the site (gray-300 → gray-200)
   - Updated copy with more persuasive and commercial language
   - Changed primary accent color from purple to orange for better visibility
+  - Applied SPIN Selling methodology throughout the landing page
+  - Added problem identification section with pain points
+  - Implemented consequence-focused messaging (implication)
+  - Restructured CTAs to focus on pain resolution rather than features
+  - Added partnership mention with Dubotics
+  - Updated stats with realistic numbers (Brazil/Dubai, 97% satisfaction, 4.9 stars)
+  - Added new service: AI, RPA and voice projects
+  - Updated benefits with larger impact numbers (10,000h saved, R$100k+ recovered)
 - June 24, 2025: Initial setup and basic landing page
 
 ## User Preferences
