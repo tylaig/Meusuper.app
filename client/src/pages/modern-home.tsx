@@ -143,10 +143,10 @@ export default function ModernHome() {
       </div>
 
       {/* Navigation */}
-      <nav className="fixed top-0 w-full z-50 bg-slate-900/80 backdrop-blur-md border-b border-purple-500/20">
-        <div className="container mx-auto px-6 py-4">
-          <div className="flex items-center justify-between">
-            <div className="text-2xl font-bold group cursor-pointer">
+      <nav className="fixed top-0 w-full z-50 bg-black/80 backdrop-blur-xl border-b border-purple-500/30 shadow-lg shadow-purple-500/10">
+        <div className="container mx-auto px-4 sm:px-6 py-4">
+          <div className="flex items-center justify-between min-w-0">
+            <div className="text-xl sm:text-2xl font-bold group cursor-pointer flex-shrink-0">
               <span className="bg-gradient-to-r from-orange-400 to-orange-500 bg-clip-text text-transparent transition-all duration-300 group-hover:from-orange-300 group-hover:to-orange-400">
                 Meu
               </span>
@@ -155,7 +155,7 @@ export default function ModernHome() {
               </span>
             </div>
             
-            <nav className="hidden md:flex space-x-8">
+            <nav className="hidden lg:flex space-x-6 xl:space-x-8">
               {[
                 { label: "Como funciona", href: "#como-funciona" },
                 { label: "Para quem é", href: "#para-quem" },
@@ -165,7 +165,7 @@ export default function ModernHome() {
                 <button
                   key={item.label}
                   onClick={() => scrollToSection(item.href.substring(1))}
-                  className="text-gray-300 hover:text-orange-400 transition-colors font-medium"
+                  className="text-gray-300 hover:text-orange-400 transition-colors font-medium text-sm xl:text-base whitespace-nowrap"
                 >
                   {item.label}
                 </button>
@@ -174,15 +174,16 @@ export default function ModernHome() {
 
             <WhatsAppModal
               trigger={
-                <Button className="hidden md:inline-flex bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white">
+                <Button className="hidden lg:inline-flex bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white text-sm xl:text-base px-4 xl:px-6">
                   <MessageSquare className="mr-2 h-4 w-4" />
-                  Falar com especialista
+                  <span className="hidden xl:inline">Falar com especialista</span>
+                  <span className="xl:hidden">Especialista</span>
                 </Button>
               }
             />
 
             <button 
-              className="md:hidden text-white p-2"
+              className="lg:hidden text-white p-2 hover:bg-purple-500/20 rounded-lg transition-colors"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               aria-label="Menu"
             >
@@ -190,11 +191,11 @@ export default function ModernHome() {
             </button>
           </div>
 
-          {/* Mobile Navigation Menu */}
+          {/* Mobile/Tablet Navigation Menu */}
           {isMobileMenuOpen && (
-            <div className="md:hidden bg-slate-900/95 backdrop-blur-sm border-t border-purple-500/20 absolute top-full left-0 right-0 z-50">
-              <div className="container mx-auto px-6 py-4">
-                <nav className="flex flex-col space-y-4">
+            <div className="lg:hidden bg-black/95 backdrop-blur-xl border-t border-purple-500/30 absolute top-full left-0 right-0 z-50 shadow-xl shadow-purple-500/10">
+              <div className="container mx-auto px-6 py-6">
+                <nav className="flex flex-col space-y-6">
                   {[
                     { label: "Como funciona", href: "#como-funciona" },
                     { label: "Para quem é", href: "#para-quem" },
@@ -207,19 +208,21 @@ export default function ModernHome() {
                         scrollToSection(item.href.substring(1));
                         setIsMobileMenuOpen(false);
                       }}
-                      className="text-gray-300 hover:text-orange-400 transition-colors font-medium text-left py-2"
+                      className="text-high-contrast hover:text-orange-400 transition-colors font-medium text-left py-3 px-4 rounded-lg hover:bg-purple-500/20 border border-transparent hover:border-purple-500/30"
                     >
                       {item.label}
                     </button>
                   ))}
-                  <WhatsAppModal
-                    trigger={
-                      <Button className="w-full bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white mt-4">
-                        <MessageSquare className="mr-2 h-4 w-4" />
-                        Falar com especialista
-                      </Button>
-                    }
-                  />
+                  <div className="pt-4 border-t border-purple-500/20">
+                    <WhatsAppModal
+                      trigger={
+                        <Button className="w-full bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white py-4 text-lg font-semibold">
+                          <MessageSquare className="mr-2 h-5 w-5" />
+                          Falar com especialista
+                        </Button>
+                      }
+                    />
+                  </div>
                 </nav>
               </div>
             </div>
@@ -700,23 +703,23 @@ export default function ModernHome() {
                 </CardContent>
               </Card>
 
-              <Card className="bg-slate-900/50 border-purple-500/20">
+              <Card className="glass-card neon-border group">
                 <CardContent className="p-6">
                   <div className="flex items-center mb-4">
                     <div className="flex text-yellow-400">{"★".repeat(5)}</div>
-                    <span className="ml-2 text-sm text-gray-400">E-commerce</span>
+                    <span className="ml-2 text-sm text-orange-highlight">E-commerce</span>
                   </div>
-                  <p className="text-gray-100 mb-4 italic">
-                    "Agentes conectados em todos os canais. Diminuímos tempo de resposta de 4h para 30 segundos. Vendas cresceram 400%."
+                  <p className="text-medium-contrast mb-4 italic">
+                    "Agentes conectados em todos os canais. Diminuímos tempo de resposta de 4h para 30 segundos. <span className="text-orange-highlight">Vendas cresceram 400%</span>."
                   </p>
-                  <div className="bg-blue-900/30 p-3 rounded mb-4">
+                  <div className="bg-blue-900/50 backdrop-blur-sm p-3 rounded border border-blue-500/30 mb-4">
                     <p className="text-blue-300 text-sm font-semibold">ROI 400% em 30 dias</p>
                   </div>
                   <div className="flex items-center">
-                    <div className="w-10 h-10 bg-gradient-to-br from-green-500 to-green-600 rounded-full flex items-center justify-center text-white font-bold">R</div>
+                    <div className="w-10 h-10 bg-gradient-to-br from-green-500 to-green-600 rounded-full flex items-center justify-center text-white font-bold shadow-lg shadow-green-500/50">R</div>
                     <div className="ml-3">
-                      <p className="text-white font-semibold">Roberto Santos</p>
-                      <p className="text-gray-400 text-sm">Fundador, EcoStore</p>
+                      <p className="text-high-contrast font-semibold">Roberto Santos</p>
+                      <p className="text-subtle-contrast text-sm">Fundador, EcoStore</p>
                     </div>
                   </div>
                 </CardContent>
