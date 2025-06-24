@@ -67,7 +67,7 @@ curl -I https://www.meusuper.app
 - **Router HTTP**: Redirect automático para HTTPS
 - **Middleware**: Redirect www → non-www
 - **SSL/TLS**: LetsEncrypt automático
-- **Load Balancer**: Porta 5000 com host header
+- **Load Balancer**: Porta 5005 com host header
 
 ### Entrypoints Necessários:
 - `web`: Porta 80 (HTTP)
@@ -90,7 +90,7 @@ nslookup meusuper.app
 docker service ps meusuper-stack_meusuper-app
 
 # Testar conectividade interna
-docker exec -it $(docker ps -q --filter name=meusuper) curl localhost:5000
+docker exec -it $(docker ps -q --filter name=meusuper) curl localhost:5005
 ```
 
 ### Problema: 502 Bad Gateway

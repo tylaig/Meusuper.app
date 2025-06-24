@@ -36,7 +36,7 @@ docker service logs stack-name_meusuper-app
 docker service logs traefik_traefik
 
 # 4. Testar conectividade interna
-docker exec -it $(docker ps -q --filter name=meusuper) curl localhost:5000
+docker exec -it $(docker ps -q --filter name=meusuper) curl localhost:5005
 
 # 5. Verificar DNS
 nslookup meusuper.app
