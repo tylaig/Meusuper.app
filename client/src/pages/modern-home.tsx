@@ -1207,32 +1207,75 @@ export default function ModernHome() {
               </Card>
             </div>
 
-            <div className="text-center mt-12">
-              <Card className="bg-gradient-to-r from-green-900/50 to-blue-900/50 border-green-500/20 max-w-2xl mx-auto">
-                <CardContent className="p-8">
-                  <h3 className="text-2xl font-bold text-white mb-4">
-                    Média de resultados dos nossos clientes:
-                  </h3>
-                  <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
-                    <div>
-                      <div className="text-2xl font-bold text-green-400">+280%</div>
-                      <div className="text-gray-200 text-sm">Aumento em vendas</div>
-                    </div>
-                    <div>
-                      <div className="text-2xl font-bold text-blue-400">-70%</div>
-                      <div className="text-gray-200 text-sm">Menos tempo manual</div>
-                    </div>
-                    <div>
-                      <div className="text-2xl font-bold text-purple-400">24/7</div>
-                      <div className="text-gray-200 text-sm">Atendimento ativo</div>
-                    </div>
-                    <div>
-                      <div className="text-2xl font-bold text-orange-400">15 dias</div>
-                      <div className="text-gray-200 text-sm">Para implementar</div>
-                    </div>
+            <div className="text-center mt-16">
+              <div className="max-w-5xl mx-auto">
+                <h3 className="text-3xl md:text-4xl font-bold text-white-strong mb-4">
+                  Média de resultados dos nossos clientes:
+                </h3>
+                <p className="text-medium-contrast text-lg mb-12 max-w-2xl mx-auto">
+                  Dados reais coletados de mais de 50 implementações realizadas
+                </p>
+                
+                <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
+                  <div className="group">
+                    <Card className="bg-gradient-to-br from-green-900/30 to-green-800/20 border-green-500/30 hover:border-green-400/50 transition-all duration-300 hover:scale-105">
+                      <CardContent className="p-6 text-center">
+                        <div className="w-16 h-16 bg-gradient-to-br from-green-500 to-green-600 rounded-full mx-auto mb-4 flex items-center justify-center shadow-lg shadow-green-500/30">
+                          <TrendingUp className="h-8 w-8 text-white" />
+                        </div>
+                        <div className="text-4xl font-bold text-green-400 mb-2 group-hover:scale-110 transition-transform duration-300">+280%</div>
+                        <div className="text-white font-medium text-sm mb-1">Aumento em vendas</div>
+                        <div className="text-green-300 text-xs">Média em 90 dias</div>
+                      </CardContent>
+                    </Card>
                   </div>
-                </CardContent>
-              </Card>
+                  
+                  <div className="group">
+                    <Card className="bg-gradient-to-br from-blue-900/30 to-blue-800/20 border-blue-500/30 hover:border-blue-400/50 transition-all duration-300 hover:scale-105">
+                      <CardContent className="p-6 text-center">
+                        <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full mx-auto mb-4 flex items-center justify-center shadow-lg shadow-blue-500/30">
+                          <Clock className="h-8 w-8 text-white" />
+                        </div>
+                        <div className="text-4xl font-bold text-blue-400 mb-2 group-hover:scale-110 transition-transform duration-300">-70%</div>
+                        <div className="text-white font-medium text-sm mb-1">Menos tempo manual</div>
+                        <div className="text-blue-300 text-xs">Economia de horas/dia</div>
+                      </CardContent>
+                    </Card>
+                  </div>
+                  
+                  <div className="group">
+                    <Card className="bg-gradient-to-br from-purple-900/30 to-purple-800/20 border-purple-500/30 hover:border-purple-400/50 transition-all duration-300 hover:scale-105">
+                      <CardContent className="p-6 text-center">
+                        <div className="w-16 h-16 bg-gradient-to-br from-purple-500 to-purple-600 rounded-full mx-auto mb-4 flex items-center justify-center shadow-lg shadow-purple-500/30">
+                          <Bot className="h-8 w-8 text-white" />
+                        </div>
+                        <div className="text-4xl font-bold text-purple-400 mb-2 group-hover:scale-110 transition-transform duration-300">24/7</div>
+                        <div className="text-white font-medium text-sm mb-1">Atendimento ativo</div>
+                        <div className="text-purple-300 text-xs">Nunca para de funcionar</div>
+                      </CardContent>
+                    </Card>
+                  </div>
+                  
+                  <div className="group">
+                    <Card className="bg-gradient-to-br from-orange-900/30 to-orange-800/20 border-orange-500/30 hover:border-orange-400/50 transition-all duration-300 hover:scale-105">
+                      <CardContent className="p-6 text-center">
+                        <div className="w-16 h-16 bg-gradient-to-br from-orange-500 to-orange-600 rounded-full mx-auto mb-4 flex items-center justify-center shadow-lg shadow-orange-500/30">
+                          <Calendar className="h-8 w-8 text-white" />
+                        </div>
+                        <div className="text-4xl font-bold text-orange-400 mb-2 group-hover:scale-110 transition-transform duration-300">15 dias</div>
+                        <div className="text-white font-medium text-sm mb-1">Para implementar</div>
+                        <div className="text-orange-300 text-xs">Prazo garantido</div>
+                      </CardContent>
+                    </Card>
+                  </div>
+                </div>
+                
+                <div className="mt-8 p-6 bg-gradient-to-r from-slate-900/50 to-slate-800/30 rounded-xl border border-purple-500/20">
+                  <p className="text-medium-contrast text-sm">
+                    <span className="text-solution-purple font-bold">Resultado médio validado</span> com base em 50+ implementações realizadas entre 2023-2025
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
