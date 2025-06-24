@@ -1,0 +1,74 @@
+version: '3.8'
+
+services:
+  crm-app:
+    image: node:20-alpine
+    networks:
+      - MSAppRede 
+    working_dir: /app
+    volumes:
+      - vidente14pontos:/app
+    command: >
+      sh -c "
+        apk add --no-cache git &&
+        rm -rf /app/* &&
+        rm -rf /app/.* 2>/dev/null || true &&
+        git clone --depth=1 https://github.com/tylaig/SalesTrackPro.git . &&
+        rm -rf .git &&
+        npm install --legacy-peer-deps &&
+        npm run dev
+      "
+    environment:
+      # Configuração do Banco de Dados
+      - DATABASE_URL=postgresql://neondb_owner:npg_LbGw9i6rWjAB@ep-weathered-cherry-acpldkqj-pooler.sa-east-1.aws.neon.tech/neondb?sslmode=require
+      - PGHOST=ep-weathered-cherry-acpldkqj-pooler.sa-east-1.aws.neon.tech
+      - PGUSER=neondb_owner
+      - PGPASSWORD=npg_LbGw9i6rWjAB
+      - PGDATABASE=neondb
+      - PGPORT=5432
+      
+      # Configuração do Node.js
+      - NODE_ENV=development
+      - PORT=5000
+      
+      # Configuração de Sessão
+      - SESSION_SECRET=vidente14pontos-super-secret-session-key-2025
+      
+      # Dados do SMTP
+      - MAILER_USER=contato@meusuper.app
+      - MAILER_PASSWORD=Pj2Nr0BdsfCTRnmM
+      - MAILER_HOST=smtp-relay.brevo.com
+      - MAILER_PORT=587
+      
+      # Configuração da Aplicação
+      - APP_NAME=Dashboard de Vendas Vidente14Pontos
+      - APP_URL=https://dashboard.vidente14pontos.meusuper.app
+      
+      # Configuração de CORS
+      - ALLOWED_ORIGINS=https://dashboard.vidente14pontos.meusuper.app,https://vidente14pontos.meusuper.app
+      
+    deploy:
+      mode: replicated
+      replicas: 1
+      placement:
+        constraints:
+          - node.role == manager
+      labels:
+        - traefik.enable=true
+        - traefik.http.routers.gestao.rule=Host(`dashboard.vidente14pontos.meusuper.app`)
+        - traefik.http.routers.gestao.entrypoints=websecure
+        - traefik.http.routers.gestao.priority=1
+        - traefik.http.routers.gestao.service=gestao
+        - traefik.http.routers.gestao.tls.certresolver=letsencryptresolver
+        - traefik.http.services.gestao.loadbalancer.server.port=5000
+        - traefik.http.services.gestao.loadbalancer.passHostHeader=true
+
+volumes:
+  vidente14pontos:
+    external: true
+    name: vidente14pontos
+
+networks:
+  MSAppRede:
+    external: true
+    name: MSAppRede

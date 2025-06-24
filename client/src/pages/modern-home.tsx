@@ -1,62 +1,65 @@
 import { useState, useEffect } from "react";
-import { useMutation } from "@tanstack/react-query";
-import { apiRequest } from "@/lib/queryClient";
-import { useToast } from "@/hooks/use-toast";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
+import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
 import { Separator } from "@/components/ui/separator";
-import { WhatsAppModal } from "@/components/WhatsAppModal";
 import { ParticleBackground } from "@/components/ParticleBackground";
-import { 
-  Bot, 
-  Zap, 
-  Building2, 
-  TrendingUp, 
-  Star, 
-  CheckCircle, 
-  ArrowRight, 
-  Sparkles, 
-  Users, 
-  Clock, 
+import { WhatsAppModal } from "@/components/WhatsAppModal";
+import { useToast } from "@/hooks/use-toast";
+import {
+  Clock,
+  MessageSquare,
+  Users,
+  CheckCircle,
+  ArrowRight,
   Target,
+  TrendingUp,
+  Award,
+  Zap,
+  Bot,
+  Star,
+  GraduationCap,
+  ShoppingCart,
+  UserCheck,
+  Building2,
+  Heart,
   ChevronDown,
   Menu,
   X,
-  MessageSquare,
-  Cpu,
-  Globe,
-  BookOpen,
-  Store,
-  UserCheck,
-  Award,
-  Shield,
+  Calendar,
   Briefcase,
-  Heart
+  Shield
 } from "lucide-react";
+
+interface ContactForm {
+  nome: string;
+  telefone: string;
+  empresa: string;
+  dor: string;
+}
 
 export default function ModernHome() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [expandedFaq, setExpandedFaq] = useState<number | null>(null);
   const [scrollY, setScrollY] = useState(0);
+  const [scrollIndicatorOpacity, setScrollIndicatorOpacity] = useState(1);
   const [formData, setFormData] = useState<ContactForm>({
     nome: "",
     telefone: "",
     empresa: "",
-    dor: "",
-    faturamento: ""
+    dor: ""
   });
   const [showSuccess, setShowSuccess] = useState(false);
 
   const { toast } = useToast();
+  const queryClient = useQueryClient();
 
   const contactMutation = useMutation({
     mutationFn: async (data: ContactForm) => {
-      const response = await apiRequest({
-        endpoint: "/api/webhook",
+      const response = await fetch("/api/webhook", {
         method: "POST",
         body: data,
       });
@@ -101,98 +104,21 @@ export default function ModernHome() {
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrollY(window.scrollY);
+      const currentScrollY = window.scrollY;
+      setScrollY(currentScrollY);
+      
+      // Hide scroll indicator after scrolling
+      const opacity = Math.max(1 - currentScrollY / 300, 0);
+      setScrollIndicatorOpacity(opacity);
     };
 
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Calculate scroll effects
-  const scrollIndicatorOpacity = scrollY < 100 ? 1 : 0;
-  
-  // Dynamic rocket that appears mid-page and flies away
-  const midPageStart = 800; // When rocket starts appearing
-  const midPageEnd = 1200; // When rocket starts flying away
-  const flyDistance = 400; // How far it flies
-  
-  const rocketOpacity = scrollY > midPageStart && scrollY < midPageEnd + flyDistance ? 
-    Math.min(1, Math.max(0, (scrollY - midPageStart) / 200)) : 0;
-  
-  const rocketFlyAway = scrollY > midPageEnd;
-  const rocketPosition = rocketFlyAway ? {
-    x: (scrollY - midPageEnd) * 3, // Flies to the right faster
-    y: -(scrollY - midPageEnd) * 2, // Flies up faster
-    rotation: 45 + (scrollY - midPageEnd) * 0.8, // More dramatic rotation
-    scale: Math.max(0.1, 1.2 - (scrollY - midPageEnd) / 300) // Starts bigger, shrinks faster
-  } : {
-    x: Math.sin(scrollY * 0.008) * 20, // Gentle floating
-    y: Math.sin(scrollY * 0.01) * 15,
-    rotation: Math.sin(scrollY * 0.005) * 8,
-    scale: 1
-  };
-
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 text-white overflow-hidden relative">
+    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 relative overflow-x-hidden">
       <ParticleBackground />
-      
-      {/* Dynamic Rocket Effect */}
-      <div 
-        className="fixed right-8 md:right-12 lg:right-16 top-1/2 z-30 transition-all duration-700 ease-out pointer-events-none"
-        style={{ 
-          opacity: rocketOpacity,
-          transform: `translateX(${rocketPosition.x}px) translateY(${rocketPosition.y}px) scale(${rocketPosition.scale}) rotate(${rocketPosition.rotation}deg)`
-        }}
-      >
-        <div className="relative">
-          {/* Main rocket */}
-          <div className="text-6xl md:text-7xl lg:text-8xl filter drop-shadow-lg">🚀</div>
-          
-          {/* Flame trail */}
-          <div className="absolute -bottom-6 left-1/2 transform -translate-x-1/2">
-            <div className="w-4 h-16 md:w-5 md:h-20 bg-gradient-to-t from-orange-500/80 via-yellow-500/60 to-transparent animate-pulse rounded-full"></div>
-          </div>
-          
-          {/* Particle effects */}
-          <div className="absolute -bottom-4 left-1/3 transform -translate-x-1/2">
-            <div className="w-3 h-3 bg-orange-400/70 rounded-full animate-ping"></div>
-          </div>
-          <div className="absolute -bottom-8 left-2/3 transform -translate-x-1/2">
-            <div className="w-2 h-2 bg-yellow-400/60 rounded-full animate-ping" style={{animationDelay: '0.3s'}}></div>
-          </div>
-          
-          {/* Speed lines when flying */}
-          {rocketFlyAway && (
-            <div className="absolute top-1/2 left-0 transform -translate-y-1/2 -translate-x-full">
-              <div className="flex space-x-2">
-                <div className="w-8 h-1 bg-orange-400/80 animate-pulse rounded-full"></div>
-                <div className="w-6 h-1 bg-yellow-400/60 animate-pulse rounded-full" style={{animationDelay: '0.1s'}}></div>
-                <div className="w-4 h-1 bg-orange-300/40 animate-pulse rounded-full" style={{animationDelay: '0.2s'}}></div>
-              </div>
-            </div>
-          )}
-          
-          {/* Floating success message */}
-          {!rocketFlyAway && rocketOpacity > 0.5 && (
-            <div 
-              className="absolute -left-40 top-1/2 transform -translate-y-1/2"
-              style={{
-                opacity: Math.max(0, rocketOpacity - 0.3),
-                transform: `translateY(-50%) translateX(${Math.sin(scrollY * 0.01) * 8}px)`
-              }}
-            >
-              <div className="bg-gradient-to-r from-purple-900/90 to-orange-900/90 backdrop-blur-sm rounded-xl p-4 border border-orange-400/40 shadow-xl">
-                <p className="text-white text-sm font-bold mb-1">
-                  🚀 Acelere agora!
-                </p>
-                <p className="text-orange-300 text-xs">
-                  Automação que funciona
-                </p>
-              </div>
-            </div>
-          )}
-        </div>
-      </div>
 
       {/* Scroll Indicator */}
       <div 
@@ -215,8 +141,9 @@ export default function ModernHome() {
           </p>
         </div>
       </div>
+
       {/* Navigation */}
-      <nav className="fixed top-0 w-full z-50 bg-slate-900/80 backdrop-blur-md border-b border-purple-500/20 relative">
+      <nav className="fixed top-0 w-full z-50 bg-slate-900/80 backdrop-blur-md border-b border-purple-500/20">
         <div className="container mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
             <div className="text-2xl font-bold group cursor-pointer">
@@ -301,453 +228,154 @@ export default function ModernHome() {
       </nav>
 
       {/* Hero Section */}
-      <section className="pt-20 pb-32 px-6 relative overflow-hidden z-10">
-        <div className="absolute inset-0 bg-gradient-to-r from-purple-800/20 to-transparent"></div>
-        <div className="absolute top-20 left-10 w-72 h-72 bg-purple-500/30 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-20 right-10 w-96 h-96 bg-yellow-500/20 rounded-full blur-3xl"></div>
-        
-        <div className="container mx-auto relative z-10">
-          <div className="max-w-4xl mx-auto text-center">
-            <Badge className="mb-6 bg-purple-500/20 text-purple-300 border-purple-500/30">
-              <Sparkles className="mr-2 h-3 w-3" />
-              A maneira mais rápida de automatizar seu negócio
+      <section className="relative min-h-screen flex items-center justify-center pt-20 pb-10 px-6">
+        <div className="container mx-auto text-center relative z-10">
+          <div className="max-w-5xl mx-auto">
+            <Badge className="mb-6 bg-orange-500/20 text-orange-200 border-orange-500/30 text-lg px-6 py-2">
+              <Bot className="mr-2 h-4 w-4" />
+              Agentes de IA Multicanal
             </Badge>
             
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-white mb-6 md:mb-8 leading-tight">
-              Você está perdendo <span className="bg-gradient-to-r from-red-400 to-orange-400 bg-clip-text text-transparent">clientes</span> enquanto dorme?
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-tight mb-8">
+              Agentes de IA que vendem <span className="bg-gradient-to-r from-orange-400 to-orange-500 bg-clip-text text-transparent">24 horas</span> por você
             </h1>
             
-            <p className="text-lg sm:text-xl md:text-2xl text-gray-200 mb-8 md:mb-12 max-w-3xl mx-auto leading-relaxed">
-              Se seu negócio para quando você para, você está deixando <span className="text-orange-400 font-semibold">milhares de reais</span> na mesa. 
-              Descubra como empresários inteligentes estão automatizando vendas e atendimento para lucrar 24/7.
+            <p className="text-lg sm:text-xl md:text-2xl text-gray-200 max-w-3xl mx-auto leading-relaxed mb-12">
+              Conecte agentes inteligentes no WhatsApp, Instagram, Facebook, SMS e Email que qualificam leads e fecham vendas automaticamente
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-4 md:gap-6 justify-center mb-16">
+            <div className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-16">
               <WhatsAppModal
                 trigger={
                   <Button 
                     size="lg" 
-                    className="bg-gradient-to-r from-orange-600 to-red-600 hover:from-orange-700 hover:to-red-700 text-white px-6 md:px-8 py-4 text-base md:text-lg"
+                    className="bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white font-bold px-8 py-4 text-lg"
                   >
-                    <Target className="mr-2 h-4 md:h-5 w-4 md:w-5" />
-                    Descobrir quanto estou perdendo
-                    <ArrowRight className="ml-2 h-4 md:h-5 w-4 md:w-5" />
+                    <MessageSquare className="mr-2 h-5 w-5" />
+                    Quero escalar meu atendimento com IA
+                    <ArrowRight className="ml-2 h-5 w-5" />
                   </Button>
                 }
               />
               
-              <Button 
-                size="lg" 
-                variant="outline" 
-                className="border-orange-400 text-orange-400 hover:bg-orange-400 hover:text-white px-6 md:px-8 py-4 text-base md:text-lg"
-                onClick={() => scrollToSection('problemas')}
+              <button 
+                onClick={() => scrollToSection('calculadora')}
+                className="text-orange-400 hover:text-orange-300 font-semibold flex items-center gap-2 transition-colors"
               >
-                <Globe className="mr-2 h-4 md:h-5 w-4 md:w-5" />
-                Ver se é meu caso
-              </Button>
+                <Target className="h-5 w-5" />
+                Calcular quanto estou perdendo
+                <ArrowRight className="h-4 w-4" />
+              </button>
             </div>
 
-            {/* Stats */}
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-8 max-w-4xl mx-auto">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto">
               <div className="text-center">
-                <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-green-400 mb-2">R$ 100k+</div>
-                <div className="text-gray-200 text-sm md:text-base">Vendas Recuperadas</div>
+                <div className="text-3xl font-bold text-orange-400 mb-2">5+</div>
+                <div className="text-gray-300 text-sm">Anos de experiência</div>
               </div>
               <div className="text-center">
-                <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-orange-400 mb-2">5+</div>
-                <div className="text-gray-200 text-sm md:text-base">Anos de Experiência</div>
+                <div className="text-3xl font-bold text-purple-400 mb-2">97%</div>
+                <div className="text-gray-300 text-sm">Satisfação</div>
               </div>
               <div className="text-center">
-                <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-yellow-400 mb-2">4.9⭐</div>
-                <div className="text-gray-200 text-sm md:text-base">Avaliação Média</div>
+                <div className="text-3xl font-bold text-green-400 mb-2">10k+</div>
+                <div className="text-gray-300 text-sm">Horas economizadas</div>
               </div>
               <div className="text-center">
-                <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-purple-400 mb-2">10.000h</div>
-                <div className="text-gray-200 text-sm md:text-base">Tempo Economizado</div>
+                <div className="text-3xl font-bold text-yellow-400 mb-2">R$100k+</div>
+                <div className="text-gray-300 text-sm">Em vendas recuperadas</div>
               </div>
             </div>
-          </div>
-        </div>
-      </section>
 
-      {/* Problemas (SPIN - Situation & Problem) */}
-      <section id="problemas" className="py-20 px-6 bg-red-900/20 relative z-10">
-        <div className="container mx-auto">
-          <div className="max-w-6xl mx-auto">
-            <div className="text-center mb-16">
-              <Badge className="mb-4 bg-red-500/20 text-red-200 border-red-500/30">
-                <Target className="mr-2 h-3 w-3" />
-                Situação Atual
-              </Badge>
-              <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-6">
-                Estes problemas estão <span className="text-red-400">matando</span> seu negócio?
-              </h2>
-              <p className="text-lg md:text-xl text-gray-200 max-w-3xl mx-auto">
-                Identifique quantos desses cenários acontecem no seu negócio diariamente
-              </p>
-            </div>
-
-            <div className="grid md:grid-cols-2 gap-8">
-              {[
-                {
-                  icon: Clock,
-                  title: "Clientes esperando horas para serem atendidos",
-                  description: "Enquanto você dorme, almoça ou está ocupado, leads quentes esfriam e vão para a concorrência.",
-                  impact: "💸 Cada hora perdida = R$ 500-2.000 em vendas"
-                },
-                {
-                  icon: Users,
-                  title: "Equipe sobrecarregada respondendo sempre as mesmas coisas",
-                  description: "Seus funcionários gastam 70% do tempo com perguntas repetitivas em vez de vender.",
-                  impact: "⏰ 40h/semana perdidas por funcionário"
-                },
-                {
-                  icon: TrendingUp,
-                  title: "Leads não qualificados ocupando todo seu tempo",
-                  description: "Você atende curiosos e perde tempo que deveria usar com clientes prontos para comprar.",
-                  impact: "🎯 80% do seu tempo com quem não vai comprar"
-                },
-                {
-                  icon: MessageSquare,
-                  title: "Informações importantes se perdendo no WhatsApp",
-                  description: "Conversas importantes se perdem no meio de centenas de mensagens sem organização.",
-                  impact: "📊 Dados valiosos jogados fora todos os dias"
-                }
-              ].map((problema, index) => (
-                <Card key={index} className="bg-slate-900/70 border-red-500/30 hover:border-red-400/50 transition-all duration-300">
-                  <CardContent className="p-6">
-                    <div className="flex items-start space-x-4">
-                      <div className="w-12 h-12 bg-gradient-to-br from-red-500 to-red-600 rounded-xl flex items-center justify-center flex-shrink-0">
-                        <problema.icon className="h-6 w-6 text-white" />
-                      </div>
-                      <div className="flex-1">
-                        <h3 className="text-lg font-bold text-white mb-3">{problema.title}</h3>
-                        <p className="text-gray-200 mb-3 leading-relaxed">{problema.description}</p>
-                        <div className="text-orange-400 font-semibold text-sm">{problema.impact}</div>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-
-            <div className="grid md:grid-cols-2 gap-8">
-              {[
-                {
-                  icon: Clock,
-                  title: "Respostas demoram horas ou dias",
-                  description: "Cliente espera 2h+ para ser atendido e vai direto para a concorrência que responde em minutos.",
-                  impact: "💸 Cada hora perdida = R$ 500-2.000 em vendas"
-                },
-                {
-                  icon: Users,
-                  title: "Equipe sobrecarregada com tarefas repetitivas", 
-                  description: "Funcionários gastam 70% do tempo respondendo sempre as mesmas perguntas básicas.",
-                  impact: "⏰ 40h/semana perdidas por funcionário"
-                },
-                {
-                  icon: MessageSquare,
-                  title: "Leads quentes esfriam sem follow-up",
-                  description: "Cliente interessado hoje, esquecido amanhã. Sem nutrição automática, perdem interesse.",
-                  impact: "🎯 80% dos leads se perdem por falta de acompanhamento"
-                },
-                {
-                  icon: TrendingUp,
-                  title: "Informações importantes se perdem no WhatsApp",
-                  description: "Dados de clientes, pedidos e oportunidades se perdem no meio de centenas de conversas.",
-                  impact: "📊 Dados valiosos jogados fora todos os dias"
-                },
-                {
-                  icon: Zap,
-                  title: "Mensagens perdidas entre múltiplos canais",
-                  description: "WhatsApp, Instagram, Facebook, Email - clientes tentam contato por vários caminhos e você não consegue acompanhar.",
-                  impact: "🌐 Oportunidades perdidas em todos os canais"
-                },
-                {
-                  icon: Target,
-                  title: "Equipe esgotada tentando atender todos os canais",
-                  description: "Funcionários pulando entre WhatsApp, Instagram, Email, Facebook - burnout garantido.",
-                  impact: "😰 Equipe sobrecarregada, clientes insatisfeitos"
-                }
-              ].map((problema, index) => (
-                <Card key={index} className="bg-slate-900/70 border-red-500/30 hover:border-red-400/50 transition-all duration-300">
-                  <CardContent className="p-6">
-                    <div className="flex items-start space-x-4">
-                      <div className="w-12 h-12 bg-gradient-to-br from-red-500 to-red-600 rounded-xl flex items-center justify-center flex-shrink-0">
-                        <problema.icon className="h-6 w-6 text-white" />
-                      </div>
-                      <div className="flex-1">
-                        <h3 className="text-lg font-bold text-white mb-3">{problema.title}</h3>
-                        <p className="text-gray-200 mb-3 leading-relaxed">{problema.description}</p>
-                        <div className="text-orange-400 font-semibold text-sm">{problema.impact}</div>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-
-            <div className="text-center mt-12">
-              <Card className="bg-gradient-to-r from-red-900/50 to-orange-900/50 border-red-500/30 max-w-2xl mx-auto">
-                <CardContent className="p-8">
-                  <h3 className="text-2xl font-bold text-white mb-4">
-                    Se você se identificou com 2 ou mais problemas acima...
-                  </h3>
-                  <p className="text-gray-100 mb-6">
-                    Sua empresa está perdendo <span className="text-orange-400 font-bold">no mínimo R$ 10.000/mês</span> em vendas perdidas, 
-                    tempo desperdiçado e oportunidades que vão para a concorrência.
-                  </p>
-                  <Button 
-                    size="lg" 
-                    className="bg-gradient-to-r from-orange-600 to-red-600 hover:from-orange-700 hover:to-red-700 text-white"
-                    onClick={() => {
-                      const problemasSection = document.getElementById('calculadora');
-                      problemasSection?.scrollIntoView({ behavior: 'smooth' });
-                    }}
+            <div className="mt-16 flex justify-center">
+              <div className="flex items-center gap-3 text-gray-300">
+                <Heart className="h-5 w-5 text-red-400" />
+                <span className="text-sm">
+                  Criado por 
+                  <a 
+                    href="https://instagram.com/eusamuelvicente" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="text-orange-400 hover:text-orange-300 font-semibold ml-1"
                   >
-                    <Target className="mr-2 h-5 w-5" />
-                    Calcular quanto estou perdendo
-                    <ArrowRight className="ml-2 h-5 w-5" />
-                  </Button>
-                </CardContent>
-              </Card>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Implicações (SPIN - Implication) */}
-      <section className="py-20 px-6 bg-slate-800/50 relative z-10">
-        <div className="container mx-auto">
-          <div className="max-w-6xl mx-auto">
-            <div className="text-center mb-16">
-              <Badge className="mb-4 bg-orange-500/20 text-orange-200 border-orange-500/30">
-                <TrendingUp className="mr-2 h-3 w-3" />
-                Consequências
-              </Badge>
-              <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-6">
-                O que acontece se você <span className="text-orange-400">não resolver</span> isso agora?
-              </h2>
-            </div>
-
-            <div className="grid md:grid-cols-3 gap-8">
-              <Card className="bg-gradient-to-br from-red-900/50 to-slate-900/50 border-red-500/20 text-center">
-                <CardContent className="p-8">
-                  <div className="text-4xl mb-4">📉</div>
-                  <h3 className="text-xl font-bold text-white mb-4">Em 30 dias</h3>
-                  <p className="text-gray-100">
-                    <span className="text-red-400 font-bold">R$ 30.000+</span> em vendas perdidas para concorrentes que respondem mais rápido
-                  </p>
-                </CardContent>
-              </Card>
-
-              <Card className="bg-gradient-to-br from-orange-900/50 to-slate-900/50 border-orange-500/20 text-center">
-                <CardContent className="p-8">
-                  <div className="text-4xl mb-4">😰</div>
-                  <h3 className="text-xl font-bold text-white mb-4">Em 6 meses</h3>
-                  <p className="text-gray-100">
-                    Sua equipe <span className="text-orange-400 font-bold">esgotada</span> e você trabalhando fins de semana para "dar conta"
-                  </p>
-                </CardContent>
-              </Card>
-
-              <Card className="bg-gradient-to-br from-yellow-900/50 to-slate-900/50 border-yellow-500/20 text-center">
-                <CardContent className="p-8">
-                  <div className="text-4xl mb-4">🏆</div>
-                  <h3 className="text-xl font-bold text-white mb-4">Em 1 ano</h3>
-                  <p className="text-gray-100">
-                    Concorrentes dominando o mercado enquanto você ainda <span className="text-yellow-400 font-bold">responde WhatsApp manualmente</span>
-                  </p>
-                </CardContent>
-              </Card>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Sobre Nós */}
-      <section id="sobre" className="py-20 px-6 bg-slate-800/50 relative z-10">
-        <div className="container mx-auto">
-          <div className="max-w-6xl mx-auto">
-            <div className="text-center mb-16">
-              <Badge className="mb-4 bg-purple-500/20 text-purple-300 border-purple-500/30">
-                <Users className="mr-2 h-3 w-3" />
-                Quem somos
-              </Badge>
-              <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-6">
-                Especialistas em automação inteligente
-              </h2>
-              <p className="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto">
-                Criamos soluções que realmente funcionam para negócios que querem crescer
-              </p>
-            </div>
-
-            <div className="grid md:grid-cols-2 gap-16 items-center">
-              <div>
-                <img 
-                  src="https://minio.tratorbel.meusuper.app/api/v1/download-shared-object/aHR0cHM6Ly9zMy50cmF0b3JiZWwubWV1c3VwZXIuYXBwL3B1YmxpYy80ODI3NzA4MzlfNTExMTUyMjQ1MzY0MjA0XzU3OTQ3MDU3MjAwMzA5MTY0X24lMjAlMjgxJTI5LmpwZz9YLUFtei1BbGdvcml0aG09QVdTNC1ITUFDLVNIQTI1NiZYLUFtei1DcmVkZW50aWFsPUQ1VUdJWlMySkRJNk5SMkVFUDkxJTJGMjAyNTA2MjQlMkZ1cy1lYXN0LTElMkZzMyUyRmF3czRfcmVxdWVzdCZYLUFtei1EYXRlPTIwMjUwNjI0VDAzMjEwNVomWC1BbXotRXhwaXJlcz00MzIwMCZYLUFtei1TZWN1cml0eS1Ub2tlbj1leUpoYkdjaU9pSklVelV4TWlJc0luUjVjQ0k2SWtwWFZDSjkuZXlKaFkyTmxjM05MWlhraU9pSkVOVlZIU1ZwVE1rcEVTVFpPVWpKRlJWQTVNU0lzSW1WNGNDSTZNVGMxTURjM09ETTVOQ3dpY0dGeVpXNTBJam9pWVdSdGFXNGlmUS4taV9sbVZBYWNfenlOQ21EdlRsa2N0SHN3dF9IVzV2UEF2bmt2aE9SaTREWTU0WnpRUFJBRkNGMEFRXzRYWEc5aUhOT3BiX0xFVk1EWE1EY0RTSHlnUSZYLUFtei1TaWduZWRIZWFkZXJzPWhvc3QmdmVyc2lvbklkPW51bGwmWC1BbXotU2lnbmF0dXJlPTYxYzNhOGE5YmE5MjBjODU4YzhjOTgzMmEyOTMxZjZlYWE1Yzg5NzMxN2E5NDQ0YzEwMmU0NmMzOTI5MzNmY2U" 
-                  alt="Samuel Vicente Ferreira - Founder" 
-                  className="rounded-full shadow-2xl w-full max-w-sm mx-auto aspect-square object-cover border-4 border-transparent bg-gradient-to-r from-orange-400 to-purple-500 p-1"
-                  style={{
-                    background: 'linear-gradient(45deg, #fb923c, #a855f7)',
-                    borderRadius: '50%'
-                  }}
-                />
-              </div>
-
-              <div className="space-y-6">
-                <Card className="bg-slate-900/50 border-purple-500/20">
-                  <CardHeader>
-                    <CardTitle className="text-2xl text-white">Samuel Vicente Ferreira</CardTitle>
-                    <CardDescription className="text-purple-300">Founder & Lead Developer</CardDescription>
-                  </CardHeader>
-                  <CardContent className="space-y-4">
-                    <p className="text-gray-200 leading-relaxed">
-                      <span className="text-orange-400 font-semibold">Samuel Vicente Ferreira</span> é especialista em automações com IA, desenvolvedor de software e estrategista digital. 
-                      Atua com foco em criar soluções que transformam negócios com inteligência artificial, automação de atendimento, integrações com APIs, bots de voz e ferramentas no-code.
-                    </p>
-                    <p className="text-gray-200 leading-relaxed">
-                      Fundador do <span className="text-purple-400 font-semibold">MeuSuper.app</span> e parceiro da <span className="text-orange-400 font-semibold">Dubotics</span>, 
-                      já atendeu clientes no Brasil, Dubai e outros mercados internacionais, com foco em <span className="text-green-400 font-semibold">resultados reais, escalabilidade e independência tecnológica.</span>
-                    </p>
-                    <div className="flex items-center gap-3 mt-4">
-                      <a 
-                        href="https://instagram.com/eusamuelvicente" 
-                        target="_blank" 
-                        rel="noopener noreferrer"
-                        className="flex items-center gap-2 text-purple-300 hover:text-orange-400 transition-colors duration-300"
-                      >
-                        <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                          <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-                        </svg>
-                        @eusamuelvicente
-                      </a>
-                    </div>
-                  </CardContent>
-                </Card>
-
-                <div className="grid grid-cols-2 gap-4">
-                  <Card className="bg-gradient-to-br from-purple-900/50 to-slate-900/50 border-purple-500/20">
-                    <CardContent className="p-6 text-center">
-                      <div className="text-3xl font-bold text-purple-400 mb-2">5+</div>
-                      <div className="text-gray-300">Anos de Experiência</div>
-                    </CardContent>
-                  </Card>
-                  <Card className="bg-gradient-to-br from-yellow-900/50 to-slate-900/50 border-yellow-500/20">
-                    <CardContent className="p-6 text-center">
-                      <div className="text-3xl font-bold text-yellow-400 mb-2">R$ 2M+</div>
-                      <div className="text-gray-300">Economizado pelos Clientes</div>
-                    </CardContent>
-                  </Card>
-                </div>
-
-                <div className="flex flex-wrap gap-2">
-                  <Badge variant="secondary" className="bg-purple-500/20 text-purple-300">
-                    <Cpu className="mr-1 h-3 w-3" />
-                    Inteligência Artificial
-                  </Badge>
-                  <Badge variant="secondary" className="bg-purple-500/20 text-purple-300">
-                    <Zap className="mr-1 h-3 w-3" />
-                    Automação
-                  </Badge>
-                  <Badge variant="secondary" className="bg-purple-500/20 text-purple-300">
-                    <MessageSquare className="mr-1 h-3 w-3" />
-                    WhatsApp Business
-                  </Badge>
-                  <Badge variant="secondary" className="bg-purple-500/20 text-purple-300">
-                    <Building2 className="mr-1 h-3 w-3" />
-                    Sistemas Empresariais
-                  </Badge>
-                </div>
+                    @eusamuelvicente
+                  </a>
+                  {" "}em parceria com{" "}
+                  <span className="text-purple-400 font-semibold">Dubotics</span>
+                </span>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Solução (SPIN - Need-payoff) */}
-      <section id="solucao" className="py-20 px-6 relative z-10">
+      {/* Como Funciona */}
+      <section id="como-funciona" className="py-20 px-6 bg-slate-800/30 relative z-10">
         <div className="container mx-auto">
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-16">
-              <Badge className="mb-4 bg-green-500/20 text-green-300 border-green-500/30">
-                <CheckCircle className="mr-2 h-3 w-3" />
-                A Solução
+              <Badge className="mb-4 bg-purple-500/20 text-purple-200 border-purple-500/30">
+                <Zap className="mr-2 h-3 w-3" />
+                Como Funciona
               </Badge>
-              <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-6">
-                E se você pudesse <span className="text-green-400">resolver tudo isso</span> em 7 dias?
+              <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">
+                Implementação em <span className="text-orange-400">4 passos simples</span>
               </h2>
-              <p className="text-lg md:text-xl text-gray-200 max-w-3xl mx-auto">
-                Imagine sua empresa vendendo 24/7, sem você precisar responder um WhatsApp sequer
+              <p className="text-xl text-gray-200 max-w-3xl mx-auto">
+                Do primeiro contato até seus agentes vendendo 24h por dia
               </p>
             </div>
 
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-              <Card className="bg-slate-900/50 border-purple-500/20 hover:border-purple-400/50 interactive-card hover-glow">
-                <CardHeader className="text-center">
-                  <div className="mx-auto mb-4 w-16 h-16 bg-gradient-to-br from-purple-500 to-purple-600 rounded-2xl flex items-center justify-center">
-                    <Bot className="h-8 w-8 text-white" />
-                  </div>
-                  <CardTitle className="text-xl text-white">Atenda em segundos, converta o dia todo</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-gray-200 text-center mb-4">
-                    Bots que entendem, falam e resolvem — do áudio ao PDF. Agentes inteligentes que trabalham 24/7 por você.
+              <Card className="bg-slate-900/50 border-blue-500/20 relative text-center">
+                <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
+                  <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full flex items-center justify-center text-white font-bold text-sm">1</div>
+                </div>
+                <CardContent className="p-6 pt-8">
+                  <MessageSquare className="w-12 h-12 text-blue-400 mx-auto mb-4" />
+                  <h3 className="text-lg font-bold text-white mb-3">Análise Gratuita</h3>
+                  <p className="text-gray-200 text-sm">
+                    Diagnóstico completo do seu atendimento atual e identificação de oportunidades
                   </p>
-                  <Badge className="w-full justify-center bg-purple-500/20 text-purple-300">
-                    Conversational AI
-                  </Badge>
                 </CardContent>
               </Card>
 
-              <Card className="bg-slate-900/50 border-purple-500/20 hover:border-purple-400/50 transition-all duration-300 hover:transform hover:scale-105">
-                <CardHeader className="text-center">
-                  <div className="mx-auto mb-4 w-16 h-16 bg-gradient-to-br from-yellow-500 to-yellow-600 rounded-2xl flex items-center justify-center">
-                    <Zap className="h-8 w-8 text-white" />
-                  </div>
-                  <CardTitle className="text-xl text-white">Tudo conectado, nada manual</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-gray-200 text-center mb-4">
-                    Do seu CRM ao WhatsApp, com automações que não falham. Conectamos qualquer sistema em tempo recorde.
+              <Card className="bg-slate-900/50 border-purple-500/20 relative text-center">
+                <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
+                  <div className="w-8 h-8 bg-gradient-to-br from-purple-500 to-purple-600 rounded-full flex items-center justify-center text-white font-bold text-sm">2</div>
+                </div>
+                <CardContent className="p-6 pt-8">
+                  <Building2 className="w-12 h-12 text-purple-400 mx-auto mb-4" />
+                  <h3 className="text-lg font-bold text-white mb-3">Configuração</h3>
+                  <p className="text-gray-200 text-sm">
+                    Criação e treinamento dos agentes de IA específicos para seu negócio
                   </p>
-                  <Badge className="w-full justify-center bg-yellow-500/20 text-yellow-300">
-                    System Integration
-                  </Badge>
                 </CardContent>
               </Card>
 
-              <Card className="bg-slate-900/50 border-purple-500/20 hover:border-purple-400/50 transition-all duration-300 hover:transform hover:scale-105">
-                <CardHeader className="text-center">
-                  <div className="mx-auto mb-4 w-16 h-16 bg-gradient-to-br from-green-500 to-green-600 rounded-2xl flex items-center justify-center">
-                    <Building2 className="h-8 w-8 text-white" />
-                  </div>
-                  <CardTitle className="text-xl text-white">Você sonha. A gente desenvolve</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-gray-200 text-center mb-4">
-                    Criação de sistemas SaaS, apps e dashboards 100% funcionais. Da ideia ao produto final.
+              <Card className="bg-slate-900/50 border-green-500/20 relative text-center">
+                <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
+                  <div className="w-8 h-8 bg-gradient-to-br from-green-500 to-green-600 rounded-full flex items-center justify-center text-white font-bold text-sm">3</div>
+                </div>
+                <CardContent className="p-6 pt-8">
+                  <Users className="w-12 h-12 text-green-400 mx-auto mb-4" />
+                  <h3 className="text-lg font-bold text-white mb-3">Integração</h3>
+                  <p className="text-gray-200 text-sm">
+                    Conexão com WhatsApp, Instagram, Facebook, Email e SMS em 15 dias
                   </p>
-                  <Badge className="w-full justify-center bg-green-500/20 text-green-300">
-                    Custom Development
-                  </Badge>
                 </CardContent>
               </Card>
 
-              <Card className="bg-slate-900/50 border-purple-500/20 hover:border-purple-400/50 transition-all duration-300 hover:transform hover:scale-105">
-                <CardHeader className="text-center">
-                  <div className="mx-auto mb-4 w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl flex items-center justify-center">
-                    <BookOpen className="h-8 w-8 text-white" />
-                  </div>
-                  <CardTitle className="text-xl text-white">Você no controle da sua IA</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-gray-200 text-center mb-4">
-                    Aprenda a automatizar sem depender de desenvolvedor. Domine as ferramentas e seja independente.
+              <Card className="bg-slate-900/50 border-orange-500/20 relative text-center">
+                <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
+                  <div className="w-8 h-8 bg-gradient-to-br from-orange-500 to-orange-600 rounded-full flex items-center justify-center text-white font-bold text-sm">4</div>
+                </div>
+                <CardContent className="p-6 pt-8">
+                  <TrendingUp className="w-12 h-12 text-orange-400 mx-auto mb-4" />
+                  <h3 className="text-lg font-bold text-white mb-3">Otimização</h3>
+                  <p className="text-gray-200 text-sm">
+                    Monitoramento contínuo e melhorias mensais nos agentes
                   </p>
-                  <Badge className="w-full justify-center bg-blue-500/20 text-blue-300">
-                    Training & Consulting
-                  </Badge>
                 </CardContent>
               </Card>
             </div>
@@ -755,153 +383,204 @@ export default function ModernHome() {
         </div>
       </section>
 
-      {/* Como funciona */}
-      <section className="py-20 px-6 bg-slate-800/50 relative z-10">
+      {/* Para Quem É */}
+      <section id="para-quem" className="py-20 px-6 relative z-10">
         <div className="container mx-auto">
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-16">
-              <Badge className="mb-4 bg-purple-500/20 text-purple-300 border-purple-500/30">
+              <Badge className="mb-4 bg-orange-500/20 text-orange-200 border-orange-500/30">
+                <UserCheck className="mr-2 h-3 w-3" />
+                Para Quem É
+              </Badge>
+              <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">
+                Ideal para negócios que querem <span className="text-orange-400">escalar vendas</span>
+              </h2>
+            </div>
+
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+              <Card className="bg-gradient-to-br from-blue-900/50 to-slate-900/50 border-blue-500/20">
+                <CardContent className="p-6">
+                  <GraduationCap className="w-12 h-12 text-blue-400 mb-4" />
+                  <h3 className="text-xl font-bold text-white mb-3">Cursos Online</h3>
+                  <p className="text-gray-100 text-sm mb-4">
+                    Automatize suporte, recuperação de carrinho abandonado e nutrição de leads em múltiplos canais
+                  </p>
+                  <div className="text-blue-300 text-xs">
+                    ✓ Suporte 24h ✓ Vendas automáticas ✓ Redução de refund
+                  </div>
+                </CardContent>
+              </Card>
+
+              <Card className="bg-gradient-to-br from-green-900/50 to-slate-900/50 border-green-500/20">
+                <CardContent className="p-6">
+                  <ShoppingCart className="w-12 h-12 text-green-400 mb-4" />
+                  <h3 className="text-xl font-bold text-white mb-3">E-commerce</h3>
+                  <p className="text-gray-100 text-sm mb-4">
+                    Conecte Instagram, WhatsApp e email para capturar leads de todos os pontos de contato
+                  </p>
+                  <div className="text-green-300 text-xs">
+                    ✓ Catálogo automático ✓ Checkout simplificado ✓ Pós-venda
+                  </div>
+                </CardContent>
+              </Card>
+
+              <Card className="bg-gradient-to-br from-purple-900/50 to-slate-900/50 border-purple-500/20">
+                <CardContent className="p-6">
+                  <Briefcase className="w-12 h-12 text-purple-400 mb-4" />
+                  <h3 className="text-xl font-bold text-white mb-3">Consultoria</h3>
+                  <p className="text-gray-100 text-sm mb-4">
+                    Qualificação inteligente de prospects e agendamento automático em todos os canais
+                  </p>
+                  <div className="text-purple-300 text-xs">
+                    ✓ Agenda lotada ✓ Leads qualificados ✓ Follow-up automático
+                  </div>
+                </CardContent>
+              </Card>
+
+              <Card className="bg-gradient-to-br from-orange-900/50 to-slate-900/50 border-orange-500/20">
+                <CardContent className="p-6">
+                  <Building2 className="w-12 h-12 text-orange-400 mb-4" />
+                  <h3 className="text-xl font-bold text-white mb-3">SaaS</h3>
+                  <p className="text-gray-100 text-sm mb-4">
+                    Onboarding automatizado, suporte técnico e redução de churn via multicanal
+                  </p>
+                  <div className="text-orange-300 text-xs">
+                    ✓ Ativação de usuários ✓ Suporte tier 1 ✓ Retenção
+                  </div>
+                </CardContent>
+              </Card>
+
+              <Card className="bg-gradient-to-br from-yellow-900/50 to-slate-900/50 border-yellow-500/20">
+                <CardContent className="p-6">
+                  <Star className="w-12 h-12 text-yellow-400 mb-4" />
+                  <h3 className="text-xl font-bold text-white mb-3">Infoprodutos</h3>
+                  <p className="text-gray-100 text-sm mb-4">
+                    Integração com Hotmart, Monetizze e entrega automatizada multicanal
+                  </p>
+                  <div className="text-yellow-300 text-xs">
+                    ✓ Entrega automática ✓ Suporte integrado ✓ Upsell
+                  </div>
+                </CardContent>
+              </Card>
+
+              <Card className="bg-gradient-to-br from-red-900/50 to-slate-900/50 border-red-500/20">
+                <CardContent className="p-6">
+                  <Heart className="w-12 h-12 text-red-400 mb-4" />
+                  <h3 className="text-xl font-bold text-white mb-3">Produtos Físicos</h3>
+                  <p className="text-gray-100 text-sm mb-4">
+                    Nutrição multicanal para recompra e fidelização de clientes
+                  </p>
+                  <div className="text-red-300 text-xs">
+                    ✓ Recompra automática ✓ Fidelização ✓ Cross-sell
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Calculadora de Perdas */}
+      <section id="calculadora" className="py-20 px-6 bg-gradient-to-br from-red-900/20 to-orange-900/20 relative z-10">
+        <div className="container mx-auto">
+          <div className="max-w-4xl mx-auto">
+            <div className="text-center mb-16">
+              <Badge className="mb-4 bg-red-500/20 text-red-200 border-red-500/30">
                 <Target className="mr-2 h-3 w-3" />
-                Como funciona
+                Calculadora de Perdas
               </Badge>
               <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">
-                Processo simples e <span className="text-purple-400">eficiente</span>
+                Quanto você está <span className="text-red-400">perdendo</span> por mês?
               </h2>
-            </div>
-
-            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
-              <div className="text-center">
-                <div className="mx-auto mb-6 w-16 h-16 md:w-20 md:h-20 bg-gradient-to-br from-purple-500 to-purple-600 rounded-full flex items-center justify-center text-xl md:text-2xl font-bold text-white">
-                  1
-                </div>
-                <h3 className="text-lg md:text-xl font-bold text-white mb-3">Entre em contato</h3>
-                <p className="text-gray-200 text-sm md:text-base">
-                  <span className="text-orange-400 font-semibold">Sem compromisso e sem enrolação.</span> Fale pelo WhatsApp ou formulário.
-                </p>
-              </div>
-
-              <div className="text-center">
-                <div className="mx-auto mb-6 w-16 h-16 md:w-20 md:h-20 bg-gradient-to-br from-yellow-500 to-yellow-600 rounded-full flex items-center justify-center text-xl md:text-2xl font-bold text-white">
-                  2
-                </div>
-                <h3 className="text-lg md:text-xl font-bold text-white mb-3">Diagnóstico gratuito</h3>
-                <p className="text-gray-200 text-sm md:text-base">
-                  <span className="text-orange-400 font-semibold">Você entende onde perde vendas</span> e como mudar isso.
-                </p>
-              </div>
-
-              <div className="text-center">
-                <div className="mx-auto mb-6 w-16 h-16 md:w-20 md:h-20 bg-gradient-to-br from-green-500 to-green-600 rounded-full flex items-center justify-center text-xl md:text-2xl font-bold text-white">
-                  3
-                </div>
-                <h3 className="text-lg md:text-xl font-bold text-white mb-3">Proposta personalizada</h3>
-                <p className="text-gray-200 text-sm md:text-base">
-                  <span className="text-orange-400 font-semibold">Alinhada ao seu orçamento</span> e sua operação.
-                </p>
-              </div>
-
-              <div className="text-center">
-                <div className="mx-auto mb-6 w-16 h-16 md:w-20 md:h-20 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full flex items-center justify-center text-xl md:text-2xl font-bold text-white">
-                  4
-                </div>
-                <h3 className="text-lg md:text-xl font-bold text-white mb-3">Implementação rápida</h3>
-                <p className="text-gray-200 text-sm md:text-base">
-                  <span className="text-orange-400 font-semibold">Seu bot no ar em dias,</span> com suporte completo.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Para quem é */}
-      <section className="py-20 px-6 relative z-10">
-        <div className="container mx-auto">
-          <div className="max-w-6xl mx-auto">
-            <div className="text-center mb-16">
-              <Badge className="mb-4 bg-purple-500/20 text-purple-300 border-purple-500/30">
-                <Users className="mr-2 h-3 w-3" />
-                Para quem é
-              </Badge>
-              <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">
-                Para quem é o <span className="text-purple-400">MeuSuper.app</span>?
-              </h2>
-              <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-                Soluções que se adaptam a qualquer tipo de negócio
+              <p className="text-xl text-gray-200 max-w-3xl mx-auto">
+                Descubra o impacto financeiro da demora no atendimento multicanal
               </p>
             </div>
 
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              <Card className="bg-slate-900/50 border-purple-500/20 hover:border-purple-400/50 interactive-card">
-                <CardContent className="p-6 text-center">
-                  <div className="mx-auto mb-4 w-12 h-12 bg-gradient-to-br from-purple-500 to-purple-600 rounded-xl flex items-center justify-center">
-                    <Building2 className="h-6 w-6 text-white" />
+            <Card className="bg-slate-900/50 border-red-500/20">
+              <CardContent className="p-8">
+                <div className="grid md:grid-cols-2 gap-8 mb-8">
+                  <div>
+                    <label className="block text-sm font-medium text-gray-300 mb-3">
+                      Quantos leads você recebe por mês?
+                    </label>
+                    <Input
+                      type="number"
+                      placeholder="Ex: 100"
+                      className="bg-slate-800 border-orange-500/30 text-white text-center text-lg"
+                      onChange={(e) => {
+                        const leads = parseFloat(e.target.value) || 0;
+                        const valorVenda = parseFloat((document.querySelector('input[placeholder="Ex: 500"]') as HTMLInputElement)?.value || '0') || 0;
+                        const perdas = leads * valorVenda * 0.3;
+                        const resultado = document.getElementById('resultado-perdas');
+                        if (resultado && perdas > 0) {
+                          resultado.textContent = 'R$ ' + Math.round(perdas).toLocaleString('pt-BR');
+                        } else if (resultado) {
+                          resultado.textContent = 'R$ 0';
+                        }
+                      }}
+                    />
                   </div>
-                  <h3 className="text-lg font-bold text-white mb-2">Pequenas e médias empresas</h3>
-                  <p className="text-gray-300 text-sm">Automatize processos e escale sem aumentar custos</p>
-                </CardContent>
-              </Card>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-300 mb-3">
+                      Qual o valor médio da sua venda?
+                    </label>
+                    <Input
+                      type="number"
+                      placeholder="Ex: 500"
+                      className="bg-slate-800 border-orange-500/30 text-white text-center text-lg"
+                      onChange={(e) => {
+                        const valorVenda = parseFloat(e.target.value) || 0;
+                        const leads = parseFloat((document.querySelector('input[placeholder="Ex: 100"]') as HTMLInputElement)?.value || '0') || 0;
+                        const perdas = leads * valorVenda * 0.3;
+                        const resultado = document.getElementById('resultado-perdas');
+                        if (resultado && perdas > 0) {
+                          resultado.textContent = 'R$ ' + Math.round(perdas).toLocaleString('pt-BR');
+                        } else if (resultado) {
+                          resultado.textContent = 'R$ 0';
+                        }
+                      }}
+                    />
+                  </div>
+                </div>
 
-              <Card className="bg-slate-900/50 border-purple-500/20 hover:border-purple-400/50 transition-all duration-300">
-                <CardContent className="p-6 text-center">
-                  <div className="mx-auto mb-4 w-12 h-12 bg-gradient-to-br from-yellow-500 to-yellow-600 rounded-xl flex items-center justify-center">
-                    <TrendingUp className="h-6 w-6 text-white" />
-                  </div>
-                  <h3 className="text-lg font-bold text-white mb-2">Agências de marketing</h3>
-                  <p className="text-gray-300 text-sm">Ofereça automação como serviço para seus clientes</p>
-                </CardContent>
-              </Card>
+                <div className="mt-8 p-6 bg-gradient-to-r from-red-900/50 to-orange-900/50 rounded-lg border border-red-500/30">
+                  <h3 className="text-xl font-bold text-white mb-4">Suas perdas mensais estimadas:</h3>
+                  <div className="text-3xl font-bold text-red-400 mb-2" id="resultado-perdas">R$ 0</div>
+                  <p className="text-gray-200 text-sm">
+                    Baseado em 30% de leads perdidos por demora no atendimento
+                  </p>
+                  <p className="text-gray-300 text-xs mt-2">
+                    💡 Digite os valores acima para calcular suas perdas reais
+                  </p>
+                </div>
 
-              <Card className="bg-slate-900/50 border-purple-500/20 hover:border-purple-400/50 transition-all duration-300">
-                <CardContent className="p-6 text-center">
-                  <div className="mx-auto mb-4 w-12 h-12 bg-gradient-to-br from-green-500 to-green-600 rounded-xl flex items-center justify-center">
-                    <Store className="h-6 w-6 text-white" />
-                  </div>
-                  <h3 className="text-lg font-bold text-white mb-2">E-commerces</h3>
-                  <p className="text-gray-300 text-sm">Atendimento 24/7 e recuperação de carrinho abandonado</p>
-                </CardContent>
-              </Card>
-
-              <Card className="bg-slate-900/50 border-purple-500/20 hover:border-purple-400/50 transition-all duration-300">
-                <CardContent className="p-6 text-center">
-                  <div className="mx-auto mb-4 w-12 h-12 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center">
-                    <UserCheck className="h-6 w-6 text-white" />
-                  </div>
-                  <h3 className="text-lg font-bold text-white mb-2">Prestadores de serviço</h3>
-                  <p className="text-gray-300 text-sm">Agendamentos automáticos e follow-up de clientes</p>
-                </CardContent>
-              </Card>
-
-              <Card className="bg-slate-900/50 border-purple-500/20 hover:border-purple-400/50 transition-all duration-300">
-                <CardContent className="p-6 text-center">
-                  <div className="mx-auto mb-4 w-12 h-12 bg-gradient-to-br from-indigo-500 to-indigo-600 rounded-xl flex items-center justify-center">
-                    <Briefcase className="h-6 w-6 text-white" />
-                  </div>
-                  <h3 className="text-lg font-bold text-white mb-2">Profissionais autônomos</h3>
-                  <p className="text-gray-300 text-sm">Automatize seu atendimento e foque no que importa</p>
-                </CardContent>
-              </Card>
-
-              <Card className="bg-slate-900/50 border-purple-500/20 hover:border-purple-400/50 transition-all duration-300">
-                <CardContent className="p-6 text-center">
-                  <div className="mx-auto mb-4 w-12 h-12 bg-gradient-to-br from-pink-500 to-pink-600 rounded-xl flex items-center justify-center">
-                    <Heart className="h-6 w-6 text-white" />
-                  </div>
-                  <h3 className="text-lg font-bold text-white mb-2">Qualquer negócio</h3>
-                  <p className="text-gray-300 text-sm">Se você atende clientes, temos uma solução para você</p>
-                </CardContent>
-              </Card>
-            </div>
+                <div className="mt-8">
+                  <WhatsAppModal
+                    trigger={
+                      <Button 
+                        size="lg" 
+                        className="w-full bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white font-bold py-4"
+                      >
+                        <MessageSquare className="mr-2 h-5 w-5" />
+                        Parar de perder dinheiro agora
+                        <ArrowRight className="ml-2 h-5 w-5" />
+                      </Button>
+                    }
+                  />
+                </div>
+              </CardContent>
+            </Card>
           </div>
         </div>
       </section>
 
-      {/* Benefícios */}
+      {/* Problemas */}
       <section className="py-20 px-6 bg-slate-800/50 relative z-10">
         <div className="container mx-auto">
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-16">
-              <Badge className="mb-4 bg-purple-500/20 text-purple-300 border-purple-500/30">
+              <Badge className="mb-4 bg-purple-500/20 text-purple-200 border-purple-500/30">
                 <Award className="mr-2 h-3 w-3" />
                 Benefícios
               </Badge>
@@ -978,66 +657,180 @@ export default function ModernHome() {
         </div>
       </section>
 
-      {/* Resultados */}
+      {/* Depoimentos Expandidos */}
       <section id="resultados" className="py-20 px-6 relative z-10">
         <div className="container mx-auto">
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-16">
-              <Badge className="mb-4 bg-purple-500/20 text-purple-300 border-purple-500/30">
-                <Star className="mr-2 h-3 w-3" />
-                Depoimentos
+              <Badge className="mb-4 bg-purple-500/20 text-purple-200 border-purple-500/30">
+                <Target className="mr-2 h-3 w-3" />
+                Resultados Reais
               </Badge>
-              <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
-                Resultados que <span className="text-purple-400">impressionam</span>
+              <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">
+                Empresas que <span className="text-purple-400">transformaram</span> seus resultados
               </h2>
-              <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-                Veja o que nossos clientes estão dizendo sobre nossas soluções
+              <p className="text-xl text-gray-200 max-w-3xl mx-auto">
+                Casos reais de clientes que implementaram agentes de IA multicanal
               </p>
             </div>
 
-            <div className="grid md:grid-cols-2 gap-8">
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
               <Card className="bg-slate-900/50 border-purple-500/20">
-                <CardContent className="p-8">
-                  <div className="flex items-center mb-6">
-                    <div className="w-12 h-12 rounded-full bg-gradient-to-br from-purple-500 to-purple-600 flex items-center justify-center text-white font-bold mr-4">
-                      A
-                    </div>
-                    <div>
-                      <h4 className="font-bold text-white">Ana Carolina</h4>
-                      <p className="text-purple-300 text-sm">CEO - E-commerce de Moda</p>
-                    </div>
+                <CardContent className="p-6">
+                  <div className="flex items-center mb-4">
+                    <div className="flex text-yellow-400">{"★".repeat(5)}</div>
+                    <span className="ml-2 text-sm text-gray-400">Curso Online</span>
                   </div>
-                  <p className="text-gray-200 italic mb-4 leading-relaxed">
-                    "Dobrei minhas vendas em 3 meses com o bot do Samuel. Ele entende de tech e de negócio. 
-                    O atendimento automatizado no WhatsApp foi um divisor de águas para minha empresa."
+                  <p className="text-gray-100 mb-4 italic">
+                    "Automatizamos recuperação de carrinho no WhatsApp e Instagram. Recuperamos R$ 45.000 em vendas perdidas no primeiro mês."
                   </p>
-                  <div className="flex">
-                    {[...Array(5)].map((_, i) => (
-                      <Star key={i} className="w-4 h-4 fill-yellow-400 text-yellow-400" />
-                    ))}
+                  <div className="bg-green-900/30 p-3 rounded mb-4">
+                    <p className="text-green-300 text-sm font-semibold">+300% vendas recuperadas</p>
+                  </div>
+                  <div className="flex items-center">
+                    <div className="w-10 h-10 bg-gradient-to-br from-purple-500 to-purple-600 rounded-full flex items-center justify-center text-white font-bold">M</div>
+                    <div className="ml-3">
+                      <p className="text-white font-semibold">Marina Silva</p>
+                      <p className="text-gray-400 text-sm">CEO, EduTech Pro</p>
+                    </div>
                   </div>
                 </CardContent>
               </Card>
 
               <Card className="bg-slate-900/50 border-purple-500/20">
-                <CardContent className="p-8">
-                  <div className="flex items-center mb-6">
-                    <div className="w-12 h-12 rounded-full bg-gradient-to-br from-yellow-500 to-yellow-600 flex items-center justify-center text-white font-bold mr-4">
-                      R
-                    </div>
-                    <div>
-                      <h4 className="font-bold text-white">Ricardo Mendes</h4>
-                      <p className="text-purple-300 text-sm">Diretor - Agência Digital</p>
+                <CardContent className="p-6">
+                  <div className="flex items-center mb-4">
+                    <div className="flex text-yellow-400">{"★".repeat(5)}</div>
+                    <span className="ml-2 text-sm text-gray-400">E-commerce</span>
+                  </div>
+                  <p className="text-gray-100 mb-4 italic">
+                    "Agentes conectados em todos os canais. Diminuímos tempo de resposta de 4h para 30 segundos. Vendas cresceram 400%."
+                  </p>
+                  <div className="bg-blue-900/30 p-3 rounded mb-4">
+                    <p className="text-blue-300 text-sm font-semibold">ROI 400% em 30 dias</p>
+                  </div>
+                  <div className="flex items-center">
+                    <div className="w-10 h-10 bg-gradient-to-br from-green-500 to-green-600 rounded-full flex items-center justify-center text-white font-bold">R</div>
+                    <div className="ml-3">
+                      <p className="text-white font-semibold">Roberto Santos</p>
+                      <p className="text-gray-400 text-sm">Fundador, EcoStore</p>
                     </div>
                   </div>
-                  <p className="text-gray-200 italic mb-4 leading-relaxed">
-                    "Economizamos mais de R$ 15 mil por mês com automações. Atendimento 24/7, sem contratar mais ninguém. 
-                    A equipe do MeuSuper.app entrega mais do que promete."
+                </CardContent>
+              </Card>
+
+              <Card className="bg-slate-900/50 border-purple-500/20">
+                <CardContent className="p-6">
+                  <div className="flex items-center mb-4">
+                    <div className="flex text-yellow-400">{"★".repeat(5)}</div>
+                    <span className="ml-2 text-sm text-gray-400">Consultoria</span>
+                  </div>
+                  <p className="text-gray-100 mb-4 italic">
+                    "Agendamento automático via IA liberou nossa equipe. Agenda 90% mais cheia, sem contratar ninguém."
                   </p>
-                  <div className="flex">
-                    {[...Array(5)].map((_, i) => (
-                      <Star key={i} className="w-4 h-4 fill-yellow-400 text-yellow-400" />
-                    ))}
+                  <div className="bg-purple-900/30 p-3 rounded mb-4">
+                    <p className="text-purple-300 text-sm font-semibold">+90% agenda preenchida</p>
+                  </div>
+                  <div className="flex items-center">
+                    <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full flex items-center justify-center text-white font-bold">A</div>
+                    <div className="ml-3">
+                      <p className="text-white font-semibold">Ana Costa</p>
+                      <p className="text-gray-400 text-sm">Diretora, ConsultPro</p>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+
+              <Card className="bg-slate-900/50 border-purple-500/20">
+                <CardContent className="p-6">
+                  <div className="flex items-center mb-4">
+                    <div className="flex text-yellow-400">{"★".repeat(5)}</div>
+                    <span className="ml-2 text-sm text-gray-400">Infoprodutos</span>
+                  </div>
+                  <p className="text-gray-100 mb-4 italic">
+                    "Integração com Hotmart + WhatsApp automatizada. Suporte 24h liberou nossa equipe para focar em vendas."
+                  </p>
+                  <div className="bg-orange-900/30 p-3 rounded mb-4">
+                    <p className="text-orange-300 text-sm font-semibold">-80% tickets de suporte</p>
+                  </div>
+                  <div className="flex items-center">
+                    <div className="w-10 h-10 bg-gradient-to-br from-orange-500 to-orange-600 rounded-full flex items-center justify-center text-white font-bold">C</div>
+                    <div className="ml-3">
+                      <p className="text-white font-semibold">Carlos Mendes</p>
+                      <p className="text-gray-400 text-sm">CEO, DigitalWorks</p>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+
+              <Card className="bg-slate-900/50 border-purple-500/20">
+                <CardContent className="p-6">
+                  <div className="flex items-center mb-4">
+                    <div className="flex text-yellow-400">{"★".repeat(5)}</div>
+                    <span className="ml-2 text-sm text-gray-400">Produtos Físicos</span>
+                  </div>
+                  <p className="text-gray-100 mb-4 italic">
+                    "Nutrição automatizada em 5 canais diferentes. Recompra aumentou 250% com sequências inteligentes."
+                  </p>
+                  <div className="bg-yellow-900/30 p-3 rounded mb-4">
+                    <p className="text-yellow-300 text-sm font-semibold">+250% recompras</p>
+                  </div>
+                  <div className="flex items-center">
+                    <div className="w-10 h-10 bg-gradient-to-br from-yellow-500 to-yellow-600 rounded-full flex items-center justify-center text-white font-bold">L</div>
+                    <div className="ml-3">
+                      <p className="text-white font-semibold">Lucia Ferreira</p>
+                      <p className="text-gray-400 text-sm">Fundadora, NutriVida</p>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+
+              <Card className="bg-slate-900/50 border-purple-500/20">
+                <CardContent className="p-6">
+                  <div className="flex items-center mb-4">
+                    <div className="flex text-yellow-400">{"★".repeat(5)}</div>
+                    <span className="ml-2 text-sm text-gray-400">SaaS</span>
+                  </div>
+                  <p className="text-gray-100 mb-4 italic">
+                    "Onboarding automatizado multicanal. Diminuímos churn em 60% e aumentamos ativação de usuários."
+                  </p>
+                  <div className="bg-red-900/30 p-3 rounded mb-4">
+                    <p className="text-red-300 text-sm font-semibold">-60% churn</p>
+                  </div>
+                  <div className="flex items-center">
+                    <div className="w-10 h-10 bg-gradient-to-br from-red-500 to-red-600 rounded-full flex items-center justify-center text-white font-bold">P</div>
+                    <div className="ml-3">
+                      <p className="text-white font-semibold">Paulo Oliveira</p>
+                      <p className="text-gray-400 text-sm">CTO, TechSolutions</p>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+
+            <div className="text-center mt-12">
+              <Card className="bg-gradient-to-r from-green-900/50 to-blue-900/50 border-green-500/20 max-w-2xl mx-auto">
+                <CardContent className="p-8">
+                  <h3 className="text-2xl font-bold text-white mb-4">
+                    Média de resultados dos nossos clientes:
+                  </h3>
+                  <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+                    <div>
+                      <div className="text-2xl font-bold text-green-400">+280%</div>
+                      <div className="text-gray-200 text-sm">Aumento em vendas</div>
+                    </div>
+                    <div>
+                      <div className="text-2xl font-bold text-blue-400">-70%</div>
+                      <div className="text-gray-200 text-sm">Menos tempo manual</div>
+                    </div>
+                    <div>
+                      <div className="text-2xl font-bold text-purple-400">24/7</div>
+                      <div className="text-gray-200 text-sm">Atendimento ativo</div>
+                    </div>
+                    <div>
+                      <div className="text-2xl font-bold text-orange-400">15 dias</div>
+                      <div className="text-gray-200 text-sm">Para implementar</div>
+                    </div>
                   </div>
                 </CardContent>
               </Card>
@@ -1046,12 +839,196 @@ export default function ModernHome() {
         </div>
       </section>
 
+      {/* Garantia */}
+      <section className="py-20 px-6 bg-gradient-to-br from-green-900/30 to-blue-900/30 relative z-10">
+        <div className="container mx-auto">
+          <div className="max-w-4xl mx-auto text-center">
+            <Badge className="mb-4 bg-green-500/20 text-green-200 border-green-500/30">
+              <Shield className="mr-2 h-3 w-3" />
+              Garantia Total
+            </Badge>
+            <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">
+              Garantia de <span className="text-green-400">Satisfação</span> 100%
+            </h2>
+            
+            <div className="grid md:grid-cols-3 gap-8 mt-12">
+              <Card className="bg-slate-900/50 border-green-500/20">
+                <CardContent className="p-6 text-center">
+                  <div className="w-16 h-16 bg-gradient-to-br from-green-500 to-green-600 rounded-full mx-auto mb-4 flex items-center justify-center">
+                    <CheckCircle className="h-8 w-8 text-white" />
+                  </div>
+                  <h3 className="text-lg font-bold text-white mb-3">Implementação Garantida</h3>
+                  <p className="text-gray-200 text-sm">
+                    Seu agente de IA funcionando em 15 dias ou devolvemos 100% do investimento
+                  </p>
+                </CardContent>
+              </Card>
+
+              <Card className="bg-slate-900/50 border-green-500/20">
+                <CardContent className="p-6 text-center">
+                  <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full mx-auto mb-4 flex items-center justify-center">
+                    <Users className="h-8 w-8 text-white" />
+                  </div>
+                  <h3 className="text-lg font-bold text-white mb-3">Suporte Vitalício</h3>
+                  <p className="text-gray-200 text-sm">
+                    Equipe especializada disponível durante todo o período de assinatura
+                  </p>
+                </CardContent>
+              </Card>
+
+              <Card className="bg-slate-900/50 border-green-500/20">
+                <CardContent className="p-6 text-center">
+                  <div className="w-16 h-16 bg-gradient-to-br from-purple-500 to-purple-600 rounded-full mx-auto mb-4 flex items-center justify-center">
+                    <TrendingUp className="h-8 w-8 text-white" />
+                  </div>
+                  <h3 className="text-lg font-bold text-white mb-3">Resultados Comprovados</h3>
+                  <p className="text-gray-200 text-sm">
+                    97% dos clientes reportam aumento significativo em vendas no primeiro mês
+                  </p>
+                </CardContent>
+              </Card>
+            </div>
+
+            <div className="mt-12">
+              <Card className="bg-gradient-to-r from-green-900/50 to-green-800/50 border-green-500/30 max-w-2xl mx-auto">
+                <CardContent className="p-8">
+                  <h3 className="text-2xl font-bold text-white mb-4">
+                    🛡️ Nossa Promessa
+                  </h3>
+                  <p className="text-gray-100 mb-6">
+                    Se em 30 dias você não estiver 100% satisfeito com os resultados dos agentes de IA, 
+                    devolvemos todo o investimento. Sem perguntas, sem burocracia.
+                  </p>
+                  <WhatsAppModal
+                    trigger={
+                      <Button 
+                        size="lg" 
+                        className="bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white"
+                      >
+                        <Shield className="mr-2 h-5 w-5" />
+                        Quero essa garantia
+                        <ArrowRight className="ml-2 h-5 w-5" />
+                      </Button>
+                    }
+                  />
+                </CardContent>
+              </Card>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Plano de Crescimento */}
+      <section className="py-20 px-6 bg-gradient-to-br from-blue-900/30 to-purple-900/30 relative z-10">
+        <div className="container mx-auto">
+          <div className="max-w-6xl mx-auto">
+            <div className="text-center mb-16">
+              <Badge className="mb-4 bg-blue-500/20 text-blue-200 border-blue-500/30">
+                <TrendingUp className="mr-2 h-3 w-3" />
+                Plano de Crescimento
+              </Badge>
+              <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">
+                Seu negócio em <span className="text-blue-400">3 estágios</span> de evolução
+              </h2>
+              <p className="text-xl text-gray-200 max-w-3xl mx-auto">
+                Como nossos agentes de IA crescem junto com seu negócio
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-3 gap-8">
+              <Card className="bg-slate-900/50 border-blue-500/20 relative">
+                <div className="absolute -top-4 left-6">
+                  <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full flex items-center justify-center text-white font-bold text-sm">1</div>
+                </div>
+                <CardContent className="p-6 pt-8">
+                  <h3 className="text-xl font-bold text-white mb-4">Estágio Inicial (0-30 dias)</h3>
+                  <ul className="text-gray-200 space-y-2 text-sm">
+                    <li>• Implementação dos agentes de IA</li>
+                    <li>• Conexão com 2-3 canais principais</li>
+                    <li>• Automação de respostas básicas</li>
+                    <li>• Qualificação simples de leads</li>
+                    <li>• Integração com seu CRM</li>
+                  </ul>
+                  <div className="mt-4 p-3 bg-blue-900/30 rounded">
+                    <p className="text-blue-300 text-sm font-semibold">Meta: +50% velocidade de resposta</p>
+                  </div>
+                </CardContent>
+              </Card>
+
+              <Card className="bg-slate-900/50 border-purple-500/20 relative">
+                <div className="absolute -top-4 left-6">
+                  <div className="w-8 h-8 bg-gradient-to-br from-purple-500 to-purple-600 rounded-full flex items-center justify-center text-white font-bold text-sm">2</div>
+                </div>
+                <CardContent className="p-6 pt-8">
+                  <h3 className="text-xl font-bold text-white mb-4">Estágio Crescimento (30-90 dias)</h3>
+                  <ul className="text-gray-200 space-y-2 text-sm">
+                    <li>• Expansão para todos os canais</li>
+                    <li>• Sequências de nutrição avançadas</li>
+                    <li>• Agendamento automático de reuniões</li>
+                    <li>• Upsell e cross-sell inteligente</li>
+                    <li>• Relatórios de performance detalhados</li>
+                  </ul>
+                  <div className="mt-4 p-3 bg-purple-900/30 rounded">
+                    <p className="text-purple-300 text-sm font-semibold">Meta: +200% conversão de leads</p>
+                  </div>
+                </CardContent>
+              </Card>
+
+              <Card className="bg-slate-900/50 border-orange-500/20 relative">
+                <div className="absolute -top-4 left-6">
+                  <div className="w-8 h-8 bg-gradient-to-br from-orange-500 to-orange-600 rounded-full flex items-center justify-center text-white font-bold text-sm">3</div>
+                </div>
+                <CardContent className="p-6 pt-8">
+                  <h3 className="text-xl font-bold text-white mb-4">Estágio Escala (90+ dias)</h3>
+                  <ul className="text-gray-200 space-y-2 text-sm">
+                    <li>• IA preditiva para comportamentos</li>
+                    <li>• Personalização total por cliente</li>
+                    <li>• Automação completa do funil</li>
+                    <li>• Integração com ferramentas avançadas</li>
+                    <li>• Otimização contínua com machine learning</li>
+                  </ul>
+                  <div className="mt-4 p-3 bg-orange-900/30 rounded">
+                    <p className="text-orange-300 text-sm font-semibold">Meta: Negócio 100% escalável</p>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+
+            <div className="text-center mt-12">
+              <Card className="bg-gradient-to-r from-blue-900/50 to-purple-900/50 border-blue-500/20 max-w-2xl mx-auto">
+                <CardContent className="p-8">
+                  <h3 className="text-2xl font-bold text-white mb-4">
+                    🚀 Evolução Garantida
+                  </h3>
+                  <p className="text-gray-100 mb-6">
+                    Cada estágio é cuidadosamente planejado para maximizar seus resultados. 
+                    Nossos agentes de IA evoluem junto com seu negócio, sempre um passo à frente.
+                  </p>
+                  <WhatsAppModal
+                    trigger={
+                      <Button 
+                        size="lg" 
+                        className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white"
+                      >
+                        <TrendingUp className="mr-2 h-5 w-5" />
+                        Quero ver meu plano de crescimento
+                        <ArrowRight className="ml-2 h-5 w-5" />
+                      </Button>
+                    }
+                  />
+                </CardContent>
+              </Card>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* FAQ */}
-      <section id="faq" className="py-20 px-6 bg-slate-800/50 relative z-10">
+      <section id="faq" className="py-20 px-6 bg-slate-800/30 relative z-10">
         <div className="container mx-auto">
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-16">
-              <Badge className="mb-4 bg-purple-500/20 text-purple-300 border-purple-500/30">
+              <Badge className="mb-4 bg-purple-500/20 text-purple-200 border-purple-500/30">
                 FAQ
               </Badge>
               <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
@@ -1083,267 +1060,25 @@ export default function ModernHome() {
                 }
               ].map((faq, index) => (
                 <Card key={index} className="bg-slate-900/50 border-purple-500/20">
-                  <CardHeader 
-                    className="cursor-pointer" 
-                    onClick={() => setExpandedFaq(expandedFaq === index ? null : index)}
-                  >
-                    <CardTitle className="flex items-center justify-between text-white">
-                      {faq.question}
+                  <CardContent className="p-6">
+                    <button
+                      onClick={() => setExpandedFaq(expandedFaq === index ? null : index)}
+                      className="w-full text-left flex items-center justify-between"
+                    >
+                      <h3 className="text-lg font-semibold text-white">{faq.question}</h3>
                       <ChevronDown 
                         className={`h-5 w-5 text-purple-400 transition-transform ${
                           expandedFaq === index ? 'rotate-180' : ''
-                        }`} 
+                        }`}
                       />
-                    </CardTitle>
-                  </CardHeader>
-                  {expandedFaq === index && (
-                    <CardContent>
-                      <p className="text-gray-300">{faq.answer}</p>
-                    </CardContent>
-                  )}
+                    </button>
+                    {expandedFaq === index && (
+                      <p className="mt-4 text-gray-200">{faq.answer}</p>
+                    )}
+                  </CardContent>
                 </Card>
               ))}
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Calculadora de Perdas */}
-      <section id="calculadora" className="py-20 px-6 bg-gradient-to-br from-orange-900/30 to-red-900/30 relative z-10">
-        <div className="container mx-auto">
-          <div className="max-w-4xl mx-auto text-center">
-            <Badge className="mb-4 bg-orange-500/20 text-orange-200 border-orange-500/30">
-              <Target className="mr-2 h-3 w-3" />
-              Calculadora de Perdas
-            </Badge>
-            <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">
-              Descubra quanto você está <span className="text-orange-400">perdendo</span> por mês
-            </h2>
-            <p className="text-xl text-gray-200 max-w-3xl mx-auto mb-12">
-              Calcule o impacto real da demora no atendimento no seu faturamento
-            </p>
-
-            <Card className="bg-slate-900/70 border-orange-500/20 max-w-3xl mx-auto">
-              <CardContent className="p-8">
-                <div className="grid md:grid-cols-2 gap-8">
-                  <div>
-                    <label className="block text-sm font-medium text-gray-300 mb-3">
-                      Quantos leads você recebe por mês?
-                    </label>
-                    <Input
-                      type="number"
-                      placeholder="Ex: 100"
-                      className="bg-slate-800 border-orange-500/30 text-white text-center text-lg"
-                      onChange={(e) => {
-                        const leads = parseFloat(e.target.value) || 0;
-                        const valorVenda = parseFloat(document.querySelector('input[placeholder="Ex: 500"]').value) || 0;
-                        const perdas = leads * valorVenda * 0.3;
-                        const resultado = document.getElementById('resultado-perdas');
-                        if (resultado && perdas > 0) {
-                          resultado.textContent = 'R$ ' + perdas.toLocaleString('pt-BR');
-                        }
-                      }}
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium text-gray-300 mb-3">
-                      Qual o valor médio da sua venda?
-                    </label>
-                    <Input
-                      type="number"
-                      placeholder="Ex: 500"
-                      className="bg-slate-800 border-orange-500/30 text-white text-center text-lg"
-                      onChange={(e) => {
-                        const valorVenda = parseFloat(e.target.value) || 0;
-                        const leads = parseFloat(document.querySelector('input[placeholder="Ex: 100"]').value) || 0;
-                        const perdas = leads * valorVenda * 0.3;
-                        const resultado = document.getElementById('resultado-perdas');
-                        if (resultado && perdas > 0) {
-                          resultado.textContent = 'R$ ' + perdas.toLocaleString('pt-BR');
-                        }
-                      }}
-                    />
-                  </div>
-                </div>
-
-                <div className="mt-8 p-6 bg-gradient-to-r from-red-900/50 to-orange-900/50 rounded-lg border border-red-500/30">
-                  <h3 className="text-xl font-bold text-white mb-4">Suas perdas mensais estimadas:</h3>
-                  <div className="text-3xl font-bold text-red-400 mb-2" id="resultado-perdas">R$ 15.000</div>
-                  <p className="text-gray-200 text-sm">
-                    Baseado em 30% de leads perdidos por demora no atendimento
-                  </p>
-                </div>
-
-
-
-                <div className="mt-8">
-                  <WhatsAppModal
-                    trigger={
-                      <Button 
-                        size="lg" 
-                        className="w-full bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white"
-                      >
-                        <MessageSquare className="mr-2 h-5 w-5" />
-                        Quero recuperar essas vendas perdidas
-                        <ArrowRight className="ml-2 h-5 w-5" />
-                      </Button>
-                    }
-                  />
-                </div>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
-      </section>
-
-      {/* CTA Sections */}
-      <section className="py-16 px-6 relative z-10">
-        <div className="container mx-auto">
-          <div className="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto">
-            <WhatsAppModal
-              trigger={
-                <Card className="bg-gradient-to-br from-purple-900/50 to-slate-900/50 border-purple-500/20 hover:border-purple-400/50 transition-all duration-300 cursor-pointer">
-                  <CardContent className="p-6 text-center">
-                    <Clock className="w-12 h-12 text-purple-400 mx-auto mb-4" />
-                    <h3 className="text-lg font-bold text-white mb-3">Atendimento 24h</h3>
-                    <p className="text-gray-200 text-sm mb-4">Nunca mais perca vendas por estar offline</p>
-                    <Button size="sm" variant="outline" className="border-purple-400 text-purple-300 hover:bg-purple-400 hover:text-white">
-                      Quero isso
-                    </Button>
-                  </CardContent>
-                </Card>
-              }
-            />
-
-            <WhatsAppModal
-              trigger={
-                <Card className="bg-gradient-to-br from-green-900/50 to-slate-900/50 border-green-500/20 hover:border-green-400/50 transition-all duration-300 cursor-pointer">
-                  <CardContent className="p-6 text-center">
-                    <Users className="w-12 h-12 text-green-400 mx-auto mb-4" />
-                    <h3 className="text-lg font-bold text-white mb-3">Equipe sobrecarregada</h3>
-                    <p className="text-gray-200 text-sm mb-4">Libere sua equipe para vender mais</p>
-                    <Button size="sm" variant="outline" className="border-green-400 text-green-300 hover:bg-green-400 hover:text-white">
-                      Me ajude
-                    </Button>
-                  </CardContent>
-                </Card>
-              }
-            />
-
-            <WhatsAppModal
-              trigger={
-                <Card className="bg-gradient-to-br from-orange-900/50 to-slate-900/50 border-orange-500/20 hover:border-orange-400/50 transition-all duration-300 cursor-pointer">
-                  <CardContent className="p-6 text-center">
-                    <TrendingUp className="w-12 h-12 text-orange-400 mx-auto mb-4" />
-                    <h3 className="text-lg font-bold text-white mb-3">Perdendo para concorrência</h3>
-                    <p className="text-gray-200 text-sm mb-4">Seja mais rápido que seus concorrentes</p>
-                    <Button size="sm" variant="outline" className="border-orange-400 text-orange-300 hover:bg-orange-400 hover:text-white">
-                      Resolver agora
-                    </Button>
-                  </CardContent>
-                </Card>
-              }
-            />
-          </div>
-        </div>
-      </section>
-
-      {/* Garantia e Suporte */}
-      <section className="py-20 px-6 relative z-10">
-        <div className="container mx-auto">
-          <div className="max-w-4xl mx-auto text-center">
-            <Badge className="mb-4 bg-purple-500/20 text-purple-300 border-purple-500/30">
-              <Shield className="mr-2 h-3 w-3" />
-              Garantia
-            </Badge>
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
-              E depois da <span className="text-orange-400">entrega</span>?
-            </h2>
-            <Card className="bg-slate-900/50 border-purple-500/20">
-              <CardContent className="p-8">
-                <p className="text-lg text-gray-200 leading-relaxed mb-6">
-                  Você não está sozinho. Após a entrega, seguimos com você por 
-                  <span className="text-orange-400 font-semibold"> 60 dias</span> com suporte técnico e melhorias contínuas. 
-                  E sim: <span className="text-yellow-400 font-semibold">atualizações inclusas</span>.
-                </p>
-                <div className="grid sm:grid-cols-3 gap-6 mt-8">
-                  <div className="text-center">
-                    <div className="mx-auto mb-3 w-12 h-12 bg-gradient-to-br from-green-500 to-green-600 rounded-xl flex items-center justify-center">
-                      <Shield className="h-6 w-6 text-white" />
-                    </div>
-                    <h4 className="text-white font-semibold mb-2">60 dias de garantia</h4>
-                    <p className="text-gray-400 text-sm">Suporte completo pós-entrega</p>
-                  </div>
-                  <div className="text-center">
-                    <div className="mx-auto mb-3 w-12 h-12 bg-gradient-to-br from-purple-500 to-purple-600 rounded-xl flex items-center justify-center">
-                      <Zap className="h-6 w-6 text-white" />
-                    </div>
-                    <h4 className="text-white font-semibold mb-2">Atualizações inclusas</h4>
-                    <p className="text-gray-400 text-sm">Melhorias sem custo adicional</p>
-                  </div>
-                  <div className="text-center">
-                    <div className="mx-auto mb-3 w-12 h-12 bg-gradient-to-br from-yellow-500 to-yellow-600 rounded-xl flex items-center justify-center">
-                      <MessageSquare className="h-6 w-6 text-white" />
-                    </div>
-                    <h4 className="text-white font-semibold mb-2">Suporte direto</h4>
-                    <p className="text-gray-400 text-sm">Atendimento pelo WhatsApp</p>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
-      </section>
-
-      {/* Plano de Crescimento */}
-      <section className="py-20 px-6 bg-slate-800/50 relative z-10">
-        <div className="container mx-auto">
-          <div className="max-w-4xl mx-auto text-center">
-            <Badge className="mb-4 bg-purple-500/20 text-purple-300 border-purple-500/30">
-              <TrendingUp className="mr-2 h-3 w-3" />
-              Crescimento
-            </Badge>
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
-              Nosso plano de <span className="text-orange-400">crescimento</span> com você
-            </h2>
-            <Card className="bg-slate-900/50 border-purple-500/20">
-              <CardContent className="p-8">
-                <p className="text-lg text-gray-200 leading-relaxed mb-8">
-                  Começamos com o básico: um bot que atende, responde e converte. 
-                  Mas o céu é o limite — agende rotinas, colete leads, conecte com IA de voz, CRM e muito mais.
-                </p>
-                <div className="grid sm:grid-cols-2 md:grid-cols-4 gap-6">
-                  <div className="text-center">
-                    <div className="mx-auto mb-3 w-10 h-10 bg-gradient-to-br from-purple-500 to-purple-600 rounded-lg flex items-center justify-center text-white font-bold">
-                      1
-                    </div>
-                    <h4 className="text-white font-semibold text-sm">Bot Básico</h4>
-                    <p className="text-gray-400 text-xs">Atendimento automatizado</p>
-                  </div>
-                  <div className="text-center">
-                    <div className="mx-auto mb-3 w-10 h-10 bg-gradient-to-br from-yellow-500 to-yellow-600 rounded-lg flex items-center justify-center text-white font-bold">
-                      2
-                    </div>
-                    <h4 className="text-white font-semibold text-sm">Integrações</h4>
-                    <p className="text-gray-400 text-xs">CRM e sistemas</p>
-                  </div>
-                  <div className="text-center">
-                    <div className="mx-auto mb-3 w-10 h-10 bg-gradient-to-br from-green-500 to-green-600 rounded-lg flex items-center justify-center text-white font-bold">
-                      3
-                    </div>
-                    <h4 className="text-white font-semibold text-sm">IA Avançada</h4>
-                    <p className="text-gray-400 text-xs">Voz e análise</p>
-                  </div>
-                  <div className="text-center">
-                    <div className="mx-auto mb-3 w-10 h-10 bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg flex items-center justify-center text-white font-bold">
-                      4
-                    </div>
-                    <h4 className="text-white font-semibold text-sm">Escalabilidade</h4>
-                    <p className="text-gray-400 text-xs">Crescimento ilimitado</p>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
           </div>
         </div>
       </section>
