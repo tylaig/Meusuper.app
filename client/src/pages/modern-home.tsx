@@ -39,6 +39,7 @@ import {
 
 export default function ModernHome() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [expandedFaq, setExpandedFaq] = useState<number | null>(null);
   const [scrollY, setScrollY] = useState(0);
   const [formData, setFormData] = useState<ContactForm>({
