@@ -94,32 +94,22 @@ The application uses Drizzle ORM with a PostgreSQL-ready schema:
 
 ## Recent Changes
 
+- June 24, 2025: Major overhaul - Multicanal AI agents focus
+  - **Strategic pivot**: Changed from WhatsApp-only to multicanal AI agents (WhatsApp, Instagram, Facebook, Email, SMS)
+  - **Realistic timeline**: Updated from 7 days to 15 days implementation + monthly service model
+  - **Complete page restructure**: Removed main form, implemented calculadora dinâmica de perdas
+  - **Enhanced problems section**: Expanded from 4 to 6 specific multicanal problems
+  - **New pages added**: Complete Privacy Policy and Terms of Service with LGPD compliance
+  - **Improved testimonials**: 6 detailed case studies by business niche with specific metrics
+  - **Guarantee section**: Added 30-day satisfaction guarantee with 3 pillars
+  - **Functional calculator**: Real-time loss calculation with JavaScript integration
+  - **Professional bio**: Enhanced Samuel's credentials with Dubotics partnership
+  - **Realistic metrics**: Updated stats (5+ years experience, removed inflated numbers)
+  - **Multiple CTAs**: Strategic popup triggers instead of main page form
+  - **Color corrections**: Fixed contrast issues in colored blocks
+  - **Dynamic rocket**: Mid-page appearance with flying effect
+  - **Footer links**: Added navigation to policy pages
 - June 24, 2025: Complete redesign with modern dark theme
-  - Created new modern landing page with glassmorphism design
-  - Implemented dark gradient background with purple/yellow accents
-  - Added interactive components using shadcn/ui
-  - Enhanced mobile responsiveness and animations
-  - Improved contact form with better UX
-  - Added WhatsApp popup modal for "Falar com especialista" button
-  - Implemented new sections: Para Quem É, Benefícios, Garantia, Plano de Crescimento
-  - Updated FAQ with new questions from briefing
-  - Improved responsive design for all screen sizes
-  - Added Three.js particle background with mouse interaction
-  - Updated logo with orange "Meu" and white "Super.app"
-  - Replaced Samuel's image with provided URL (rounded profile style)
-  - Enhanced hover effects with dynamic colors and particle interactions
-  - Added Samuel's Instagram (@eusamuelvicente) to About section
-  - Improved color contrast throughout the site (gray-300 → gray-200)
-  - Updated copy with more persuasive and commercial language
-  - Changed primary accent color from purple to orange for better visibility
-  - Applied SPIN Selling methodology throughout the landing page
-  - Added problem identification section with pain points
-  - Implemented consequence-focused messaging (implication)
-  - Restructured CTAs to focus on pain resolution rather than features
-  - Added partnership mention with Dubotics
-  - Updated stats with realistic numbers (Brazil/Dubai, 97% satisfaction, 4.9 stars)
-  - Added new service: AI, RPA and voice projects
-  - Updated benefits with larger impact numbers (10,000h saved, R$100k+ recovered)
 - June 24, 2025: Initial setup and basic landing page
 
 ## User Preferences

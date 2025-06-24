@@ -1131,6 +1131,15 @@ export default function ModernHome() {
                       type="number"
                       placeholder="Ex: 100"
                       className="bg-slate-800 border-orange-500/30 text-white text-center text-lg"
+                      onChange={(e) => {
+                        const leads = parseFloat(e.target.value) || 0;
+                        const valorVenda = parseFloat(document.querySelector('input[placeholder="Ex: 500"]').value) || 0;
+                        const perdas = leads * valorVenda * 0.3;
+                        const resultado = document.getElementById('resultado-perdas');
+                        if (resultado && perdas > 0) {
+                          resultado.textContent = 'R$ ' + perdas.toLocaleString('pt-BR');
+                        }
+                      }}
                     />
                   </div>
                   <div>
@@ -1141,17 +1150,28 @@ export default function ModernHome() {
                       type="number"
                       placeholder="Ex: 500"
                       className="bg-slate-800 border-orange-500/30 text-white text-center text-lg"
+                      onChange={(e) => {
+                        const valorVenda = parseFloat(e.target.value) || 0;
+                        const leads = parseFloat(document.querySelector('input[placeholder="Ex: 100"]').value) || 0;
+                        const perdas = leads * valorVenda * 0.3;
+                        const resultado = document.getElementById('resultado-perdas');
+                        if (resultado && perdas > 0) {
+                          resultado.textContent = 'R$ ' + perdas.toLocaleString('pt-BR');
+                        }
+                      }}
                     />
                   </div>
                 </div>
 
                 <div className="mt-8 p-6 bg-gradient-to-r from-red-900/50 to-orange-900/50 rounded-lg border border-red-500/30">
                   <h3 className="text-xl font-bold text-white mb-4">Suas perdas mensais estimadas:</h3>
-                  <div className="text-3xl font-bold text-red-400 mb-2">R$ 15.000</div>
+                  <div className="text-3xl font-bold text-red-400 mb-2" id="resultado-perdas">R$ 15.000</div>
                   <p className="text-gray-200 text-sm">
                     Baseado em 30% de leads perdidos por demora no atendimento
                   </p>
                 </div>
+
+
 
                 <div className="mt-8">
                   <WhatsAppModal
@@ -1403,9 +1423,17 @@ export default function ModernHome() {
               Automação com IA para escalar seu negócio
             </p>
             <Separator className="bg-purple-500/20 mb-6" />
-            <p className="text-gray-500 text-sm">
-              MeuSuper.app © 2025 — Todos os direitos reservados
-            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center text-gray-500 text-sm">
+              <p>MeuSuper.app © 2025 — Todos os direitos reservados</p>
+              <div className="flex gap-4">
+                <a href="/privacy-policy" className="hover:text-purple-400 transition-colors">
+                  Política de Privacidade
+                </a>
+                <a href="/terms-of-service" className="hover:text-purple-400 transition-colors">
+                  Termos de Uso
+                </a>
+              </div>
+            </div>
           </div>
         </div>
       </footer>
