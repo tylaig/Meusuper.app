@@ -327,53 +327,53 @@ export default function ModernHome() {
             </div>
 
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-              <Card className="bg-slate-900/50 border-blue-500/20 relative text-center">
+              <Card className="glass-card neon-border relative text-center group">
                 <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
-                  <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full flex items-center justify-center text-white font-bold text-sm">1</div>
+                  <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full flex items-center justify-center text-white font-bold text-sm shadow-lg shadow-blue-500/50">1</div>
                 </div>
                 <CardContent className="p-6 pt-8">
-                  <MessageSquare className="w-12 h-12 text-blue-400 mx-auto mb-4" />
-                  <h3 className="text-lg font-bold text-white mb-3">Análise Gratuita</h3>
-                  <p className="text-gray-200 text-sm">
+                  <MessageSquare className="w-12 h-12 text-blue-400 mx-auto mb-4 icon-glow group-hover:scale-110 transition-transform duration-300" />
+                  <h3 className="text-lg font-bold text-high-contrast mb-3">Análise Gratuita</h3>
+                  <p className="text-medium-contrast text-sm">
                     Diagnóstico completo do seu atendimento atual e identificação de oportunidades
                   </p>
                 </CardContent>
               </Card>
 
-              <Card className="bg-slate-900/50 border-purple-500/20 relative text-center">
+              <Card className="glass-card neon-border relative text-center group">
                 <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
-                  <div className="w-8 h-8 bg-gradient-to-br from-purple-500 to-purple-600 rounded-full flex items-center justify-center text-white font-bold text-sm">2</div>
+                  <div className="w-8 h-8 bg-gradient-to-br from-purple-500 to-purple-600 rounded-full flex items-center justify-center text-white font-bold text-sm shadow-lg shadow-purple-500/50">2</div>
                 </div>
                 <CardContent className="p-6 pt-8">
-                  <Building2 className="w-12 h-12 text-purple-400 mx-auto mb-4" />
-                  <h3 className="text-lg font-bold text-white mb-3">Configuração</h3>
-                  <p className="text-gray-200 text-sm">
+                  <Building2 className="w-12 h-12 text-purple-400 mx-auto mb-4 icon-glow group-hover:scale-110 transition-transform duration-300" />
+                  <h3 className="text-lg font-bold text-high-contrast mb-3">Configuração</h3>
+                  <p className="text-medium-contrast text-sm">
                     Criação e treinamento dos agentes de IA específicos para seu negócio
                   </p>
                 </CardContent>
               </Card>
 
-              <Card className="bg-slate-900/50 border-green-500/20 relative text-center">
+              <Card className="glass-card neon-border relative text-center group">
                 <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
-                  <div className="w-8 h-8 bg-gradient-to-br from-green-500 to-green-600 rounded-full flex items-center justify-center text-white font-bold text-sm">3</div>
+                  <div className="w-8 h-8 bg-gradient-to-br from-green-500 to-green-600 rounded-full flex items-center justify-center text-white font-bold text-sm shadow-lg shadow-green-500/50">3</div>
                 </div>
                 <CardContent className="p-6 pt-8">
-                  <Users className="w-12 h-12 text-green-400 mx-auto mb-4" />
-                  <h3 className="text-lg font-bold text-white mb-3">Integração</h3>
-                  <p className="text-gray-200 text-sm">
+                  <Users className="w-12 h-12 text-green-400 mx-auto mb-4 icon-glow group-hover:scale-110 transition-transform duration-300" />
+                  <h3 className="text-lg font-bold text-high-contrast mb-3">Integração</h3>
+                  <p className="text-medium-contrast text-sm">
                     Conexão com WhatsApp, Instagram, Facebook, Email e SMS em 15 dias
                   </p>
                 </CardContent>
               </Card>
 
-              <Card className="bg-slate-900/50 border-orange-500/20 relative text-center">
+              <Card className="glass-card neon-border relative text-center group">
                 <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
-                  <div className="w-8 h-8 bg-gradient-to-br from-orange-500 to-orange-600 rounded-full flex items-center justify-center text-white font-bold text-sm">4</div>
+                  <div className="w-8 h-8 bg-gradient-to-br from-orange-500 to-orange-600 rounded-full flex items-center justify-center text-white font-bold text-sm shadow-lg shadow-orange-500/50">4</div>
                 </div>
                 <CardContent className="p-6 pt-8">
-                  <TrendingUp className="w-12 h-12 text-orange-400 mx-auto mb-4" />
-                  <h3 className="text-lg font-bold text-white mb-3">Otimização</h3>
-                  <p className="text-gray-200 text-sm">
+                  <TrendingUp className="w-12 h-12 text-orange-400 mx-auto mb-4 icon-glow group-hover:scale-110 transition-transform duration-300" />
+                  <h3 className="text-lg font-bold text-high-contrast mb-3">Otimização</h3>
+                  <p className="text-medium-contrast text-sm">
                     Monitoramento contínuo e melhorias mensais nos agentes
                   </p>
                 </CardContent>
@@ -398,79 +398,79 @@ export default function ModernHome() {
             </div>
 
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-              <Card className="bg-gradient-to-br from-blue-900/50 to-slate-900/50 border-blue-500/20">
+              <Card className="glass-card neon-border group">
                 <CardContent className="p-6">
-                  <GraduationCap className="w-12 h-12 text-blue-400 mb-4" />
-                  <h3 className="text-xl font-bold text-white mb-3">Cursos Online</h3>
-                  <p className="text-gray-100 text-sm mb-4">
+                  <GraduationCap className="w-12 h-12 text-blue-400 mb-4 icon-glow group-hover:scale-110 transition-transform duration-300" />
+                  <h3 className="text-xl font-bold text-high-contrast mb-3">Cursos Online</h3>
+                  <p className="text-medium-contrast text-sm mb-4">
                     Automatize suporte, recuperação de carrinho abandonado e nutrição de leads em múltiplos canais
                   </p>
-                  <div className="text-blue-300 text-xs">
+                  <div className="text-blue-300 text-xs font-semibold">
                     ✓ Suporte 24h ✓ Vendas automáticas ✓ Redução de refund
                   </div>
                 </CardContent>
               </Card>
 
-              <Card className="bg-gradient-to-br from-green-900/50 to-slate-900/50 border-green-500/20">
+              <Card className="glass-card neon-border group">
                 <CardContent className="p-6">
-                  <ShoppingCart className="w-12 h-12 text-green-400 mb-4" />
-                  <h3 className="text-xl font-bold text-white mb-3">E-commerce</h3>
-                  <p className="text-gray-100 text-sm mb-4">
+                  <ShoppingCart className="w-12 h-12 text-green-400 mb-4 icon-glow group-hover:scale-110 transition-transform duration-300" />
+                  <h3 className="text-xl font-bold text-high-contrast mb-3">E-commerce</h3>
+                  <p className="text-medium-contrast text-sm mb-4">
                     Conecte Instagram, WhatsApp e email para capturar leads de todos os pontos de contato
                   </p>
-                  <div className="text-green-300 text-xs">
+                  <div className="text-green-300 text-xs font-semibold">
                     ✓ Catálogo automático ✓ Checkout simplificado ✓ Pós-venda
                   </div>
                 </CardContent>
               </Card>
 
-              <Card className="bg-gradient-to-br from-purple-900/50 to-slate-900/50 border-purple-500/20">
+              <Card className="glass-card neon-border group">
                 <CardContent className="p-6">
-                  <Briefcase className="w-12 h-12 text-purple-400 mb-4" />
-                  <h3 className="text-xl font-bold text-white mb-3">Consultoria</h3>
-                  <p className="text-gray-100 text-sm mb-4">
+                  <Briefcase className="w-12 h-12 text-purple-400 mb-4 icon-glow group-hover:scale-110 transition-transform duration-300" />
+                  <h3 className="text-xl font-bold text-high-contrast mb-3">Consultoria</h3>
+                  <p className="text-medium-contrast text-sm mb-4">
                     Qualificação inteligente de prospects e agendamento automático em todos os canais
                   </p>
-                  <div className="text-purple-300 text-xs">
+                  <div className="text-purple-300 text-xs font-semibold">
                     ✓ Agenda lotada ✓ Leads qualificados ✓ Follow-up automático
                   </div>
                 </CardContent>
               </Card>
 
-              <Card className="bg-gradient-to-br from-orange-900/50 to-slate-900/50 border-orange-500/20">
+              <Card className="glass-card neon-border group">
                 <CardContent className="p-6">
-                  <Building2 className="w-12 h-12 text-orange-400 mb-4" />
-                  <h3 className="text-xl font-bold text-white mb-3">SaaS</h3>
-                  <p className="text-gray-100 text-sm mb-4">
+                  <Building2 className="w-12 h-12 text-orange-400 mb-4 icon-glow group-hover:scale-110 transition-transform duration-300" />
+                  <h3 className="text-xl font-bold text-high-contrast mb-3">SaaS</h3>
+                  <p className="text-medium-contrast text-sm mb-4">
                     Onboarding automatizado, suporte técnico e redução de churn via multicanal
                   </p>
-                  <div className="text-orange-300 text-xs">
+                  <div className="text-orange-300 text-xs font-semibold">
                     ✓ Ativação de usuários ✓ Suporte tier 1 ✓ Retenção
                   </div>
                 </CardContent>
               </Card>
 
-              <Card className="bg-gradient-to-br from-yellow-900/50 to-slate-900/50 border-yellow-500/20">
+              <Card className="glass-card neon-border group">
                 <CardContent className="p-6">
-                  <Star className="w-12 h-12 text-yellow-400 mb-4" />
-                  <h3 className="text-xl font-bold text-white mb-3">Infoprodutos</h3>
-                  <p className="text-gray-100 text-sm mb-4">
+                  <Star className="w-12 h-12 text-yellow-400 mb-4 icon-glow group-hover:scale-110 transition-transform duration-300" />
+                  <h3 className="text-xl font-bold text-high-contrast mb-3">Infoprodutos</h3>
+                  <p className="text-medium-contrast text-sm mb-4">
                     Integração com Hotmart, Monetizze e entrega automatizada multicanal
                   </p>
-                  <div className="text-yellow-300 text-xs">
+                  <div className="text-yellow-300 text-xs font-semibold">
                     ✓ Entrega automática ✓ Suporte integrado ✓ Upsell
                   </div>
                 </CardContent>
               </Card>
 
-              <Card className="bg-gradient-to-br from-red-900/50 to-slate-900/50 border-red-500/20">
+              <Card className="glass-card neon-border group">
                 <CardContent className="p-6">
-                  <Heart className="w-12 h-12 text-red-400 mb-4" />
-                  <h3 className="text-xl font-bold text-white mb-3">Produtos Físicos</h3>
-                  <p className="text-gray-100 text-sm mb-4">
+                  <Heart className="w-12 h-12 text-red-400 mb-4 icon-glow group-hover:scale-110 transition-transform duration-300" />
+                  <h3 className="text-xl font-bold text-high-contrast mb-3">Produtos Físicos</h3>
+                  <p className="text-medium-contrast text-sm mb-4">
                     Nutrição multicanal para recompra e fidelização de clientes
                   </p>
-                  <div className="text-red-300 text-xs">
+                  <div className="text-red-300 text-xs font-semibold">
                     ✓ Recompra automática ✓ Fidelização ✓ Cross-sell
                   </div>
                 </CardContent>
@@ -497,17 +497,17 @@ export default function ModernHome() {
               </p>
             </div>
 
-            <Card className="bg-slate-900/50 border-red-500/20">
+            <Card className="glass-card neon-border">
               <CardContent className="p-8">
                 <div className="grid md:grid-cols-2 gap-8 mb-8">
                   <div>
-                    <label className="block text-sm font-medium text-gray-300 mb-3">
+                    <label className="block text-sm font-medium text-high-contrast mb-3">
                       Quantos leads você recebe por mês?
                     </label>
                     <Input
                       type="number"
                       placeholder="Ex: 100"
-                      className="bg-slate-800 border-orange-500/30 text-white text-center text-lg"
+                      className="bg-black/60 border-purple-500/50 text-white text-center text-lg backdrop-blur-md focus:border-purple-400 focus:ring-purple-400/20 transition-all duration-300"
                       onChange={(e) => {
                         const leads = parseFloat(e.target.value) || 0;
                         const valorVenda = parseFloat((document.querySelector('input[placeholder="Ex: 500"]') as HTMLInputElement)?.value || '0') || 0;
@@ -522,13 +522,13 @@ export default function ModernHome() {
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-300 mb-3">
+                    <label className="block text-sm font-medium text-high-contrast mb-3">
                       Qual o valor médio da sua venda?
                     </label>
                     <Input
                       type="number"
                       placeholder="Ex: 500"
-                      className="bg-slate-800 border-orange-500/30 text-white text-center text-lg"
+                      className="bg-black/60 border-purple-500/50 text-white text-center text-lg backdrop-blur-md focus:border-purple-400 focus:ring-purple-400/20 transition-all duration-300"
                       onChange={(e) => {
                         const valorVenda = parseFloat(e.target.value) || 0;
                         const leads = parseFloat((document.querySelector('input[placeholder="Ex: 100"]') as HTMLInputElement)?.value || '0') || 0;
@@ -544,15 +544,18 @@ export default function ModernHome() {
                   </div>
                 </div>
 
-                <div className="mt-8 p-6 bg-gradient-to-r from-red-900/50 to-orange-900/50 rounded-lg border border-red-500/30">
-                  <h3 className="text-xl font-bold text-white mb-4">Suas perdas mensais estimadas:</h3>
-                  <div className="text-3xl font-bold text-red-400 mb-2" id="resultado-perdas">R$ 0</div>
-                  <p className="text-gray-200 text-sm">
-                    Baseado em 30% de leads perdidos por demora no atendimento
-                  </p>
-                  <p className="text-gray-300 text-xs mt-2">
-                    💡 Digite os valores acima para calcular suas perdas reais
-                  </p>
+                <div className="mt-8 p-6 bg-black/80 backdrop-blur-xl rounded-xl border border-red-500/40 relative overflow-hidden">
+                  <div className="absolute inset-0 bg-gradient-to-r from-red-500/10 to-orange-500/10"></div>
+                  <div className="relative z-10">
+                    <h3 className="text-xl font-bold text-high-contrast mb-4">Suas perdas mensais estimadas:</h3>
+                    <div className="text-3xl font-bold text-red-400 mb-2 drop-shadow-lg" id="resultado-perdas">R$ 0</div>
+                    <p className="text-medium-contrast text-sm">
+                      Baseado em 30% de leads perdidos por demora no atendimento
+                    </p>
+                    <p className="text-subtle-contrast text-xs mt-2">
+                      💡 Digite os valores acima para calcular suas perdas reais
+                    </p>
+                  </div>
                 </div>
 
                 <div className="mt-8">
@@ -593,63 +596,63 @@ export default function ModernHome() {
             </div>
 
             <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-8">
-              <Card className="bg-gradient-to-br from-red-900/50 to-slate-900/50 border-red-500/20 text-center">
+              <Card className="glass-card neon-border text-center group">
                 <CardContent className="p-6">
-                  <div className="mx-auto mb-4 w-16 h-16 bg-gradient-to-br from-red-500 to-red-600 rounded-2xl flex items-center justify-center">
-                    <Clock className="h-8 w-8 text-white" />
+                  <div className="mx-auto mb-4 w-16 h-16 bg-gradient-to-br from-red-500 to-red-600 rounded-2xl flex items-center justify-center shadow-lg shadow-red-500/30">
+                    <Clock className="h-8 w-8 text-white icon-glow group-hover:scale-110 transition-transform duration-300" />
                   </div>
-                  <h3 className="text-xl font-bold text-white mb-3">Respostas lentas em todos os canais</h3>
-                  <p className="text-gray-100 text-sm">Clientes esperando horas no WhatsApp, Instagram, Facebook enquanto concorrentes respondem em segundos</p>
+                  <h3 className="text-xl font-bold text-high-contrast mb-3">Respostas lentas em todos os canais</h3>
+                  <p className="text-medium-contrast text-sm">Clientes esperando horas no WhatsApp, Instagram, Facebook enquanto concorrentes respondem em segundos</p>
                 </CardContent>
               </Card>
 
-              <Card className="bg-gradient-to-br from-orange-900/50 to-slate-900/50 border-orange-500/20 text-center">
+              <Card className="glass-card neon-border text-center group">
                 <CardContent className="p-6">
-                  <div className="mx-auto mb-4 w-16 h-16 bg-gradient-to-br from-orange-500 to-orange-600 rounded-2xl flex items-center justify-center">
-                    <Users className="h-8 w-8 text-white" />
+                  <div className="mx-auto mb-4 w-16 h-16 bg-gradient-to-br from-orange-500 to-orange-600 rounded-2xl flex items-center justify-center shadow-lg shadow-orange-500/30">
+                    <Users className="h-8 w-8 text-white icon-glow group-hover:scale-110 transition-transform duration-300" />
                   </div>
-                  <h3 className="text-xl font-bold text-white mb-3">Atendimento limitado ao horário comercial</h3>
-                  <p className="text-gray-100 text-sm">Leads chegando 24h por todos os canais mas você só atende 8h por dia</p>
+                  <h3 className="text-xl font-bold text-high-contrast mb-3">Atendimento limitado ao horário comercial</h3>
+                  <p className="text-medium-contrast text-sm">Leads chegando 24h por todos os canais mas você só atende 8h por dia</p>
                 </CardContent>
               </Card>
 
-              <Card className="bg-gradient-to-br from-purple-900/50 to-slate-900/50 border-purple-500/20 text-center">
+              <Card className="glass-card neon-border text-center group">
                 <CardContent className="p-6">
-                  <div className="mx-auto mb-4 w-16 h-16 bg-gradient-to-br from-purple-500 to-purple-600 rounded-2xl flex items-center justify-center">
-                    <MessageSquare className="h-8 w-8 text-white" />
+                  <div className="mx-auto mb-4 w-16 h-16 bg-gradient-to-br from-purple-500 to-purple-600 rounded-2xl flex items-center justify-center shadow-lg shadow-purple-500/30">
+                    <MessageSquare className="h-8 w-8 text-white icon-glow group-hover:scale-110 transition-transform duration-300" />
                   </div>
-                  <h3 className="text-xl font-bold text-white mb-3">Leads se perdendo em múltiplos canais</h3>
-                  <p className="text-gray-100 text-sm">WhatsApp, Instagram, Facebook, Email - impossível acompanhar e nutrir todos manualmente</p>
+                  <h3 className="text-xl font-bold text-high-contrast mb-3">Leads se perdendo em múltiplos canais</h3>
+                  <p className="text-medium-contrast text-sm">WhatsApp, Instagram, Facebook, Email - impossível acompanhar e nutrir todos manualmente</p>
                 </CardContent>
               </Card>
 
-              <Card className="bg-gradient-to-br from-blue-900/50 to-slate-900/50 border-blue-500/20 text-center">
+              <Card className="glass-card neon-border text-center group">
                 <CardContent className="p-6">
-                  <div className="mx-auto mb-4 w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl flex items-center justify-center">
-                    <Zap className="h-8 w-8 text-white" />
+                  <div className="mx-auto mb-4 w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl flex items-center justify-center shadow-lg shadow-blue-500/30">
+                    <Zap className="h-8 w-8 text-white icon-glow group-hover:scale-110 transition-transform duration-300" />
                   </div>
-                  <h3 className="text-xl font-bold text-white mb-3">Informações espalhadas em vários canais</h3>
-                  <p className="text-gray-100 text-sm">Dados de clientes perdidos entre WhatsApp, Instagram, Email e outros canais sem integração</p>
+                  <h3 className="text-xl font-bold text-high-contrast mb-3">Informações espalhadas em vários canais</h3>
+                  <p className="text-medium-contrast text-sm">Dados de clientes perdidos entre WhatsApp, Instagram, Email e outros canais sem integração</p>
                 </CardContent>
               </Card>
 
-              <Card className="bg-gradient-to-br from-green-900/50 to-slate-900/50 border-green-500/20 text-center">
+              <Card className="glass-card neon-border text-center group">
                 <CardContent className="p-6">
-                  <div className="mx-auto mb-4 w-16 h-16 bg-gradient-to-br from-green-500 to-green-600 rounded-2xl flex items-center justify-center">
-                    <Target className="h-8 w-8 text-white" />
+                  <div className="mx-auto mb-4 w-16 h-16 bg-gradient-to-br from-green-500 to-green-600 rounded-2xl flex items-center justify-center shadow-lg shadow-green-500/30">
+                    <Target className="h-8 w-8 text-white icon-glow group-hover:scale-110 transition-transform duration-300" />
                   </div>
-                  <h3 className="text-xl font-bold text-white mb-3">Impossível escalar atendimento multicanal</h3>
-                  <p className="text-gray-100 text-sm">Cada novo canal = mais funcionários = custos que explodem sem controle</p>
+                  <h3 className="text-xl font-bold text-high-contrast mb-3">Impossível escalar atendimento multicanal</h3>
+                  <p className="text-medium-contrast text-sm">Cada novo canal = mais funcionários = custos que explodem sem controle</p>
                 </CardContent>
               </Card>
 
-              <Card className="bg-gradient-to-br from-yellow-900/50 to-slate-900/50 border-yellow-500/20 text-center">
+              <Card className="glass-card neon-border text-center group">
                 <CardContent className="p-6">
-                  <div className="mx-auto mb-4 w-16 h-16 bg-gradient-to-br from-yellow-500 to-yellow-600 rounded-2xl flex items-center justify-center">
-                    <TrendingUp className="h-8 w-8 text-white" />
+                  <div className="mx-auto mb-4 w-16 h-16 bg-gradient-to-br from-yellow-500 to-yellow-600 rounded-2xl flex items-center justify-center shadow-lg shadow-yellow-500/30">
+                    <TrendingUp className="h-8 w-8 text-white icon-glow group-hover:scale-110 transition-transform duration-300" />
                   </div>
-                  <h3 className="text-xl font-bold text-white mb-3">Operações que dependem de você estar online 24h</h3>
-                  <p className="text-gray-100 text-sm">Você é prisioneiro do próprio negócio</p>
+                  <h3 className="text-xl font-bold text-high-contrast mb-3">Operações que dependem de você estar online 24h</h3>
+                  <p className="text-medium-contrast text-sm">Você é prisioneiro do próprio negócio</p>
                 </CardContent>
               </Card>
             </div>
@@ -675,23 +678,23 @@ export default function ModernHome() {
             </div>
 
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-              <Card className="bg-slate-900/50 border-purple-500/20">
+              <Card className="glass-card neon-border group">
                 <CardContent className="p-6">
                   <div className="flex items-center mb-4">
                     <div className="flex text-yellow-400">{"★".repeat(5)}</div>
-                    <span className="ml-2 text-sm text-gray-400">Curso Online</span>
+                    <span className="ml-2 text-sm text-subtle-contrast">Curso Online</span>
                   </div>
-                  <p className="text-gray-100 mb-4 italic">
+                  <p className="text-medium-contrast mb-4 italic">
                     "Automatizamos recuperação de carrinho no WhatsApp e Instagram. Recuperamos R$ 45.000 em vendas perdidas no primeiro mês."
                   </p>
-                  <div className="bg-green-900/30 p-3 rounded mb-4">
+                  <div className="bg-green-500/20 backdrop-blur-sm p-3 rounded-lg mb-4 border border-green-500/30">
                     <p className="text-green-300 text-sm font-semibold">+300% vendas recuperadas</p>
                   </div>
                   <div className="flex items-center">
-                    <div className="w-10 h-10 bg-gradient-to-br from-purple-500 to-purple-600 rounded-full flex items-center justify-center text-white font-bold">M</div>
+                    <div className="w-10 h-10 bg-gradient-to-br from-purple-500 to-purple-600 rounded-full flex items-center justify-center text-white font-bold shadow-lg shadow-purple-500/30">M</div>
                     <div className="ml-3">
-                      <p className="text-white font-semibold">Marina Silva</p>
-                      <p className="text-gray-400 text-sm">CEO, EduTech Pro</p>
+                      <p className="text-high-contrast font-semibold">Marina Silva</p>
+                      <p className="text-subtle-contrast text-sm">CEO, EduTech Pro</p>
                     </div>
                   </div>
                 </CardContent>
